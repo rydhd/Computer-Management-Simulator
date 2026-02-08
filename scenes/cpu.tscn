@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://wsoibpe76ngv"]
+
+[ext_resource type="Script" uid="uid://b1x8ck0xywixy" path="res://scripts/cpu.gd" id="1_5i68j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16h3v"]
+size = Vector2(496, 488)
+
+[node name="CPU" type="Area2D"]
+script = ExtResource("1_5i68j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_16h3v")
