@@ -1,13 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://wsoibpe76ngv"]
+[gd_scene format=3 uid="uid://wsoibpe76ngv"]
 
 [ext_resource type="Script" uid="uid://b1x8ck0xywixy" path="res://scripts/cpu.gd" id="1_5i68j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16h3v"]
 size = Vector2(496, 488)
 
-[node name="CPU" type="Area2D"]
+[node name="CPU" type="Area2D" unique_id=1511945674]
 script = ExtResource("1_5i68j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=810678338]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_16h3v")
+
+[node name="Label" type="Label" parent="." unique_id=1992213123]
+offset_left = -13.0
+offset_top = -25.0
+offset_right = 19.0
+offset_bottom = -2.0
+text = "CPU"

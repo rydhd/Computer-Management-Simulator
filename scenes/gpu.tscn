@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7047snqqi8vx"]
+[gd_scene format=3 uid="uid://b7047snqqi8vx"]
 
 [ext_resource type="Script" uid="uid://dfeyw25sxe13l" path="res://scripts/gpu.gd" id="1_6s3po"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14ext"]
 size = Vector2(224, 96)
 
-[node name="Gpu" type="Area2D"]
+[node name="Gpu" type="Area2D" unique_id=372538901]
 script = ExtResource("1_6s3po")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2051044833]
 shape = SubResource("RectangleShape2D_14ext")
+
+[node name="Label" type="Label" parent="." unique_id=606159318]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GPU"

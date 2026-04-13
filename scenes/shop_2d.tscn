@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dk53bbdiojv6p"]
+[gd_scene format=3 uid="uid://dk53bbdiojv6p"]
 
 [ext_resource type="Script" uid="uid://bd2exfxhd8oah" path="res://scripts/shop_2d.gd" id="1_4kg1i"]
 [ext_resource type="Texture2D" uid="uid://cywvsj44chj4a" path="res://assets/2D Assets/2D Materials/Background PC.png" id="2_r4wvg"]
@@ -7,13 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://cu3n8yf78y35k" path="res://assets/2D Assets/2D Materials/Background Manual.png" id="5_dt4ex"]
 [ext_resource type="Texture2D" uid="uid://bykndi0q8vtit" path="res://assets/2D Assets/2D Materials/Background Taskboard.png" id="6_4kg1i"]
 [ext_resource type="Texture2D" uid="uid://cj54wr3m26g8" path="res://assets/2D Assets/2D Materials/Background Bell.png" id="7_4swkf"]
-[ext_resource type="Script" path="res://scripts/dialogue_system.gd" id="8_4swkf"]
+[ext_resource type="Script" uid="uid://04pswj4ru25g" path="res://scripts/dialogue_system.gd" id="8_4swkf"]
 [ext_resource type="PackedScene" uid="uid://diul2q2ek0iop" path="res://scenes/taskboard_overlay.tscn" id="9_8ahl1"]
 
-[node name="Shop2d" type="Node2D"]
+[node name="Shop2d" type="Node2D" unique_id=743927316]
 script = ExtResource("1_4kg1i")
 
-[node name="BackgroundFixMyPc" type="Sprite2D" parent="."]
+[node name="BackgroundFixMyPc" type="Sprite2D" parent="." unique_id=136509501]
 show_behind_parent = true
 light_mask = 0
 visibility_layer = 512
@@ -21,52 +21,52 @@ position = Vector2(-76.99999, -13.000011)
 scale = Vector2(0.5, 0.5018518)
 texture = ExtResource("2_tnsa0")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=427203862]
 position = Vector2(-1, 1)
 offset = Vector2(-76, -13)
 zoom = Vector2(2, 2)
 
-[node name="BackgroundTable" type="Sprite2D" parent="."]
+[node name="BackgroundTable" type="Sprite2D" parent="." unique_id=1688587008]
 position = Vector2(-76.000015, -11.999996)
 scale = Vector2(0.50104165, 0.50185186)
 texture = ExtResource("3_m0brw")
 
-[node name="BackgroundManual" type="Sprite2D" parent="."]
+[node name="BackgroundManual" type="Sprite2D" parent="." unique_id=561195398]
 position = Vector2(-76.99997, -13.999977)
 scale = Vector2(0.5010417, 0.5018519)
 texture = ExtResource("5_dt4ex")
 
-[node name="BackgroundTaskboard" type="Sprite2D" parent="."]
+[node name="BackgroundTaskboard" type="Sprite2D" parent="." unique_id=27999115]
 position = Vector2(-76.500015, -13)
 scale = Vector2(0.5005209, 0.50000006)
 texture = ExtResource("6_4kg1i")
 
-[node name="BackgroundBell" type="Sprite2D" parent="."]
+[node name="BackgroundBell" type="Sprite2D" parent="." unique_id=30689994]
 position = Vector2(-76.00003, -13.000004)
 scale = Vector2(0.50208336, 0.5)
 texture = ExtResource("7_4swkf")
 
-[node name="Button" type="Button" parent="BackgroundBell"]
+[node name="Button" type="Button" parent="BackgroundBell" unique_id=1389399829]
 offset_left = 31.83249
 offset_top = 379.50458
 offset_right = 160.83775
 offset_bottom = 491.5169
 
-[node name="BackgroundPc" type="Sprite2D" parent="."]
+[node name="BackgroundPc" type="Sprite2D" parent="." unique_id=328918891]
 position = Vector2(-75.000015, -11.000008)
 scale = Vector2(0.5010417, 0.49999994)
 texture = ExtResource("2_r4wvg")
 
-[node name="ScreenButton" type="Button" parent="BackgroundPc"]
+[node name="ScreenButton" type="Button" parent="BackgroundPc" unique_id=214318882]
 offset_left = -872.0
 offset_top = 79.0
 offset_right = -536.0
 offset_bottom = 271.0
 
-[node name="NpcSpawnPoint" type="Marker2D" parent="."]
+[node name="NpcSpawnPoint" type="Marker2D" parent="." unique_id=1424631798]
 position = Vector2(-228, -65)
 
-[node name="DialogueSystem" type="Control" parent="."]
+[node name="DialogueSystem" type="Control" parent="." unique_id=131341282]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -103.0
@@ -75,26 +75,26 @@ offset_right = -63.0
 offset_bottom = 35.0
 script = ExtResource("8_4swkf")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialogueSystem"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueSystem" unique_id=1267266040]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DialogueLabel" type="Label" parent="DialogueSystem/VBoxContainer"]
+[node name="DialogueLabel" type="Label" parent="DialogueSystem/VBoxContainer" unique_id=2091138774]
 layout_mode = 2
 
-[node name="AcceptButton" type="Button" parent="DialogueSystem/VBoxContainer"]
+[node name="AcceptButton" type="Button" parent="DialogueSystem/VBoxContainer" unique_id=187217386]
 layout_mode = 2
 text = "Accept"
 
-[node name="DeclineButton" type="Button" parent="DialogueSystem/VBoxContainer"]
+[node name="DeclineButton" type="Button" parent="DialogueSystem/VBoxContainer" unique_id=322705718]
 layout_mode = 2
 text = "Decline"
 
-[node name="NpcLayer" type="Node2D" parent="."]
+[node name="NpcLayer" type="Node2D" parent="." unique_id=1956799666]
 
-[node name="TaskboardOverlay" parent="." instance=ExtResource("9_8ahl1")]
-position = Vector2(1023.99994, -16.000002)
+[node name="TaskboardOverlay" parent="." unique_id=1347746506 instance=ExtResource("9_8ahl1")]
+position = Vector2(-55.00006, -630.99994)
 scale = Vector2(0.50416666, 0.50370365)
 
 [connection signal="pressed" from="BackgroundBell/Button" to="." method="_on_button_pressed"]

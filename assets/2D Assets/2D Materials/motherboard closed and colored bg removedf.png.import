@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcke6biub41c8"
-path="res://.godot/imported/9df75677b3b6289289cb890e9117680a.jpg-a7a1e794b6cf1e6f0678a0ea98816ba7.ctex"
+uid="uid://c1l5qb7algj8w"
+path="res://.godot/imported/motherboard closed and colored bg removedf.png-14c24a45c034ec4dd01ca46b1e645aa0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D Assets/9df75677b3b6289289cb890e9117680a.jpg"
-dest_files=["res://.godot/imported/9df75677b3b6289289cb890e9117680a.jpg-a7a1e794b6cf1e6f0678a0ea98816ba7.ctex"]
+source_file="res://assets/2D Assets/2D Materials/motherboard closed and colored bg removedf.png"
+dest_files=["res://.godot/imported/motherboard closed and colored bg removedf.png-14c24a45c034ec4dd01ca46b1e645aa0.ctex"]
 
 [params]
 

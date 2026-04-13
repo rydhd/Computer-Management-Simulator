@@ -1,49 +1,59 @@
-[gd_scene load_steps=7 format=3 uid="uid://c55jatj0m5qgp"]
+[gd_scene format=3 uid="uid://c55jatj0m5qgp"]
 
-[ext_resource type="Texture2D" uid="uid://dcke6biub41c8" path="res://assets/2D Assets/9df75677b3b6289289cb890e9117680a.jpg" id="1_1bf13"]
 [ext_resource type="Script" uid="uid://dahpwnk1pjuim" path="res://scripts/hardware_assembly.gd" id="1_4kffy"]
 [ext_resource type="PackedScene" uid="uid://b7047snqqi8vx" path="res://scenes/gpu.tscn" id="2_kj3go"]
 [ext_resource type="PackedScene" uid="uid://wsoibpe76ngv" path="res://scenes/cpu.tscn" id="3_gude4"]
+[ext_resource type="Texture2D" uid="uid://c1l5qb7algj8w" path="res://assets/2D Assets/2D Materials/motherboard closed and colored bg removedf.png" id="4_4kffy"]
+[ext_resource type="PackedScene" uid="uid://cp4veoehhj8k0" path="res://scenes/assembly_task_list.tscn" id="5_s4mkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bf13"]
 size = Vector2(152, 152)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj3go"]
-size = Vector2(256, 216)
+size = Vector2(453, 42)
 
-[node name="Hardware_Assembly" type="Node2D"]
+[node name="Hardware_Assembly" type="Node2D" unique_id=1023411860]
 script = ExtResource("1_4kffy")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 480.0
-offset_top = 8.0
-offset_right = 1460.0
-offset_bottom = 988.0
-texture = ExtResource("1_1bf13")
+[node name="MotherboardClosedAndColoredBgRemovedf" type="Sprite2D" parent="." unique_id=1550638006]
+z_index = -1
+position = Vector2(818.75, 540)
+scale = Vector2(0.79907227, 0.74447507)
+texture = ExtResource("4_4kffy")
 
-[node name="Socket_CPU" type="Area2D" parent="."]
-position = Vector2(1008, 560)
+[node name="Socket_CPU" type="Area2D" parent="." unique_id=960182711]
+position = Vector2(841, 394)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_CPU"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_CPU" unique_id=746285731]
+position = Vector2(6, 4)
 shape = SubResource("RectangleShape2D_1bf13")
 
-[node name="Socket_GPU" type="Area2D" parent="."]
-position = Vector2(1296, 480)
+[node name="Socket_GPU" type="Area2D" parent="." unique_id=171433084]
+position = Vector2(810, 713)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_GPU"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_GPU" unique_id=1553584242]
+position = Vector2(-2, 5)
 shape = SubResource("RectangleShape2D_kj3go")
 
-[node name="Gpu" parent="." instance=ExtResource("2_kj3go")]
-position = Vector2(248, 968)
+[node name="GPU" parent="." unique_id=725532990 instance=ExtResource("2_kj3go")]
+unique_name_in_owner = true
+position = Vector2(1717, 584.00006)
 scale = Vector2(1.3648648, 1.7043011)
 
-[node name="CPU" parent="." instance=ExtResource("3_gude4")]
-position = Vector2(1720, 944.00006)
+[node name="CPU" parent="." unique_id=2077517426 instance=ExtResource("3_gude4")]
+unique_name_in_owner = true
+position = Vector2(1685, 757)
 scale = Vector2(0.22551018, 0.16020408)
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=589954609]
 offset_right = 128.0
 offset_bottom = 64.0
 text = "Back"
+
+[node name="AssemblyTaskList" parent="." unique_id=1972073169 instance=ExtResource("5_s4mkv")]
+unique_name_in_owner = true
+offset = Vector2(1733, 0)
+scale = Vector2(1, 1)
+transform = Transform2D(1, 0, 0, 1, 1733, 0)
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
