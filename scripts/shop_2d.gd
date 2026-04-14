@@ -7,19 +7,15 @@ const NPC_SCENE = preload("res://scenes/NpcCustomer.tscn")
 
 @onready var npc_spawn_position: Marker2D = $NpcSpawnPoint # Assuming you add a Marker2D in your scene editor
 @onready var dialogue_system = $DialogueSystem # Assuming you have a node to manage dialogue UI
+@onready var taskboard_overlay = $TaskboardOverlay
 
 # Tracks the current NPC instance
 var current_npc: Area2D = null 
 
+
 # _ready() runs ONCE when the node is added to the scene.
 # This is the correct place to connect signals.
 func _ready():
-	# Connect to the signals from your DialogueSystem node.
-	# When dialogue_system emits "accepted", call our "_on_dialogue_accepted" function.
-	dialogue_system.accepted.connect(_on_dialogue_accepted)
-	
-	# When dialogue_system emits "declined", call our "_on_dialogue_declined" function.
-	dialogue_system.declined.connect(_on_dialogue_declined)
 
 
 func start_npc_dialogue():
@@ -92,3 +88,12 @@ func _on_dialogue_declined():
 	# if is_instance_valid(current_npc):
 	#	 current_npc.queue_free()
 	#	 current_npc = null
+	
+
+func _on_taskboard_button_pressed() -> void:
+	print("Taskboard Button Pressed!")
+	if is_instance_valid(taskboard_overlay):
+		# Toggle visibility: if it's hidden, show it; if it's shown, hide it.
+		taskboard_overlay.visible = !taskboard_overlay.visible
+	else:
+		print("ERROR: TaskboardOverlay node not found!")

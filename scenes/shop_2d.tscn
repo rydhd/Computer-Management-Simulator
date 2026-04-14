@@ -36,11 +36,6 @@ position = Vector2(-76.99997, -13.999977)
 scale = Vector2(0.5010417, 0.5018519)
 texture = ExtResource("5_dt4ex")
 
-[node name="BackgroundTaskboard" type="Sprite2D" parent="." unique_id=27999115]
-position = Vector2(-76.500015, -13)
-scale = Vector2(0.5005209, 0.50000006)
-texture = ExtResource("6_4kg1i")
-
 [node name="BackgroundBell" type="Sprite2D" parent="." unique_id=30689994]
 position = Vector2(-76.00003, -13.000004)
 scale = Vector2(0.50208336, 0.5)
@@ -77,27 +72,34 @@ script = ExtResource("8_4swkf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="DialogueSystem" unique_id=1267266040]
 layout_mode = 0
-offset_right = 40.0
+offset_left = 3.0
+offset_right = 43.0
 offset_bottom = 40.0
 
 [node name="DialogueLabel" type="Label" parent="DialogueSystem/VBoxContainer" unique_id=2091138774]
 layout_mode = 2
 
-[node name="AcceptButton" type="Button" parent="DialogueSystem/VBoxContainer" unique_id=187217386]
-layout_mode = 2
-text = "Accept"
-
-[node name="DeclineButton" type="Button" parent="DialogueSystem/VBoxContainer" unique_id=322705718]
-layout_mode = 2
-text = "Decline"
-
 [node name="NpcLayer" type="Node2D" parent="." unique_id=1956799666]
 
 [node name="TaskboardOverlay" parent="." unique_id=1347746506 instance=ExtResource("9_8ahl1")]
-position = Vector2(-55.00006, -630.99994)
+visible = false
+z_index = 10
+position = Vector2(-73, -18.000122)
 scale = Vector2(0.50416666, 0.50370365)
+
+[node name="BackgroundTaskboard" type="Sprite2D" parent="." unique_id=27999115]
+position = Vector2(-76.500015, -13)
+scale = Vector2(0.5005209, 0.50000006)
+texture = ExtResource("6_4kg1i")
+
+[node name="TaskboardButton" type="Button" parent="BackgroundTaskboard" unique_id=695502417]
+z_index = 1
+offset_left = -180.8116
+offset_top = 319.99997
+offset_right = -172.8116
+offset_bottom = 329.12173
+scale = Vector2(25.090935, 19.611635)
 
 [connection signal="pressed" from="BackgroundBell/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="BackgroundPc/ScreenButton" to="BackgroundPc" method="_on_button_pressed"]
-[connection signal="pressed" from="DialogueSystem/VBoxContainer/AcceptButton" to="DialogueSystem" method="_on_accept_button_pressed"]
-[connection signal="pressed" from="DialogueSystem/VBoxContainer/DeclineButton" to="DialogueSystem" method="_on_decline_button_pressed"]
+[connection signal="pressed" from="BackgroundTaskboard/TaskboardButton" to="." method="_on_taskboard_button_pressed"]

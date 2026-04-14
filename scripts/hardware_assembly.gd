@@ -12,3 +12,7 @@ func _ready() -> void:
 		print("Signals connected successfully!")
 	else:
 		push_error("One or more nodes are missing! Check Unique Names in the Editor.")
+
+
+func _on_button_pressed() -> void:
+	var error = get_tree().change_scene_to_file("res://scenes/shop_2d.tscn")

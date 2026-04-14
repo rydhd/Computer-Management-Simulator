@@ -53,6 +53,9 @@ var icon_cache : Dictionary
 
 var inspector_dock = EditorInterface.get_base_control().find_child("Inspector",true,false)
 
+func _is_plugin_ready() -> bool:
+	return inspector_tab_bar != null and is_instance_valid(inspector_tab_bar)
+	
 func _can_handle(object):
 	# We support all objects in this example.
 	return true
@@ -118,9 +121,12 @@ func parse_begin(object: Object) -> void:
 	categories.clear()
 	tabs.clear()
 	tab_can_change = false
-	inspector_tab_bar.tab_bar.clear_tabs()
+	if _is_plugin_ready():
+		inspector_tab_bar.tab_bar.clear_tabs()
 
 func process(delta) -> void:
+	if not _is_plugin_ready():
+		return
 
 	if EditorInterface.get_inspector().global_position.x < base_control.get_viewport().size.x/2 -EditorInterface.get_inspector().size.x/2:
 		if vertical_tab_side != 1:
