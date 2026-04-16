@@ -8,6 +8,7 @@ script = ExtResource("1_j8j1j")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1102242380]
 offset_right = 250.0
 offset_bottom = 268.0
+color = Color(0.32156864, 0.42745098, 0.50980395, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=680967057]
 offset_right = 249.0

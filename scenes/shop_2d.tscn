@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cj54wr3m26g8" path="res://assets/2D Assets/2D Materials/Background Bell.png" id="7_4swkf"]
 [ext_resource type="Script" uid="uid://04pswj4ru25g" path="res://scripts/dialogue_system.gd" id="8_4swkf"]
 [ext_resource type="PackedScene" uid="uid://diul2q2ek0iop" path="res://scenes/taskboard_overlay.tscn" id="9_8ahl1"]
+[ext_resource type="PackedScene" uid="uid://b6vm2skjxx00s" path="res://scenes/tutorial_robot.tscn" id="10_0pqj0"]
 
 [node name="Shop2d" type="Node2D" unique_id=743927316]
 script = ExtResource("1_4kg1i")
@@ -99,6 +100,10 @@ offset_top = 319.99997
 offset_right = -172.8116
 offset_bottom = 329.12173
 scale = Vector2(25.090935, 19.611635)
+
+[node name="TutorialRobot" parent="." unique_id=1949238434 instance=ExtResource("10_0pqj0")]
+position = Vector2(-279, -135)
+scale = Vector2(2.8020306, 2.008473)
 
 [connection signal="pressed" from="BackgroundBell/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="BackgroundPc/ScreenButton" to="BackgroundPc" method="_on_button_pressed"]
