@@ -22,6 +22,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalState="*uid://ovjic1cisrjd"
+EventBus="*uid://c4u4iopcorv83"
+TutorialManager="*uid://blbw2qj8yvavh"
 
 [display]
 

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bj1o6ip0n7a0r"]
+
+[ext_resource type="Script" uid="uid://4qpyylim21o7" path="res://scripts/issue_popup_ui.gd" id="1_j8j1j"]
+
+[node name="IssuePopupUI" type="CanvasLayer" unique_id=639928974]
+script = ExtResource("1_j8j1j")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1102242380]
+offset_right = 250.0
+offset_bottom = 268.0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=680967057]
+offset_right = 249.0
+offset_bottom = 268.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2124406661]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=660369216]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1435948338]
+layout_mode = 2
+text = "CustomerNameLabel"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1687131095]
+layout_mode = 2
+text = "Issue Description"
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1867874133]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Clip"

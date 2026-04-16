@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b6vm2skjxx00s"]
+
+[ext_resource type="Script" uid="uid://xtgg1aupienf" path="res://scripts/tutorial_robot.gd" id="1_xftmx"]
+[ext_resource type="Texture2D" uid="uid://khcnofskvvxq" path="res://assets/2D Assets/mascot robot 2 1.png" id="2_y40l0"]
+
+[node name="TutorialRobot" type="Node2D" unique_id=1949238434]
+script = ExtResource("1_xftmx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1699200026]
+texture = ExtResource("2_y40l0")
+
+[node name="DialogueAnchor" type="Control" parent="." unique_id=1578992992]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpeechBubble" type="PanelContainer" parent="DialogueAnchor" unique_id=2020531500]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueAnchor/SpeechBubble" unique_id=1089890530]
+layout_mode = 2
+
+[node name="RobotText" type="Label" parent="DialogueAnchor/SpeechBubble/MarginContainer" unique_id=1326126143]
+layout_mode = 2
+
+[node name="Blipsound" type="AudioStreamPlayer2D" parent="DialogueAnchor" unique_id=582093337]
