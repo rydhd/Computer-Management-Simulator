@@ -58,6 +58,7 @@ func _on_button_pressed() -> void:
 	# Make sure this matches the signal name in NpcCharacter.gd!
 	current_npc.fade_in_complete.connect(start_npc_dialogue)
 	
+	EventBus.npc_arrived.emit()
 	# That's it! No more movement logic needed here.
 
 func _on_taskboard_button_pressed() -> void:

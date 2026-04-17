@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://04pswj4ru25g" path="res://scripts/dialogue_system.gd" id="8_4swkf"]
 [ext_resource type="PackedScene" uid="uid://diul2q2ek0iop" path="res://scenes/taskboard_overlay.tscn" id="9_8ahl1"]
 [ext_resource type="PackedScene" uid="uid://b6vm2skjxx00s" path="res://scenes/tutorial_robot.tscn" id="10_0pqj0"]
+[ext_resource type="Texture2D" uid="uid://qfxv8psqaxad" path="res://assets/2D Assets/200 1.png" id="11_x5x6a"]
+[ext_resource type="Script" uid="uid://b76ybkhg5cp2p" path="res://scripts/tutorial_arrow.gd" id="12_63r2m"]
 
 [node name="Shop2d" type="Node2D" unique_id=743927316]
 script = ExtResource("1_4kg1i")
@@ -104,6 +106,13 @@ scale = Vector2(25.090935, 19.611635)
 [node name="TutorialRobot" parent="." unique_id=1949238434 instance=ExtResource("10_0pqj0")]
 position = Vector2(-279, -135)
 scale = Vector2(2.8020306, 2.008473)
+
+[node name="TutorialArrow" type="Sprite2D" parent="." unique_id=534916486]
+visible = false
+position = Vector2(-37, 108)
+scale = Vector2(0.6196581, 0.6297935)
+texture = ExtResource("11_x5x6a")
+script = ExtResource("12_63r2m")
 
 [connection signal="pressed" from="BackgroundBell/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="BackgroundPc/ScreenButton" to="BackgroundPc" method="_on_button_pressed"]
