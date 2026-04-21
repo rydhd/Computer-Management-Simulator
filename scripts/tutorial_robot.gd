@@ -9,21 +9,31 @@ extends Node2D
 
 var _alpha_tween: Tween
 var _text_tween: Tween
-
-# New state variable to track if the typewriter effect is active
 var is_typing: bool = false 
 
+# NEW: Store the original position
+var default_position: Vector2 
+
 func _ready() -> void:
-	# 1. Hide the entire robot immediately when the scene loads
-	visible = false 
+	default_position = global_position 
 	
-	# 2. Keep your existing dialogue bubble setup
+	visible = false 
 	speech_bubble.visible = false
 	speech_bubble.modulate.a = 0.0 
 	
 	EventBus.trigger_robot_dialogue.connect(_on_robot_speak)
 	EventBus.fade_out_robot.connect(_on_fade_out)
-	
+	EventBus.fade_out_robot.connect(_on_fade_out_robot)
+
+func _on_fade_out_robot() -> void:
+	var tween = create_tween()
+	tween.tween_property(self, "modulate:a", 0.0, 0.3) # Fast 0.3 second fade out
+	tween.tween_callback(hide) # Hide it completely once transparent
+func _on_reset_position() -> void:
+	global_position = default_position
+# NEW: Function to instantly teleport the robot before it fades in
+func _on_move_robot(new_pos: Vector2) -> void:
+	global_position = new_pos
 func fade_in_robot() -> void:
 	# 1. Make the robot visible right before the animation starts!
 	visible = true

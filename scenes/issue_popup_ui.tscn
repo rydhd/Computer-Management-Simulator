@@ -37,7 +37,9 @@ text = "CustomerNameLabel"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1687131095]
 layout_mode = 2
+bbcode_enabled = true
 text = "Issue Description"
+fit_content = true
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1867874133]
 layout_mode = 2

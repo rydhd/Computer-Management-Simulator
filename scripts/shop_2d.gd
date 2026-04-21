@@ -17,8 +17,9 @@ func _ready() -> void:
 	# Add a short delay so the player can orient themselves 
 	# when the scene loads before the robot starts talking.
 	get_tree().create_timer(1.0).timeout.connect(TutorialManager.start_tutorial)
-# UPDATE: Function now expects the two strings from the NPC's signal
-func start_npc_dialogue(intro_text: String, customer_name: String, issue_text: String, issue_id: String) -> void:
+
+# UPDATE: Function now expects an Array for the issues!
+func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array, issue_id: String) -> void:
 	print("NPC fade-in finished, starting dialogue!")
 	
 	if is_instance_valid(dialogue_system):
@@ -33,16 +34,18 @@ func start_npc_dialogue(intro_text: String, customer_name: String, issue_text: S
 		
 		# --- 3. SPAWN THE UI POPUP ---
 		# Create a new instance of your popup scene
-		var popup_instance = ISSUE_POPUP_SCENE.instantiate()
+		var popup = ISSUE_POPUP_SCENE.instantiate()
 		
 		# Add it to the shop scene tree so it renders on screen
-		add_child(popup_instance) 
+		add_child(popup) 
 		
 		# Call your custom function to populate the text!
-		popup_instance.setup_issue(customer_name, issue_text, issue_id)
+		# FIX: Changed "name" to "customer_name" to match the function parameter
+		popup.setup_issue(customer_name, issues, issue_id)
 		
 	else:
 		print("ERROR: Dialogue system node is not valid!")
+
 # This function name must match the signal connection from your Button!
 func _on_button_pressed() -> void:
 	print("Bell pressed! Attempting to spawn NPC.")
@@ -52,7 +55,7 @@ func _on_button_pressed() -> void:
 		print("NPC already here, starting dialogue instead.")
 		
 		# THE FIX: Grab the variables directly from the current_npc and pass them in!
-		start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issue, current_npc.my_id)
+		start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
 		return
 
 	# --- 1. Spawn the NPC ---
@@ -73,10 +76,16 @@ func _on_button_pressed() -> void:
 	current_npc.fade_in_complete.connect(start_npc_dialogue)
 	
 	EventBus.npc_arrived.emit()
+
+# shop_2d.gd
 func _on_taskboard_button_pressed() -> void:
+	EventBus.fade_out_robot.emit()
 	print("Taskboard Button Pressed!")
+	
+	# HIDE THE ARROW!
+	EventBus.hide_taskboard_arrow.emit()
+	
 	if is_instance_valid(taskboard_overlay):
-		# Toggle visibility: if it's hidden, show it; if it's shown, hide it.
 		taskboard_overlay.visible = !taskboard_overlay.visible
 	else:
 		print("ERROR: TaskboardOverlay node not found!")

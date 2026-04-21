@@ -40,15 +40,25 @@ func start_tutorial() -> void:
 		EventBus.fade_out_robot.emit() # <--- Tell the robot to fade away
 		
 		current_step = TutorialStep.WAITING_FOR_NPC
-
-func _on_npc_arrived(npc_name: String, _issue_data: Dictionary) -> void:
+		
+# 1. FIX: Ensure there are NO arguments here, to match the shop_2d.gd emit!
+func _on_npc_arrived() -> void:
+	print("DEBUG: NPC arrived! Current step is: ", current_step)
+	
 	if current_step == TutorialStep.WAITING_FOR_NPC:
-		# The first NPC arrived! Have the robot explain what to do.
-		EventBus.trigger_robot_dialogue.emit("Look, it's %s! They have a computer issue. Read the prompt and click 'Clip to Taskboard'!" % npc_name)
+		# We silently advance the state so the Clip button will work!
 		current_step = TutorialStep.WAITING_FOR_CLIP
+		print("DEBUG: State successfully changed to WAITING_FOR_CLIP!")
+
 
 func _on_issue_clipped(issue_id: String) -> void:
+	print("DEBUG: Clip button clicked! Current step is: ", current_step)
+	
 	if current_step == TutorialStep.WAITING_FOR_CLIP:
-		# The player successfully clicked the button!
-		EventBus.trigger_robot_dialogue.emit("Great job! You've clipped the issue to the board. Now you can get to work.")
+		EventBus.reset_robot_position.emit()
+		EventBus.trigger_robot_dialogue.emit("Great job! You've clipped the issue to the board. Click the Taskboard to get to work.")
+		
+		print("DEBUG: Emitting show_taskboard_arrow now!")
+		EventBus.show_taskboard_arrow.emit()
+		
 		current_step = TutorialStep.COMPLETED

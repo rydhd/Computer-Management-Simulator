@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://diul2q2ek0iop" path="res://scenes/taskboard_overlay.tscn" id="9_8ahl1"]
 [ext_resource type="PackedScene" uid="uid://b6vm2skjxx00s" path="res://scenes/tutorial_robot.tscn" id="10_0pqj0"]
 [ext_resource type="Texture2D" uid="uid://qfxv8psqaxad" path="res://assets/2D Assets/200 1.png" id="11_x5x6a"]
-[ext_resource type="Script" path="res://scripts/tutorial_arrow.gd" id="12_63r2m"]
+[ext_resource type="Script" uid="uid://b76ybkhg5cp2p" path="res://scripts/tutorial_arrow.gd" id="12_63r2m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5x6a"]
 bg_color = Color(0.13508992, 0.37390605, 0.37390605, 0.6745098)
@@ -76,6 +76,7 @@ offset_bottom = 271.0
 position = Vector2(-228, -65)
 
 [node name="DialogueSystem" type="Control" parent="." unique_id=131341282]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,23 +90,27 @@ grow_vertical = 2
 script = ExtResource("8_4swkf")
 
 [node name="PanelContainer" type="PanelContainer" parent="DialogueSystem" unique_id=642266125]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 0
-offset_left = -1.9999999
-offset_top = -134.99998
-offset_right = 38.0
-offset_bottom = -94.999985
-scale = Vector2(7.1324577, 3.4999828)
+offset_left = -38.0
+offset_top = -92.0
+offset_right = 362.0
+offset_bottom = 58.0
+scale = Vector2(0.7200009, 0.60000074)
 theme_override_styles/panel = SubResource("StyleBoxFlat_x5x6a")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialogueSystem/PanelContainer" unique_id=1267266040]
+[node name="Marginb" type="MarginContainer" parent="DialogueSystem/PanelContainer" unique_id=1924384638]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="DialogueLabel" type="Label" parent="DialogueSystem/PanelContainer/VBoxContainer" unique_id=2091138774]
-custom_minimum_size = Vector2(50, 0)
+[node name="DialogueLabel" type="Label" parent="DialogueSystem/PanelContainer/Marginb" unique_id=2091138774]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
 autowrap_mode = 2
 
 [node name="NpcLayer" type="Node2D" parent="." unique_id=1956799666]
@@ -139,6 +144,19 @@ position = Vector2(-37, 108)
 scale = Vector2(0.6196581, 0.6297935)
 texture = ExtResource("11_x5x6a")
 script = ExtResource("12_63r2m")
+
+[node name="TutorialArrow2" type="Sprite2D" parent="." unique_id=1453364731]
+z_index = 10
+position = Vector2(-126.99999, 85)
+scale = Vector2(0.6196581, 0.6297935)
+texture = ExtResource("11_x5x6a")
+script = ExtResource("12_63r2m")
+arrow_type = 1
+
+[node name="CustomerRobotSpawnPoint" type="Marker2D" parent="." unique_id=963398696 groups=["robot_spawn"]]
+position = Vector2(-274, -62.999985)
+scale = Vector2(10.340846, 6.138686)
+gizmo_extents = 0.0
 
 [connection signal="pressed" from="BackgroundBell/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="BackgroundPc/ScreenButton" to="BackgroundPc" method="_on_button_pressed"]

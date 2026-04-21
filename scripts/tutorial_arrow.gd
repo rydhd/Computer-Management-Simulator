@@ -1,6 +1,12 @@
 # res://scripts/tutorial_arrow.gd
 extends Sprite2D
 
+# 1. Define our arrow types
+enum ArrowType { BELL, TASKBOARD }
+
+# 2. Export it so it appears in the Godot Inspector!
+@export var arrow_type: ArrowType = ArrowType.BELL
+
 @export var float_distance: float = 15.0 # How high the arrow bounces
 @export var float_speed: float = 0.6     # How long one bounce takes
 
@@ -10,11 +16,18 @@ var _float_tween: Tween
 func _ready() -> void:
 	_start_y = position.y
 	
-	# Connect to the exact signals that dictate the arrow's lifecycle
-	EventBus.show_bell_arrow.connect(start_floating)
+	# Start hidden until the EventBus calls it!
+	visible = false
+	modulate.a = 0.0
 	
-	# Assuming your Bell button emits npc_arrived or you have a bell_clicked signal
-	EventBus.npc_arrived.connect(stop_floating)
+	# 3. Check WHICH arrow this is, and connect the right signals!
+	if arrow_type == ArrowType.BELL:
+		EventBus.show_bell_arrow.connect(start_floating)
+		EventBus.npc_arrived.connect(stop_floating)
+		
+	elif arrow_type == ArrowType.TASKBOARD:
+		EventBus.show_taskboard_arrow.connect(start_floating)
+		EventBus.hide_taskboard_arrow.connect(stop_floating)
 
 func start_floating() -> void:
 	visible = true

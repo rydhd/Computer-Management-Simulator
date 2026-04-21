@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bwbxj56xko13e"]
+
+[ext_resource type="Script" uid="uid://b2q2vdvgukcnx" path="res://scripts/lets_assemble_comp.gd" id="1_0qxcn"]
+[ext_resource type="Texture2D" uid="uid://y5hvgosrnaor" path="res://assets/2D Assets/Assemble Menu (1).png" id="1_owlbw"]
+
+[node name="LetsAssembleComp" type="Node2D" unique_id=1776079190]
+script = ExtResource("1_0qxcn")
+
+[node name="AssembleMenu(1)" type="Sprite2D" parent="." unique_id=2048019393]
+position = Vector2(960.5, 540)
+scale = Vector2(0.9994792, 1)
+texture = ExtResource("1_owlbw")
+
+[node name="StartButton" type="Button" parent="AssembleMenu(1)" unique_id=451120688]
+offset_left = -455.7373
+offset_top = 292.99997
+offset_right = -216.1167
+offset_bottom = 458.99997
+text = "Start"
+
+[node name="BackButton" type="Button" parent="AssembleMenu(1)" unique_id=705305374]
+offset_left = 170.5888
+offset_top = 280.99997
+offset_right = 410.2094
+offset_bottom = 446.99997
+text = "Back"
+
+[connection signal="pressed" from="AssembleMenu(1)/StartButton" to="." method="_on_start_button_pressed"]

@@ -1,5 +1,6 @@
 extends Node
 
+var current_issue: String = ""
 # This array holds the exact names of all tasks the player has finished.
 var completed_tasks: Array[String] = []
 

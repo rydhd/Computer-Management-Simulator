@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dpftinxayhxbm"]
+
+[ext_resource type="Texture2D" uid="uid://y5hvgosrnaor" path="res://assets/2D Assets/Assemble Menu (1).png" id="1_aywje"]
+
+[node name="AssembleMenu" type="Sprite2D" unique_id=1809592897]
+texture = ExtResource("1_aywje")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=221754451]

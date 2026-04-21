@@ -2,7 +2,7 @@ extends Control
 
 # Update our node references to match the new PanelContainer setup
 @onready var panel = $PanelContainer
-@onready var label = $PanelContainer/VBoxContainer/DialogueLabel 
+@onready var label = $PanelContainer/Marginb/DialogueLabel
 
 var _text_tween: Tween
 var _alpha_tween: Tween

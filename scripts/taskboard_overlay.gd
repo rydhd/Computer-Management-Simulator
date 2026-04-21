@@ -1,5 +1,8 @@
 extends Sprite2D
 
+const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
+
+
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var task_list: VBoxContainer = $MarginContainer/TaskList
 @onready var close_button: Button = $CloseButton
@@ -19,10 +22,7 @@ extends Sprite2D
 # ---------------------------
 
 # Use an Array of Dictionaries so the tasks stay in a strict, ordered sequence.
-var tasks: Array = [
-	{"name": "Fix PC: Motherboard Assembly", "scene": "res://scenes/hardware_assembly.tscn"},
-	#{"name": "Install Software (Locked)", "scene": "res://scenes/software_install.tscn"}, # Example next task
-]
+var tasks: Array = [] # Start empty!
 
 func _ready() -> void:
 	visible = false
@@ -33,8 +33,53 @@ func _ready() -> void:
 	margin_container.add_theme_constant_override("margin_top", list_padding_top)
 	task_list.add_theme_constant_override("separation", vertical_spacing_between_tasks)
 	
+	# --- NEW CODE: Connect to the EventBus ---
+	EventBus.issue_clipped_to_board.connect(_on_issue_clipped)
+	
 	_populate_tasks()
+	
+# --- NEW FUNCTION ---
+# This runs automatically when the "Clip" button in IssuePopupUI is clicked
+# Inside taskboard_overlay.gd
 
+# Inside taskboard_overlay.gd
+
+func _on_issue_clipped(issue_id: String) -> void:
+	# Match the string ID sent by the popup to create the correct tasks!
+	match issue_id:
+		# --- THE GELO COMBO ---
+		"task_001_gelo":
+			# Append all 3 tasks in the exact order they need to be completed!
+			tasks.append({"name": "Assemble Computer Hardware", "scene": "res://scenes/lets_assemble_comp.tscn"})
+			tasks.append({"name": "Installing Operating System", "scene": "res://scenes/installing_os.tscn"})
+			tasks.append({"name": "Arrange Cables", "scene": "res://scenes/arrange_cables.tscn"})
+			
+		# --- INDIVIDUAL TASKS (For other customers) ---
+		"issue_computer_hardware":
+			tasks.append({
+				"name": "Assemble Computer Hardware", 
+				"scene": "res://scenes/hardware_assembly.tscn"
+			})
+			
+		"issue_install_operating_system":
+			tasks.append({
+				"name": "Installing Operating System", 
+				"scene": "res://scenes/installing_os.tscn"
+			})
+			
+		"issue_arrange_cables":
+			tasks.append({
+				"name": "Arrange Cables", 
+				"scene": "res://scenes/arrange_cables.tscn"
+			})
+			
+		_:
+			# This is a safety catch just in case an unknown ID is sent
+			push_error("Taskboard received an unknown issue_id: " + issue_id)
+			return 
+	
+	# Re-populate the UI so the new CheckBox(es) appear!
+	_populate_tasks()
 func _populate_tasks() -> void:
 	# Clear existing children first
 	for child in task_list.get_children():
@@ -79,15 +124,18 @@ func _populate_tasks() -> void:
 				is_next_task_locked = true 
 		
 		# Connect the scene transition
-		cb.pressed.connect(func(): _on_task_clicked(scene_path))
+		cb.pressed.connect(func(): _on_task_clicked(task_name, scene_path))
 		
 		task_list.add_child(cb)
 
-func _on_task_clicked(target_scene_path: String) -> void:
+func _on_task_clicked(task_name: String, target_scene_path: String) -> void:
+	# Save the active task to GlobalState so the next scene knows what to do
+	GlobalState.current_issue = task_name 
+	
+	# Jump straight to the assembly scene!
 	var err = get_tree().change_scene_to_file(target_scene_path)
 	if err != OK:
 		push_error("Failed to load scene at path: " + target_scene_path)
-
 func show_board() -> void:
 	# Re-populate tasks every time the board is shown to catch any new completions!
 	_populate_tasks()

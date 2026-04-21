@@ -1,5 +1,6 @@
 extends Node2D
 
+const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
 @onready var cpu = %CPU
 @onready var gpu = %GPU 
 @onready var task_list = %AssemblyTaskList
