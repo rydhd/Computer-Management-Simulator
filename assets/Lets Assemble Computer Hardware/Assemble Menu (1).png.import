@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://khcnofskvvxq"
-path="res://.godot/imported/mascot robot 2 1.png-19cd6c2fe6b3fb23ca82994a8d5ed41e.ctex"
+uid="uid://y5hvgosrnaor"
+path="res://.godot/imported/Assemble Menu (1).png-1cdde4510243884de2305948b9c21890.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D Assets/mascot robot 2 1.png"
-dest_files=["res://.godot/imported/mascot robot 2 1.png-19cd6c2fe6b3fb23ca82994a8d5ed41e.ctex"]
+source_file="res://assets/Lets Assemble Computer Hardware/Assemble Menu (1).png"
+dest_files=["res://.godot/imported/Assemble Menu (1).png-1cdde4510243884de2305948b9c21890.ctex"]
 
 [params]
 

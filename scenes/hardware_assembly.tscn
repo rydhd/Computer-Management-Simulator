@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://dahpwnk1pjuim" path="res://scripts/hardware_assembly.gd" id="1_4kffy"]
 [ext_resource type="PackedScene" uid="uid://b7047snqqi8vx" path="res://scenes/gpu.tscn" id="2_kj3go"]
 [ext_resource type="PackedScene" uid="uid://wsoibpe76ngv" path="res://scenes/cpu.tscn" id="3_gude4"]
-[ext_resource type="Texture2D" uid="uid://c1l5qb7algj8w" path="res://assets/2D Assets/2D Materials/motherboard closed and colored bg removedf.png" id="4_4kffy"]
+[ext_resource type="Texture2D" uid="uid://c1l5qb7algj8w" path="res://assets/Lets Assemble Computer Hardware/motherboard closed and colored bg removedf.png" id="4_4kffy"]
 [ext_resource type="PackedScene" uid="uid://cp4veoehhj8k0" path="res://scenes/assembly_task_list.tscn" id="5_s4mkv"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bf13"]
 size = Vector2(152, 152)

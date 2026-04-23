@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y5hvgosrnaor"
-path="res://.godot/imported/Assemble Menu (1).png-bb3600e1d56f4ff015d26e3e66a1b612.ctex"
+uid="uid://6r3wk2y43lnh"
+path="res://.godot/imported/Rectangle 68.png-a99abc0f54cc05110a766a7199942736.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D Assets/Assemble Menu (1).png"
-dest_files=["res://.godot/imported/Assemble Menu (1).png-bb3600e1d56f4ff015d26e3e66a1b612.ctex"]
+source_file="res://assets/Lets Assemble Computer Hardware/Rectangle 68.png"
+dest_files=["res://.godot/imported/Rectangle 68.png-a99abc0f54cc05110a766a7199942736.ctex"]
 
 [params]
 

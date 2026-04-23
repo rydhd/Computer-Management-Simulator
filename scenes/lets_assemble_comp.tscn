@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bwbxj56xko13e"]
 
 [ext_resource type="Script" uid="uid://b2q2vdvgukcnx" path="res://scripts/lets_assemble_comp.gd" id="1_0qxcn"]
-[ext_resource type="Texture2D" uid="uid://y5hvgosrnaor" path="res://assets/2D Assets/Assemble Menu (1).png" id="1_owlbw"]
+[ext_resource type="Texture2D" uid="uid://y5hvgosrnaor" path="res://assets/Lets Assemble Computer Hardware/Assemble Menu (1).png" id="1_owlbw"]
 
 [node name="LetsAssembleComp" type="Node2D" unique_id=1776079190]
 script = ExtResource("1_0qxcn")
@@ -11,18 +11,22 @@ position = Vector2(960.5, 540)
 scale = Vector2(0.9994792, 1)
 texture = ExtResource("1_owlbw")
 
-[node name="StartButton" type="Button" parent="AssembleMenu(1)" unique_id=451120688]
-offset_left = -455.7373
-offset_top = 292.99997
-offset_right = -216.1167
-offset_bottom = 458.99997
+[node name="Button" type="Button" parent="AssembleMenu(1)" unique_id=107944537]
+offset_left = -662.8452
+offset_top = 335.0
+offset_right = -626.8452
+offset_bottom = 357.0
+scale = Vector2(8.118028, 4.236588)
+theme_override_font_sizes/font_size = 10
 text = "Start"
+autowrap_mode = 2
 
-[node name="BackButton" type="Button" parent="AssembleMenu(1)" unique_id=705305374]
-offset_left = 170.5888
-offset_top = 280.99997
-offset_right = 410.2094
-offset_bottom = 446.99997
-text = "Back"
+[node name="BackButton" type="Button" parent="AssembleMenu(1)" unique_id=2008531314]
+offset_left = 299.65604
+offset_top = 308.00003
+offset_right = 351.65604
+offset_bottom = 339.00003
+scale = Vector2(5.499852, 3.5785728)
+text = "Backr"
 
-[connection signal="pressed" from="AssembleMenu(1)/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="AssembleMenu(1)/Button" to="." method="_on_button_pressed"]

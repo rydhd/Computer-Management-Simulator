@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5wnx2xowh6qd"
-path="res://.godot/imported/CPU.jpg-7d42bb7fb733e0ec77fa8db55cccb396.ctex"
+uid="uid://bfpgngd84t1eu"
+path="res://.godot/imported/System unit Front Panel.png-5b99c5ecb36bf53465fe6fb427555cd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D Assets/CPU.jpg"
-dest_files=["res://.godot/imported/CPU.jpg-7d42bb7fb733e0ec77fa8db55cccb396.ctex"]
+source_file="res://assets/Lets Assemble Computer Hardware/System unit Front Panel.png"
+dest_files=["res://.godot/imported/System unit Front Panel.png-5b99c5ecb36bf53465fe6fb427555cd9.ctex"]
 
 [params]
 

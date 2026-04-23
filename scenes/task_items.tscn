@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://djtqi6181mla7"]
+
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="1_hp6l5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oyc5c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_oyc5c"]
+font = ExtResource("1_hp6l5")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hp6l5"]
+font = ExtResource("1_hp6l5")
+font_size = 23
+font_color = Color(0, 0, 0, 1)
+
+[node name="TaskItems" type="CanvasLayer" unique_id=1845423026]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1893657093]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -616.0
+offset_top = 167.0
+offset_bottom = 785.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_oyc5c")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=59217280]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=572379708]
+layout_mode = 2
+
+[node name="TasksTitle" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=390803890]
+layout_mode = 2
+text = "YOUR TASKS:"
+label_settings = SubResource("LabelSettings_oyc5c")
+horizontal_alignment = 1
+
+[node name="Task1" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1134678463]
+layout_mode = 2
+text = "1. Assemble motherboard"
+label_settings = SubResource("LabelSettings_hp6l5")
+
+[node name="Task2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2117128808]
+layout_mode = 2
+text = "2. Connect the PSU"
+label_settings = SubResource("LabelSettings_hp6l5")
+
+[node name="Task3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=715697483]
+layout_mode = 2
+text = "3. Insert Cables"
+label_settings = SubResource("LabelSettings_hp6l5")
+
+[node name="Task4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=280349187]
+layout_mode = 2
+text = "4. Test"
+label_settings = SubResource("LabelSettings_hp6l5")

@@ -8,21 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://bykndi0q8vtit" path="res://assets/2D Assets/2D Materials/Background Taskboard.png" id="6_4kg1i"]
 [ext_resource type="Texture2D" uid="uid://cj54wr3m26g8" path="res://assets/2D Assets/2D Materials/Background Bell.png" id="7_4swkf"]
 [ext_resource type="Script" uid="uid://04pswj4ru25g" path="res://scripts/dialogue_system.gd" id="8_4swkf"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="8_63r2m"]
 [ext_resource type="PackedScene" uid="uid://diul2q2ek0iop" path="res://scenes/taskboard_overlay.tscn" id="9_8ahl1"]
 [ext_resource type="PackedScene" uid="uid://b6vm2skjxx00s" path="res://scenes/tutorial_robot.tscn" id="10_0pqj0"]
-[ext_resource type="Texture2D" uid="uid://qfxv8psqaxad" path="res://assets/2D Assets/200 1.png" id="11_x5x6a"]
+[ext_resource type="Texture2D" uid="uid://qfxv8psqaxad" path="res://assets/2D Assets/2D Materials/200 1.png" id="11_x5x6a"]
 [ext_resource type="Script" uid="uid://b76ybkhg5cp2p" path="res://scripts/tutorial_arrow.gd" id="12_63r2m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5x6a"]
-bg_color = Color(0.13508992, 0.37390605, 0.37390605, 0.6745098)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 10.0
-expand_margin_top = 10.0
-expand_margin_right = 10.0
-expand_margin_bottom = 10.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63r2m"]
+bg_color = Color(0, 0, 0, 0.5882353)
 
 [node name="Shop2d" type="Node2D" unique_id=743927316]
 script = ExtResource("1_4kg1i")
@@ -49,6 +42,13 @@ texture = ExtResource("3_m0brw")
 position = Vector2(-76.99997, -13.999977)
 scale = Vector2(0.5010417, 0.5018519)
 texture = ExtResource("5_dt4ex")
+
+[node name="ManualButton" type="Button" parent="BackgroundManual" unique_id=1332850843]
+offset_left = -241.4969
+offset_top = 518.08105
+offset_right = -233.4969
+offset_bottom = 526.08105
+scale = Vector2(-21.59015, -21.855429)
 
 [node name="BackgroundBell" type="Sprite2D" parent="." unique_id=30689994]
 position = Vector2(-76.00003, -13.000004)
@@ -97,7 +97,7 @@ offset_top = -92.0
 offset_right = 362.0
 offset_bottom = 58.0
 scale = Vector2(0.7200009, 0.60000074)
-theme_override_styles/panel = SubResource("StyleBoxFlat_x5x6a")
+theme_override_styles/panel = SubResource("StyleBoxFlat_63r2m")
 
 [node name="Marginb" type="MarginContainer" parent="DialogueSystem/PanelContainer" unique_id=1924384638]
 custom_minimum_size = Vector2(50, 0)
@@ -110,7 +110,8 @@ theme_override_constants/margin_bottom = 16
 [node name="DialogueLabel" type="Label" parent="DialogueSystem/PanelContainer/Marginb" unique_id=2091138774]
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 48
+theme_override_fonts/font = ExtResource("8_63r2m")
+theme_override_font_sizes/font_size = 16
 autowrap_mode = 2
 
 [node name="NpcLayer" type="Node2D" parent="." unique_id=1956799666]

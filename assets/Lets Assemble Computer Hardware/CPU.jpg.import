@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjajbtkaf18is"
-path="res://.godot/imported/Gelo _Chip_ Vergara.png-f245f5747a15a24e4f3ec71e10d1af7c.ctex"
+uid="uid://5wnx2xowh6qd"
+path="res://.godot/imported/CPU.jpg-1b22e32cf80c5c9ea2dc195938678464.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D Assets/Gelo _Chip_ Vergara.png"
-dest_files=["res://.godot/imported/Gelo _Chip_ Vergara.png-f245f5747a15a24e4f3ec71e10d1af7c.ctex"]
+source_file="res://assets/Lets Assemble Computer Hardware/CPU.jpg"
+dest_files=["res://.godot/imported/CPU.jpg-1b22e32cf80c5c9ea2dc195938678464.ctex"]
 
 [params]
 

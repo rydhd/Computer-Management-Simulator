@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://b6vm2skjxx00s"]
 
 [ext_resource type="Script" uid="uid://xtgg1aupienf" path="res://scripts/tutorial_robot.gd" id="1_xftmx"]
-[ext_resource type="Texture2D" uid="uid://khcnofskvvxq" path="res://assets/2D Assets/mascot robot 2 1.png" id="2_y40l0"]
+[ext_resource type="Texture2D" uid="uid://khcnofskvvxq" path="res://assets/2D Assets/2D Materials/mascot robot 2 1.png" id="2_y40l0"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="3_aelq0"]
 [ext_resource type="AudioStream" uid="uid://bjcpjw08c384a" path="res://assets/cartoon-sound-effects.mp3" id="3_y40l0"]
 
 [node name="TutorialRobot" type="Node2D" unique_id=1949238434]
@@ -32,6 +33,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_aelq0")
 theme_override_font_sizes/font_size = 20
 autowrap_mode = 3
 

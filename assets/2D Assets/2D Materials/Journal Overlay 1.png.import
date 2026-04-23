@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da78yd2x5fqib"
-path="res://.godot/imported/GPU.jpg-92c8b8a09dc3f794ebe25505585b6096.ctex"
+uid="uid://bpg0wxj7tvtl1"
+path="res://.godot/imported/Journal Overlay 1.png-d37b94f1266d2b36347a775d2bc71cbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D Assets/GPU.jpg"
-dest_files=["res://.godot/imported/GPU.jpg-92c8b8a09dc3f794ebe25505585b6096.ctex"]
+source_file="res://assets/2D Assets/2D Materials/Journal Overlay 1.png"
+dest_files=["res://.godot/imported/Journal Overlay 1.png-d37b94f1266d2b36347a775d2bc71cbe.ctex"]
 
 [params]
 
