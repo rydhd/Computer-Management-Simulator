@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d3wwxtfo8fmw8"]
+
+[ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/Lets Assemble Computer Hardware/xtra 5.png" id="1_csgi6"]
+
+[node name="Connect_PSU" type="Node2D" unique_id=677833136]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1422667625]
+position = Vector2(960, 540)
+texture = ExtResource("1_csgi6")

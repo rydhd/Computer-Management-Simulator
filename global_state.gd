@@ -8,3 +8,7 @@ func complete_task(task_name: String) -> void:
 	if task_name not in completed_tasks:
 		completed_tasks.append(task_name)
 		print("GlobalState: Task completed -> ", task_name)
+
+func reset_game_state() -> void:
+	completed_tasks.clear()
+	print("Global state has been reset for a new game.")

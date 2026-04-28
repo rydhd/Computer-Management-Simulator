@@ -10,12 +10,13 @@
 [node name="ComputerMenu" type="Node2D" unique_id=231285679]
 script = ExtResource("1_0r4s7")
 
-[node name="Button" type="Button" parent="." unique_id=1767760911]
+[node name="BeginButton" type="Button" parent="." unique_id=1767760911]
+unique_name_in_owner = true
 z_index = 1
-offset_left = 1424.0
-offset_top = 560.00006
-offset_right = 1804.0
-offset_bottom = 711.00006
+offset_left = 1392.0
+offset_top = 856.0
+offset_right = 1772.0
+offset_bottom = 1007.0
 scale = Vector2(0.67376655, 0.5788467)
 theme_override_fonts/font = ExtResource("4_qjtuv")
 theme_override_font_sizes/font_size = 45
@@ -38,13 +39,16 @@ offset_top = -7.0
 offset_right = -709.0
 offset_bottom = 1.0
 scale = Vector2(-28.99072, -17.106606)
+mouse_filter = 2
 
 [node name="RightArrow" type="Button" parent="Xtra5" unique_id=2062844081]
 offset_left = 236.0
 offset_right = 244.0
 offset_bottom = 8.0
 scale = Vector2(-28.99072, -17.106606)
+mouse_filter = 2
 
 [node name="TaskItems" parent="." unique_id=1845423026 instance=ExtResource("3_cpfds")]
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="BeginButton" to="." method="_on_begin_button_pressed"]
+[connection signal="pressed" from="BeginButton" to="." method="_on_button_pressed"]
