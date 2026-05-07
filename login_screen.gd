@@ -53,3 +53,5 @@ func _on_login_request_completed(result: int, response_code: int, headers: Packe
 		print("Login Failed: Invalid student code or password.")
 	else:
 		print("An unknown error occurred. Status code: ", response_code)
+		# Print the actual error message sent from CodeIgniter
+		print("Server said: ", body.get_string_from_utf8())

@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
 

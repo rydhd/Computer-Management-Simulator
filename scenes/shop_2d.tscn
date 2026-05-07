@@ -17,85 +17,162 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63r2m"]
 bg_color = Color(0, 0, 0, 0.5882353)
 
-[node name="Shop2d" type="Node2D" unique_id=743927316]
-script = ExtResource("1_4kg1i")
-
-[node name="BackgroundFixMyPc" type="Sprite2D" parent="." unique_id=136509501]
-show_behind_parent = true
-light_mask = 0
-visibility_layer = 512
-position = Vector2(-76.99999, -13.000011)
-scale = Vector2(0.5, 0.5018518)
-texture = ExtResource("2_tnsa0")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=427203862]
-position = Vector2(-1, 1)
-offset = Vector2(-76, -13)
-zoom = Vector2(2, 2)
-
-[node name="BackgroundTable" type="Sprite2D" parent="." unique_id=1688587008]
-position = Vector2(-76.000015, -11.999996)
-scale = Vector2(0.50104165, 0.50185186)
-texture = ExtResource("3_m0brw")
-
-[node name="BackgroundManual" type="Sprite2D" parent="." unique_id=561195398]
-position = Vector2(-76.99997, -13.999977)
-scale = Vector2(0.5010417, 0.5018519)
-texture = ExtResource("5_dt4ex")
-
-[node name="ManualButton" type="Button" parent="BackgroundManual" unique_id=1332850843]
-offset_left = -241.4969
-offset_top = 518.08105
-offset_right = -233.4969
-offset_bottom = 526.08105
-scale = Vector2(-21.59015, -21.855429)
-
-[node name="BackgroundBell" type="Sprite2D" parent="." unique_id=30689994]
-position = Vector2(-76.00003, -13.000004)
-scale = Vector2(0.50208336, 0.5)
-texture = ExtResource("7_4swkf")
-
-[node name="Button" type="Button" parent="BackgroundBell" unique_id=1389399829]
-offset_left = 31.83249
-offset_top = 379.50458
-offset_right = 160.83775
-offset_bottom = 491.5169
-
-[node name="BackgroundPc" type="Sprite2D" parent="." unique_id=328918891]
-position = Vector2(-75.000015, -11.000008)
-scale = Vector2(0.5010417, 0.49999994)
-texture = ExtResource("2_r4wvg")
-
-[node name="ScreenButton" type="Button" parent="BackgroundPc" unique_id=214318882]
-offset_left = -872.0
-offset_top = 79.0
-offset_right = -536.0
-offset_bottom = 271.0
-
-[node name="NpcSpawnPoint" type="Marker2D" parent="." unique_id=1424631798]
-position = Vector2(-228, -65)
-
-[node name="DialogueSystem" type="Control" parent="." unique_id=131341282]
-z_index = 1
+[node name="Shop2d" type="Control" unique_id=1330252691]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -41.0
-offset_top = -1.0
-offset_right = -41.0
-offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_4kg1i")
+
+[node name="BackgroundFixMyPc" type="TextureRect" parent="." unique_id=1469414151]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_tnsa0")
+expand_mode = 1
+
+[node name="BackgroundTable" type="TextureRect" parent="." unique_id=861959630]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_m0brw")
+expand_mode = 1
+
+[node name="BackgroundPC" type="TextureRect" parent="." unique_id=251247891]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_r4wvg")
+expand_mode = 1
+
+[node name="BackgroundManual" type="TextureRect" parent="." unique_id=780384605]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_dt4ex")
+expand_mode = 1
+
+[node name="ManualButton" type="Button" parent="BackgroundManual" unique_id=1332850843]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.29707092
+anchor_top = 0.8310948
+anchor_right = 0.29707092
+anchor_bottom = 0.8310948
+offset_left = 84.77423
+offset_top = 77.45056
+offset_right = 92.77423
+offset_bottom = 85.45056
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(-10.596777, -9.681324)
+metadata/_edit_use_anchors_ = true
+
+[node name="BackgroundBell" type="TextureRect" parent="." unique_id=829162104]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_4swkf")
+expand_mode = 1
+
+[node name="BellButton" type="Button" parent="BackgroundBell" unique_id=1389399829]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5112847
+anchor_top = 0.83641976
+anchor_right = 0.5497322
+anchor_bottom = 0.8981034
+offset_right = 84.713745
+offset_bottom = 72.04132
+scale = Vector2(0.7180266, 0.83046067)
+metadata/_edit_use_anchors_ = true
+
+[node name="BackgroundTaskboard" type="TextureRect" parent="." unique_id=1803053726]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_4kg1i")
+expand_mode = 1
+
+[node name="TaskboardButton" type="Button" parent="BackgroundTaskboard" unique_id=695502417]
+z_index = 1
+layout_mode = 0
+anchor_left = 0.4097222
+anchor_top = 0.8518519
+anchor_right = 0.48459613
+anchor_bottom = 0.9533565
+offset_right = -78.25476
+offset_bottom = -56.65326
+scale = Vector2(10.781843, 7.21078)
+metadata/_edit_use_anchors_ = true
+
+[node name="NpcSpawnPoint" type="Control" parent="." unique_id=1243202528]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DialogueSystem" type="Control" parent="." unique_id=131341282]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_4swkf")
 
 [node name="PanelContainer" type="PanelContainer" parent="DialogueSystem" unique_id=642266125]
 custom_minimum_size = Vector2(400, 150)
-layout_mode = 0
-offset_left = -38.0
-offset_top = -92.0
-offset_right = 362.0
-offset_bottom = 58.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -75.0
+offset_bottom = 75.0
+grow_horizontal = 0
+grow_vertical = 2
 scale = Vector2(0.7200009, 0.60000074)
 theme_override_styles/panel = SubResource("StyleBoxFlat_63r2m")
 
@@ -114,51 +191,40 @@ theme_override_fonts/font = ExtResource("8_63r2m")
 theme_override_font_sizes/font_size = 16
 autowrap_mode = 2
 
-[node name="NpcLayer" type="Node2D" parent="." unique_id=1956799666]
-
 [node name="TaskboardOverlay" parent="." unique_id=1347746506 instance=ExtResource("9_8ahl1")]
 visible = false
 z_index = 10
-position = Vector2(-73, -18.000122)
-scale = Vector2(0.50416666, 0.50370365)
+layout_mode = 1
+scale = Vector2(1.0001982, 0.99923563)
+vertical_spacing_between_tasks = 30
+list_padding_left = 40
 
-[node name="BackgroundTaskboard" type="Sprite2D" parent="." unique_id=27999115]
-position = Vector2(-76.500015, -13)
-scale = Vector2(0.5005209, 0.50000006)
-texture = ExtResource("6_4kg1i")
+[node name="NpcLayer" type="Node2D" parent="." unique_id=1956799666]
 
-[node name="TaskboardButton" type="Button" parent="BackgroundTaskboard" unique_id=695502417]
-z_index = 1
-offset_left = -180.8116
-offset_top = 319.99997
-offset_right = -172.8116
-offset_bottom = 329.12173
-scale = Vector2(25.090935, 19.611635)
-
-[node name="TutorialRobot" parent="." unique_id=1949238434 instance=ExtResource("10_0pqj0")]
-position = Vector2(-271, -59)
+[node name="TutorialRobot" parent="NpcLayer" unique_id=1949238434 instance=ExtResource("10_0pqj0")]
+position = Vector2(394, 319)
 scale = Vector2(0.5, 0.5)
 
-[node name="TutorialArrow" type="Sprite2D" parent="." unique_id=534916486]
+[node name="TutorialArrow" type="Sprite2D" parent="NpcLayer" unique_id=534916486]
 visible = false
-position = Vector2(-37, 108)
+position = Vector2(631, 488)
 scale = Vector2(0.6196581, 0.6297935)
 texture = ExtResource("11_x5x6a")
 script = ExtResource("12_63r2m")
 
-[node name="TutorialArrow2" type="Sprite2D" parent="." unique_id=1453364731]
+[node name="TutorialArrow2" type="Sprite2D" parent="NpcLayer" unique_id=1453364731]
+visible = false
 z_index = 10
-position = Vector2(-126.99999, 85)
+position = Vector2(512, 464.99997)
 scale = Vector2(0.6196581, 0.6297935)
 texture = ExtResource("11_x5x6a")
 script = ExtResource("12_63r2m")
 arrow_type = 1
 
-[node name="CustomerRobotSpawnPoint" type="Marker2D" parent="." unique_id=963398696 groups=["robot_spawn"]]
-position = Vector2(-274, -62.999985)
+[node name="CustomerRobotSpawnPoint" type="Marker2D" parent="NpcLayer" unique_id=963398696 groups=["robot_spawn"]]
+position = Vector2(390, 315)
 scale = Vector2(10.340846, 6.138686)
 gizmo_extents = 0.0
 
-[connection signal="pressed" from="BackgroundBell/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="BackgroundPc/ScreenButton" to="BackgroundPc" method="_on_button_pressed"]
+[connection signal="pressed" from="BackgroundBell/BellButton" to="." method="_on_bell_button_pressed"]
 [connection signal="pressed" from="BackgroundTaskboard/TaskboardButton" to="." method="_on_taskboard_button_pressed"]

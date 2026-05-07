@@ -13,33 +13,46 @@ size = Vector2(152, 152)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj3go"]
 size = Vector2(453, 42)
 
-[node name="Hardware_Assembly" type="Node2D" unique_id=1023411860]
+[node name="Hardware_Assembly" type="Control" unique_id=2116355055]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_4kffy")
 
-[node name="MotherboardClosedAndColoredBgRemovedf" type="Sprite2D" parent="." unique_id=1550638006]
-z_index = -1
-position = Vector2(818.75, 540)
-scale = Vector2(0.79907227, 0.74447507)
+[node name="MotherboardClosedAndColoredBgRemovedf" type="TextureRect" parent="." unique_id=904556867]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_4kffy")
-offset = Vector2(2, 0)
+expand_mode = 1
 
 [node name="Socket_CPU" type="Area2D" parent="." unique_id=960182711]
-position = Vector2(841, 394)
+position = Vector2(597, 230.00002)
+scale = Vector2(0.6018268, 0.5925197)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_CPU" unique_id=746285731]
 position = Vector2(6, 4)
 shape = SubResource("RectangleShape2D_1bf13")
 
 [node name="Socket_GPU" type="Area2D" parent="." unique_id=171433084]
-position = Vector2(810, 713)
+position = Vector2(581, 429)
+scale = Vector2(0.7082606, 0.5635499)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_GPU" unique_id=1553584242]
 position = Vector2(-2, 5)
 shape = SubResource("RectangleShape2D_kj3go")
 
 [node name="Socket_RAM" type="Area2D" parent="." unique_id=828015522]
-position = Vector2(1134.9999, 428)
-rotation = -1.5868313
+position = Vector2(807, 249.00003)
+rotation = -1.5717435
+scale = Vector2(0.6226849, -0.672853)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_RAM" unique_id=1709710092]
 position = Vector2(-2, 5)
@@ -47,35 +60,39 @@ shape = SubResource("RectangleShape2D_kj3go")
 
 [node name="GPU" parent="." unique_id=725532990 instance=ExtResource("2_kj3go")]
 unique_name_in_owner = true
-position = Vector2(1717, 584.00006)
-scale = Vector2(1.3648648, 1.7043011)
+position = Vector2(1038, 347.00003)
+scale = Vector2(0.608791, 0.5888075)
 
 [node name="CPU" parent="." unique_id=2077517426 instance=ExtResource("3_gude4")]
 unique_name_in_owner = true
-position = Vector2(1689, 800)
-scale = Vector2(0.525307, 0.44522783)
+position = Vector2(1047, 505.99994)
+scale = Vector2(0.2805121, 0.22101277)
 
 [node name="Ram" parent="." unique_id=2092034636 instance=ExtResource("5_un8ii")]
 unique_name_in_owner = true
-position = Vector2(1540, 350)
+position = Vector2(1002.00006, 385)
+scale = Vector2(0.4324812, 0.42482877)
 
 [node name="Button" type="Button" parent="." unique_id=589954609]
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
 text = "Back"
 
 [node name="AssemblyTaskList" parent="." unique_id=1972073169 instance=ExtResource("5_s4mkv")]
 unique_name_in_owner = true
-offset = Vector2(1733, 0)
+offset = Vector2(871, 0)
 scale = Vector2(1, 1)
-transform = Transform2D(1, 0, 0, 1, 1733, 0)
+transform = Transform2D(1, 0, 0, 1, 871, 0)
 
 [node name="CompleteButton" type="Button" parent="." unique_id=1182452941]
 visible = false
-offset_left = 1324.0
-offset_top = 164.0
-offset_right = 1783.0
-offset_bottom = 419.0
+layout_mode = 0
+offset_left = 961.0
+offset_top = 173.0
+offset_right = 1420.0
+offset_bottom = 428.0
+scale = Vector2(0.27699474, 0.2995534)
 text = "Complete Job!"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

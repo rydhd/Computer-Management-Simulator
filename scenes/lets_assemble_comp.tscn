@@ -3,34 +3,53 @@
 [ext_resource type="Script" uid="uid://b2q2vdvgukcnx" path="res://scripts/lets_assemble_comp.gd" id="1_0qxcn"]
 [ext_resource type="Texture2D" uid="uid://y5hvgosrnaor" path="res://assets/Lets Assemble Computer Hardware/Assemble Menu (1).png" id="1_owlbw"]
 
-[node name="LetsAssembleComp" type="Node2D" unique_id=1776079190]
+[node name="LetsAssembleComp" type="Control" unique_id=677367258]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_0qxcn")
 
-[node name="AssembleMenu(1)" type="Sprite2D" parent="." unique_id=2048019393]
-position = Vector2(960.5, 540)
-scale = Vector2(0.9994792, 1)
+[node name="BackgroundAssemble" type="TextureRect" parent="." unique_id=157748637]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_owlbw")
+expand_mode = 1
 
-[node name="StartButton" type="Button" parent="AssembleMenu(1)" unique_id=107944537]
+[node name="HBoxContainer" type="HBoxContainer" parent="BackgroundAssemble" unique_id=1238393889]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -178.5
+offset_top = -141.0
+offset_right = -83.5
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+alignment = 1
+
+[node name="StartButton" type="Button" parent="BackgroundAssemble/HBoxContainer" unique_id=107944537]
 unique_name_in_owner = true
-offset_left = -662.8452
-offset_top = 335.0
-offset_right = -626.8452
-offset_bottom = 357.0
-scale = Vector2(8.118028, 4.236588)
-theme_override_font_sizes/font_size = 10
+layout_direction = 1
+layout_mode = 2
 text = "Start"
-autowrap_mode = 2
 
-[node name="BackButton" type="Button" parent="AssembleMenu(1)" unique_id=2008531314]
+[node name="BackButton" type="Button" parent="BackgroundAssemble/HBoxContainer" unique_id=2008531314]
 unique_name_in_owner = true
-offset_left = 299.65604
-offset_top = 308.00003
-offset_right = 351.65604
-offset_bottom = 339.00003
-scale = Vector2(5.499852, 3.5785728)
-text = "Backr"
+layout_direction = 1
+layout_mode = 2
+text = "Back"
+alignment = 0
+autowrap_trim_flags = 0
 
-[connection signal="pressed" from="AssembleMenu(1)/StartButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="AssembleMenu(1)/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="AssembleMenu(1)/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="BackgroundAssemble/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
