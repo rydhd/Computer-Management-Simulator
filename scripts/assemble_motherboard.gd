@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @onready var draggable_motherboard = $DraggableMotherboard
 @onready var complete_button = $CompleteButton

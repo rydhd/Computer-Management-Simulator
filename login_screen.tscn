@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtdpl1a0mgley"]
+[gd_scene format=3 uid="uid://dtdpl1a0mgley"]
 
 [ext_resource type="Script" uid="uid://w4ixskixhy25" path="res://login_screen.gd" id="1_frse4"]
+[ext_resource type="Texture2D" uid="uid://dut13xsqcfhcy" path="res://assets/2D Assets/2D Materials/Landing Page.png" id="2_7xvqn"]
 
-[node name="LoginScreen" type="Control"]
+[node name="LoginScreen" type="Control" unique_id=1490664868]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,31 +13,44 @@ grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_frse4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1983863921]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7xvqn")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=457697522]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -201.0
-offset_top = -91.0
-offset_right = 201.0
-offset_bottom = 91.0
+offset_left = -292.99997
+offset_top = 54.0
+offset_right = 13.133179
+offset_bottom = 155.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.2485908, 1.8127044)
+alignment = 1
 
-[node name="CodeEdit" type="LineEdit" parent="VBoxContainer"]
+[node name="CodeEdit" type="LineEdit" parent="VBoxContainer" unique_id=2003640313]
 layout_mode = 2
 placeholder_text = "Student Code"
 
-[node name="PasswordEdit" type="LineEdit" parent="VBoxContainer"]
+[node name="PasswordEdit" type="LineEdit" parent="VBoxContainer" unique_id=29618635]
 layout_mode = 2
 placeholder_text = "Password"
 secret = true
 
-[node name="LoginButton" type="Button" parent="VBoxContainer"]
+[node name="LoginButton" type="Button" parent="VBoxContainer" unique_id=142895314]
 layout_mode = 2
 text = "Login"
 
-[node name="LoginRequest" type="HTTPRequest" parent="."]
+[node name="LoginRequest" type="HTTPRequest" parent="." unique_id=1755652433]

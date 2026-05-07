@@ -9,22 +9,15 @@ font = ExtResource("2_xt8t5")
 [node name="IssuePopupUI" type="CanvasLayer" unique_id=639928974]
 script = ExtResource("1_j8j1j")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1102242380]
-offset_left = 695.0
-offset_top = 606.0
-offset_right = 1098.0
-offset_bottom = 1080.0
-color = Color(0.32156864, 0.42745098, 0.50980395, 1)
-
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=680967057]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -264.0
-offset_top = -477.0
-offset_right = 140.0
+offset_left = -140.5
+offset_top = -329.0
+offset_right = 140.5
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8

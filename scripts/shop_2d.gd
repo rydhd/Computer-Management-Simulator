@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 # Shop_2d.gd
 
 # Preload the NPC scene so Godot loads it once when the game starts, 
@@ -6,78 +6,76 @@ extends Node2D
 const NPC_SCENE = preload("res://scenes/NpcCustomer.tscn")
 const ISSUE_POPUP_SCENE = preload("res://scenes/issue_popup_ui.tscn")
 
-@onready var npc_spawn_position: Marker2D = $NpcSpawnPoint # Assuming you add a Marker2D in your scene editor
+@onready var npc_spawn_position: Control = $NpcSpawnPoint # Assuming you add a Marker2D in your scene editor
 @onready var dialogue_system = $DialogueSystem # Assuming you have a node to manage dialogue UI
 @onready var taskboard_overlay = $TaskboardOverlay
 
 # Tracks the current NPC instance
 var current_npc: Area2D = null 
+var current_popup: Node = null
 
 func _ready() -> void:
 	# Add a short delay so the player can orient themselves 
 	# when the scene loads before the robot starts talking.
 	get_tree().create_timer(1.0).timeout.connect(TutorialManager.start_tutorial)
 
+func _on_bell_button_pressed() -> void:
+	print("Bell pressed! Attempting to spawn NPC.")
+	
+	if is_instance_valid(current_npc):
+		start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
+		return
+		
+	current_npc = NPC_SCENE.instantiate()
+	current_npc.scale = Vector2(0.3, 0.3) 
+	$NpcLayer.add_child(current_npc)
+	current_npc.global_position = npc_spawn_position.global_position
+	
+	# 1. CONNECT FIRST! Tell Godot to listen for the signal.
+	current_npc.fade_in_complete.connect(_on_npc_fade_in_complete)
+	
+	# 2. TRIGGER SECOND! Now that we are listening, start the fade.
+	current_npc.fade_in_and_signal()
+	
+	EventBus.npc_arrived.emit()
+
+
+func _on_npc_fade_in_complete() -> void:
+	# Ensure the NPC still exists when the fade finishes
+	if is_instance_valid(current_npc):
+		
+		# 3. DISCONNECT IMMEDIATELY! Prevent memory leaks and double-firing.
+		if current_npc.fade_in_complete.is_connected(_on_npc_fade_in_complete):
+			current_npc.fade_in_complete.disconnect(_on_npc_fade_in_complete)
+			
+		# Start the dialogue
+		start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
 # UPDATE: Function now expects an Array for the issues!
 func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array, issue_id: String) -> void:
 	print("NPC fade-in finished, starting dialogue!")
 	
 	if is_instance_valid(dialogue_system):
-		# Show the NPC's specific intro text
 		dialogue_system.show_dialogue(intro_text)
 		
-		# Wait for 2.5 seconds so the player can read it safely in Godot 4
-		await get_tree().create_timer(2.5).timeout
+		# WAIT FOR THE SIGNAL! 
+		# This halts the code until the player clicks through all dialogue pages.
+		await dialogue_system.dialogue_finished
 		
-		# Hide the dialogue box
-		dialogue_system.hide_dialogue()
+		# Prevents crashes if the scene was changed while the player was reading
+		if not is_inside_tree():
+			return 
 		
-		# --- 3. SPAWN THE UI POPUP ---
-		# Create a new instance of your popup scene
-		var popup = ISSUE_POPUP_SCENE.instantiate()
-		
-		# Add it to the shop scene tree so it renders on screen
-		add_child(popup) 
-		
-		# Call your custom function to populate the text!
-		# FIX: Changed "name" to "customer_name" to match the function parameter
-		popup.setup_issue(customer_name, issues, issue_id)
+		# --- SPAWN THE UI POPUP ---
+		if is_instance_valid(current_popup):
+			current_popup.queue_free()
+			
+		current_popup = ISSUE_POPUP_SCENE.instantiate()
+		add_child(current_popup) 
+		current_popup.setup_issue(customer_name, issues, issue_id)
 		
 	else:
 		print("ERROR: Dialogue system node is not valid!")
 
-# This function name must match the signal connection from your Button!
-func _on_button_pressed() -> void:
-	print("Bell pressed! Attempting to spawn NPC.")
-	
-	# Don't spawn a new NPC if one is already present.
-	if is_instance_valid(current_npc):
-		print("NPC already here, starting dialogue instead.")
-		
-		# THE FIX: Grab the variables directly from the current_npc and pass them in!
-		start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
-		return
-
-	# --- 1. Spawn the NPC ---
-	current_npc = NPC_SCENE.instantiate()
-	
-	# --- 2. Set Scale (if you still need this) ---
-	var desired_scale = Vector2(0.3, 0.3) 
-	current_npc.scale = desired_scale
-	
-	# Add the NPC to the scene tree.
-	$NpcLayer.add_child(current_npc)
-
-	# --- 3. Set Position DIRECTLY ---
-	current_npc.global_position = npc_spawn_position.global_position
-	
-	# --- 4. Start Fade-in and Connect Signal ---
-	current_npc.fade_in_and_signal()
-	current_npc.fade_in_complete.connect(start_npc_dialogue)
-	
-	EventBus.npc_arrived.emit()
-
-# shop_2d.gd
 func _on_taskboard_button_pressed() -> void:
 	EventBus.fade_out_robot.emit()
 	print("Taskboard Button Pressed!")

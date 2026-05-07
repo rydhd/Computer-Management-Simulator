@@ -12,17 +12,34 @@ size = Vector2(291, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74gfa"]
 size = Vector2(332, 246)
 
-[node name="AssembleMotherboard" type="Sprite2D" unique_id=1633463968]
-position = Vector2(962, 545)
-texture = ExtResource("1_4tikd")
+[node name="AssembleMotherboard" type="Control" unique_id=1802961849]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_vnc75")
 
+[node name="Background" type="TextureRect" parent="." unique_id=1988051582]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_4tikd")
+expand_mode = 1
+
 [node name="SystemUnitFrontPanel" type="Sprite2D" parent="." unique_id=1667926510]
-position = Vector2(-478, -31)
+position = Vector2(246.99994, 330.0001)
+scale = Vector2(0.44642812, 0.43394682)
 texture = ExtResource("2_co3fv")
 
 [node name="Motherboard_Tray" type="Area2D" parent="." unique_id=1660359980]
-position = Vector2(-597, -131)
+position = Vector2(183.99988, 279.9999)
+scale = Vector2(0.34980106, 0.23368178)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Motherboard_Tray" unique_id=663911490]
 position = Vector2(1, -2)
@@ -30,7 +47,8 @@ scale = Vector2(1.0907913, -16.504955)
 shape = SubResource("RectangleShape2D_rstot")
 
 [node name="DraggableMotherboard" type="Area2D" parent="." unique_id=332584423]
-position = Vector2(452, -95)
+position = Vector2(819, 227)
+scale = Vector2(0.6059848, 0.5029088)
 script = ExtResource("4_ntfno")
 
 [node name="Sprite2D" type="Sprite2D" parent="DraggableMotherboard" unique_id=1687275353]
@@ -44,9 +62,10 @@ scale = Vector2(1.3697284, 2.0108984)
 shape = SubResource("RectangleShape2D_74gfa")
 
 [node name="CompleteButton" type="Button" parent="." unique_id=1898701217]
-offset_left = 438.0
-offset_top = 291.0
-offset_right = 521.0
-offset_bottom = 322.0
+layout_mode = 0
+offset_left = 790.0
+offset_top = 433.0
+offset_right = 873.0
+offset_bottom = 464.0
 scale = Vector2(3.2288954, 4.080677)
 text = "Complete"

@@ -12,10 +12,8 @@ transform = Transform2D(10, 0, 0, 6, 0, 0)
 script = ExtResource("1_4hvi0")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=828324371]
-offset_left = -168.0
-offset_top = 1.9999999
-offset_right = 152.0
-offset_bottom = 167.16667
+offset_right = 320.0
+offset_bottom = 100.0
 scale = Vector2(0.8541413, 1.5414498)
 mouse_filter = 2
 

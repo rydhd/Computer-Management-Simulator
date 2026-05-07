@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 @onready var begin_button: Button = %BeginButton
 
@@ -6,6 +6,10 @@ extends Node2D
 var next_scene_path: String = "res://scenes/hardware_assembly.tscn"
 
 func _ready() -> void:
+	# Ensure the button signal is connected (Godot 4 best practice)
+	if begin_button and not begin_button.pressed.is_connected(_on_begin_button_pressed):
+		begin_button.pressed.connect(_on_begin_button_pressed)
+		
 	# 1. ALWAYS set the button up for Task 1 by default
 	if begin_button:
 		begin_button.disabled = false
@@ -29,7 +33,10 @@ func _setup_task_2() -> void:
 		next_scene_path = "res://scenes/connect_psu.tscn" 
 
 func _on_begin_button_pressed() -> void:
-	print("Button was pressed")
-	var error = get_tree().change_scene_to_file("res://scenes/hardware_assembly.tscn")
+	print("Button was pressed. Navigating to: ", next_scene_path)
+	
+	# FIX: We now use the variable instead of the hardcoded string!
+	var error = get_tree().change_scene_to_file(next_scene_path)
+	
 	if error != OK:
 		print("scene change with error code: ", error)

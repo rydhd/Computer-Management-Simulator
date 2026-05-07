@@ -7,16 +7,47 @@
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="4_qjtuv"]
 [ext_resource type="Texture2D" uid="uid://6r3wk2y43lnh" path="res://assets/Lets Assemble Computer Hardware/Rectangle 68.png" id="5_0r4s7"]
 
-[node name="ComputerMenu" type="Node2D" unique_id=231285679]
+[node name="ComputerMenu" type="Control" unique_id=1461508389]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_0r4s7")
+
+[node name="BackgroundComp" type="TextureRect" parent="." unique_id=173307303]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_mk7bw")
+expand_mode = 1
+
+[node name="SystemUnitFrontPanel" type="Sprite2D" parent="BackgroundComp" unique_id=1139648409]
+position = Vector2(229.00003, 351)
+scale = Vector2(0.40657875, 0.43195093)
+texture = ExtResource("2_q7sxl")
+
+[node name="TaskItems" parent="." unique_id=1845423026 instance=ExtResource("3_cpfds")]
 
 [node name="BeginButton" type="Button" parent="." unique_id=1767760911]
 unique_name_in_owner = true
-z_index = 1
-offset_left = 1392.0
-offset_top = 856.0
-offset_right = 1772.0
-offset_bottom = 1007.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_top = -151.0
+grow_horizontal = 0
+grow_vertical = 0
 scale = Vector2(0.67376655, 0.5788467)
 theme_override_fonts/font = ExtResource("4_qjtuv")
 theme_override_font_sizes/font_size = 45
@@ -25,30 +56,4 @@ icon = ExtResource("5_0r4s7")
 flat = true
 icon_alignment = 1
 
-[node name="Xtra5" type="Sprite2D" parent="." unique_id=238382363]
-position = Vector2(960, 540)
-texture = ExtResource("1_mk7bw")
-
-[node name="SystemUnitFrontPanel" type="Sprite2D" parent="Xtra5" unique_id=1139648409]
-position = Vector2(-373, -62)
-texture = ExtResource("2_q7sxl")
-
-[node name="LeftArrow" type="Button" parent="Xtra5" unique_id=211730115]
-offset_left = -717.0
-offset_top = -7.0
-offset_right = -709.0
-offset_bottom = 1.0
-scale = Vector2(-28.99072, -17.106606)
-mouse_filter = 2
-
-[node name="RightArrow" type="Button" parent="Xtra5" unique_id=2062844081]
-offset_left = 236.0
-offset_right = 244.0
-offset_bottom = 8.0
-scale = Vector2(-28.99072, -17.106606)
-mouse_filter = 2
-
-[node name="TaskItems" parent="." unique_id=1845423026 instance=ExtResource("3_cpfds")]
-
 [connection signal="pressed" from="BeginButton" to="." method="_on_begin_button_pressed"]
-[connection signal="pressed" from="BeginButton" to="." method="_on_button_pressed"]

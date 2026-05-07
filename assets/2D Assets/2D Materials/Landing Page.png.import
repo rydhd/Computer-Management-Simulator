@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy7gmub0473cj"
-path="res://.godot/imported/Taskboard Overlay.png-c61cfa101a088382167e89aa7000c36f.ctex"
+uid="uid://dut13xsqcfhcy"
+path="res://.godot/imported/Landing Page.png-57c2f47d8444bbee656ec7f02cbc66f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D Assets/2D Materials/Taskboard Overlay.png"
-dest_files=["res://.godot/imported/Taskboard Overlay.png-c61cfa101a088382167e89aa7000c36f.ctex"]
+source_file="res://assets/2D Assets/2D Materials/Landing Page.png"
+dest_files=["res://.godot/imported/Landing Page.png-57c2f47d8444bbee656ec7f02cbc66f4.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy7gmub0473cj"
-path="res://.godot/imported/Taskboard Overlay.png-c61cfa101a088382167e89aa7000c36f.ctex"
+uid="uid://cijl258wyffs0"
+path="res://.godot/imported/System unit.png-62dda03eef55ecd0ceb585910087c9d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/2D Assets/2D Materials/Taskboard Overlay.png"
-dest_files=["res://.godot/imported/Taskboard Overlay.png-c61cfa101a088382167e89aa7000c36f.ctex"]
+source_file="res://assets/2D Assets/2D Materials/System unit.png"
+dest_files=["res://.godot/imported/System unit.png-62dda03eef55ecd0ceb585910087c9d8.ctex"]
 
 [params]
 

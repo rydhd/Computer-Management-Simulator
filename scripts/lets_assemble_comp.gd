@@ -1,4 +1,4 @@
-extends Node2D # Or Node2D, depending on your root node
+extends Control # Or Node2D, depending on your root node
 
 @onready var start_button: Button = %StartButton
 @onready var begin_button: Button = %BeginButton
