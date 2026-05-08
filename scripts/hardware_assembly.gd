@@ -2,36 +2,38 @@ extends Control
 
 const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
 
-# Using Scene Unique Nodes (%) is a great practice!
 @onready var cpu = %CPU
 @onready var gpu = %GPU 
 @onready var ram = %Ram
 @onready var task_list = %AssemblyTaskList
 
-# Grab references to our buttons
+# NEW: Grab the reference to our centered popup
+@onready var center_popup = %CenterPopup
+
 @onready var back_button = $Button 
 @onready var complete_button = $CompleteButton 
 
 func _ready() -> void:
-	# FIX 1: Added 'and ram' to our null check to prevent game crashes if the node goes missing
 	if cpu and gpu and ram and task_list:
-		# 1. Connect to the UI checklist
+		# Connect to the UI checklist
 		cpu.installed.connect(task_list._on_cpu_installed)
 		gpu.installed.connect(task_list._on_gpu_installed)
 		ram.installed.connect(task_list._on_ram_installed)
 		
-		# 2. Connect to our local completion checker
+		# Connect to our local completion checker
 		cpu.installed.connect(_check_completion)
 		gpu.installed.connect(_check_completion)
 		ram.installed.connect(_check_completion)
+		
+		# NEW: Listen for the CPU's failure signal!
+		cpu.installation_failed.connect(_show_center_popup)
+		
 		print("Signals connected successfully!")
 	else:
 		push_error("One or more nodes are missing! Check Unique Names in the Editor.")
 		
-	# 3. Connect the new Complete button via code
 	if complete_button:
 		complete_button.pressed.connect(_on_complete_button_pressed)
-
 # This function runs every time a component clicks into place
 func _check_completion() -> void:
 	# FIX 2: Added 'and ram.is_installed' so the game waits for all 3 components
@@ -61,3 +63,20 @@ func _on_complete_button_pressed() -> void:
 	var error: Error = get_tree().change_scene_to_file(next_scene_path)
 	if error != OK:
 		push_error("Failed to load the system unit assembly scene. Error code: ", error)
+		
+# NEW: The function that handles the tween animation for the center popup
+func _show_center_popup(message: String) -> void:
+	if not center_popup:
+		push_warning("CenterPopup node is missing!")
+		return
+		
+	# 1. Update the text and show the label
+	center_popup.text = message
+	center_popup.visible = true
+	center_popup.modulate.a = 1.0 # Ensure it is fully visible
+	
+	# 2. Animate the fade out using a Tween
+	var tween = create_tween()
+	tween.tween_interval(1.5) # Wait 1.5 seconds
+	tween.tween_property(center_popup, "modulate:a", 0.0, 0.5) # Fade to invisible over 0.5 seconds
+	tween.tween_callback(func(): center_popup.visible = false) # Hide node completely

@@ -2,16 +2,24 @@
 
 [ext_resource type="Script" uid="uid://dahpwnk1pjuim" path="res://scripts/hardware_assembly.gd" id="1_4kffy"]
 [ext_resource type="PackedScene" uid="uid://b7047snqqi8vx" path="res://scenes/gpu.tscn" id="2_kj3go"]
+[ext_resource type="Script" uid="uid://dvivd3tsfnoxf" path="res://scripts/socket_cpu.gd" id="3_4onfl"]
 [ext_resource type="PackedScene" uid="uid://wsoibpe76ngv" path="res://scenes/cpu.tscn" id="3_gude4"]
 [ext_resource type="Texture2D" uid="uid://c1l5qb7algj8w" path="res://assets/Lets Assemble Computer Hardware/motherboard closed and colored bg removedf.png" id="4_4kffy"]
+[ext_resource type="Texture2D" uid="uid://bhtxldluv4w2e" path="res://assets/2D Assets/2D Materials/bruh.png" id="4_264bs"]
+[ext_resource type="Texture2D" uid="uid://d2drthfespx4o" path="res://assets/2D Assets/2D Materials/CircleNotch.png" id="5_264bs"]
 [ext_resource type="PackedScene" uid="uid://cp4veoehhj8k0" path="res://scenes/assembly_task_list.tscn" id="5_s4mkv"]
 [ext_resource type="PackedScene" uid="uid://0byfmi315lyu" path="res://scenes/ram.tscn" id="5_un8ii"]
+[ext_resource type="Texture2D" uid="uid://khcnofskvvxq" path="res://assets/2D Assets/2D Materials/mascot robot 2 1.png" id="6_hhiq5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bf13"]
 size = Vector2(152, 152)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj3go"]
 size = Vector2(453, 42)
+
+[sub_resource type="LabelSettings" id="LabelSettings_264bs"]
+font_color = Color(0.97539407, 0, 0.316302, 1)
+outline_size = 3
 
 [node name="Hardware_Assembly" type="Control" unique_id=2116355055]
 layout_mode = 3
@@ -36,10 +44,31 @@ expand_mode = 1
 [node name="Socket_CPU" type="Area2D" parent="." unique_id=960182711]
 position = Vector2(597, 230.00002)
 scale = Vector2(0.6018268, 0.5925197)
+script = ExtResource("3_4onfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_CPU" unique_id=746285731]
 position = Vector2(6, 4)
 shape = SubResource("RectangleShape2D_1bf13")
+
+[node name="LatchButton" type="TextureButton" parent="Socket_CPU" unique_id=837144471]
+offset_left = 124.62056
+offset_top = 40.504963
+offset_right = 636.62054
+offset_bottom = 552.50494
+scale = Vector2(0.18170102, 0.18744163)
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_264bs")
+metadata/_edit_use_anchors_ = true
+
+[node name="SpinningCircle" type="Sprite2D" parent="Socket_CPU" unique_id=282865027]
+visible = false
+position = Vector2(181.11522, 10.126213)
+scale = Vector2(1.3027338, -1.1375082)
+texture = ExtResource("5_264bs")
+
+[node name="Sprite2D" type="Sprite2D" parent="Socket_CPU" unique_id=817200542]
+visible = false
+texture = ExtResource("6_hhiq5")
 
 [node name="Socket_GPU" type="Area2D" parent="." unique_id=171433084]
 position = Vector2(581, 429)
@@ -95,4 +124,21 @@ offset_bottom = 428.0
 scale = Vector2(0.27699474, 0.2995534)
 text = "Complete Job!"
 
+[node name="CenterPopup" type="Label" parent="." unique_id=1427372086]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -11.5
+offset_right = 0.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_264bs")
+
+[connection signal="pressed" from="Socket_CPU/LatchButton" to="Socket_CPU" method="_on_latch_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

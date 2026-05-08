@@ -33,3 +33,13 @@ label_settings = SubResource("LabelSettings_5i68j")
 [node name="Cpu1" type="Sprite2D" parent="." unique_id=1569919175]
 position = Vector2(-2, 1)
 texture = ExtResource("2_16h3v")
+
+[node name="ErrorPopup" type="Label" parent="." unique_id=1323875186]
+offset_left = -18.0
+offset_top = -269.0
+offset_right = 22.0
+offset_bottom = -246.0
+theme_override_colors/font_color = Color(0.707489, 0.0003911105, 0.71023864, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1

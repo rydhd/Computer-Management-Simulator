@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://b5u7caxwke548"]
 
 [ext_resource type="Texture2D" uid="uid://bpg0wxj7tvtl1" path="res://assets/2D Assets/2D Materials/Journal Overlay 1.png" id="1_iyus1"]
+[ext_resource type="Script" uid="uid://cg47keae7f1n0" path="res://scripts/manual_popup.gd" id="1_p51ek"]
 [ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/X.png" id="2_p51ek"]
+[ext_resource type="Texture2D" uid="uid://dakw3x40jmjvw" path="res://assets/Lets Assemble Computer Hardware/cpu1.png" id="4_ujo2t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ujo2t"]
-font_size = 3
 
 [node name="ManualPopup" type="CanvasLayer" unique_id=898215979]
+script = ExtResource("1_p51ek")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1615805086]
 anchors_preset = 15
@@ -16,77 +18,121 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.5882353)
 
-[node name="BookCenter" type="CenterContainer" parent="." unique_id=352693797]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+[node name="BookCenter" type="Control" parent="." unique_id=1439502413]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="BookBackground" type="TextureRect" parent="BookCenter" unique_id=1859938908]
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_iyus1")
+expand_mode = 1
 
 [node name="CloseButton" type="Button" parent="BookCenter/BookBackground" unique_id=128340679]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -421.0
-offset_top = 194.00003
-offset_right = -395.0
-offset_bottom = 220.00003
+anchors_preset = -1
+anchor_left = 0.7708333
+anchor_top = 0.118199594
+anchor_right = 0.82259554
+anchor_bottom = 0.118199594
+offset_top = 50.406677
+offset_right = -33.630066
+offset_bottom = 76.40668
 grow_horizontal = 0
 scale = Vector2(2.293465, -1.9387183)
 icon = ExtResource("2_p51ek")
 
 [node name="LeftPage" type="MarginContainer" parent="BookCenter/BookBackground" unique_id=278457431]
-layout_mode = 0
-offset_left = 411.0
-offset_top = 168.0
-offset_right = 451.0
-offset_bottom = 208.0
-scale = Vector2(12.672732, 22.347519)
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.13
+anchor_bottom = 0.63
+offset_left = 260.0
+offset_top = 124.0
+offset_right = 381.0
+offset_bottom = 215.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="TitleLabel" type="Label" parent="BookCenter/BookBackground/LeftPage" unique_id=1162971285]
+[node name="LeftVBox" type="VBoxContainer" parent="BookCenter/BookBackground/LeftPage" unique_id=380687379]
 layout_mode = 2
+
+[node name="PageImage" type="TextureRect" parent="BookCenter/BookBackground/LeftPage/LeftVBox" unique_id=1887146860]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_ujo2t")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="BookCenter/BookBackground/LeftPage/LeftVBox" unique_id=1162971285]
+layout_mode = 2
+autowrap_mode = 3
 
 [node name="RightPage" type="MarginContainer" parent="BookCenter/BookBackground" unique_id=863771717]
-layout_mode = 0
-offset_left = 1510.0
-offset_top = 205.0
-offset_right = 1550.0
-offset_bottom = 245.0
-scale = Vector2(-13.18473, 21.680222)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 43.0
+offset_top = -197.0
+offset_right = 310.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="NavigationHBox" type="HBoxContainer" parent="BookCenter/BookBackground/RightPage" unique_id=1079140923]
+[node name="RightVBox" type="VBoxContainer" parent="BookCenter/BookBackground/RightPage" unique_id=737076230]
 layout_mode = 2
+
+[node name="PageText" type="RichTextLabel" parent="BookCenter/BookBackground/RightPage/RightVBox" unique_id=1137659996]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = " "
+
+[node name="NavigationHBox" type="HBoxContainer" parent="BookCenter/BookBackground" unique_id=1079140923]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(7, -8)
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
 alignment = 1
 
-[node name="LeftButton" type="Button" parent="BookCenter/BookBackground/RightPage/NavigationHBox" unique_id=1931306492]
+[node name="LeftButton" type="Button" parent="BookCenter/BookBackground/NavigationHBox" unique_id=1931306492]
 layout_mode = 2
+text = "Left"
 
-[node name="Label" type="Label" parent="BookCenter/BookBackground/RightPage/NavigationHBox" unique_id=1961537976]
+[node name="Label" type="Label" parent="BookCenter/BookBackground/NavigationHBox" unique_id=1961537976]
 layout_mode = 2
-text = "sdsdr"
 label_settings = SubResource("LabelSettings_ujo2t")
 
-[node name="RightButton" type="Button" parent="BookCenter/BookBackground/RightPage/NavigationHBox" unique_id=1069970896]
+[node name="RightButton" type="Button" parent="BookCenter/BookBackground/NavigationHBox" unique_id=1069970896]
 layout_mode = 2
+text = "Right"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BookCenter/BookBackground/RightPage" unique_id=989123328]
-layout_mode = 2
-
-[node name="PageImage" type="TextureRect" parent="BookCenter/BookBackground/RightPage/VBoxContainer" unique_id=1887146860]
-layout_mode = 2
-
-[node name="PageText" type="RichTextLabel" parent="BookCenter/BookBackground/RightPage/VBoxContainer" unique_id=1137659996]
-layout_mode = 2
+[connection signal="pressed" from="BookCenter/BookBackground/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="BookCenter/BookBackground/NavigationHBox/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="BookCenter/BookBackground/NavigationHBox/RightButton" to="." method="_on_right_button_pressed"]

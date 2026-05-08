@@ -226,5 +226,6 @@ position = Vector2(390, 315)
 scale = Vector2(10.340846, 6.138686)
 gizmo_extents = 0.0
 
+[connection signal="pressed" from="BackgroundManual/ManualButton" to="." method="_on_manual_button_pressed"]
 [connection signal="pressed" from="BackgroundBell/BellButton" to="." method="_on_bell_button_pressed"]
 [connection signal="pressed" from="BackgroundTaskboard/TaskboardButton" to="." method="_on_taskboard_button_pressed"]
