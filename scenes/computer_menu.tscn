@@ -29,11 +29,6 @@ mouse_filter = 2
 texture = ExtResource("1_mk7bw")
 expand_mode = 1
 
-[node name="SystemUnitFrontPanel" type="Sprite2D" parent="BackgroundComp" unique_id=1139648409]
-position = Vector2(229.00003, 351)
-scale = Vector2(0.40657875, 0.43195093)
-texture = ExtResource("2_q7sxl")
-
 [node name="TaskItems" parent="." unique_id=1845423026 instance=ExtResource("3_cpfds")]
 
 [node name="BeginButton" type="Button" parent="." unique_id=1767760911]
@@ -55,5 +50,18 @@ text = "Begin"
 icon = ExtResource("5_0r4s7")
 flat = true
 icon_alignment = 1
+
+[node name="SystemUnit" type="TextureRect" parent="." unique_id=1556790482]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.091145836
+anchor_top = 0.23919754
+anchor_right = 0.34635416
+anchor_bottom = 0.7006173
+offset_bottom = -3.0517578e-05
+grow_vertical = 2
+texture = ExtResource("2_q7sxl")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="BeginButton" to="." method="_on_begin_button_pressed"]

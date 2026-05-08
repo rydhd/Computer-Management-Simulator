@@ -2,34 +2,48 @@ extends Control
 
 @onready var begin_button: Button = %BeginButton
 
-# We create a variable to hold the destination, defaulting to Task 1
+# Grab a reference to your System Unit Sprite2D
+@onready var system_unit_sprite: TextureRect = $SystemUnit
+
+# Preload your new texture. 
+# IMPORTANT: Update this string with the actual path to your new PNG!
+const MOBO_INSTALLED_TEX = preload("res://assets/Lets Assemble Computer Hardware/System unit.png")
+
 var next_scene_path: String = "res://scenes/hardware_assembly.tscn"
 
 func _ready() -> void:
-	# Ensure the button signal is connected (Godot 4 best practice)
 	if begin_button and not begin_button.pressed.is_connected(_on_begin_button_pressed):
 		begin_button.pressed.connect(_on_begin_button_pressed)
 		
-	# 1. ALWAYS set the button up for Task 1 by default
 	if begin_button:
 		begin_button.disabled = false
 		begin_button.text = "Begin Task 1"
 		begin_button.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	
-	# 2. If Task 1 is done, upgrade the button to trigger Task 2!
+	# --- DEBUGGING LINES ---
+	print("--- MENU LOADED ---")
+	print("Current GlobalState array: ", GlobalState.completed_tasks)
+	# -----------------------
+	
+	# If Task 1 is done, setup Task 2 AND replace the image!
 	if "Fix PC: System Unit Installation" in GlobalState.completed_tasks:
 		_setup_task_2()
-
+		
+		if system_unit_sprite:
+			system_unit_sprite.texture = MOBO_INSTALLED_TEX
+			
+			# FIX: Manually set a new scale for the new image.
+			# You will need to play with these numbers until it looks right!
+			# Try starting with something like 0.2, 0.2 or 0.5, 0.5
+			system_unit_sprite.scale = Vector2(1.3, 1.8)
+	else:
+		print("FAILED: The exact string 'Fix PC: System Unit Installation' was NOT found in the array.")
 func _setup_task_2() -> void:
 	if begin_button:
-		# Ensure it stays enabled
 		begin_button.disabled = false 
-		
-		# Change the text to reflect the new job
-		begin_button.text = "Connect PSU" 
-		
+		begin_button.text = "Connect PSU"
 		# CRITICAL: Change the destination path to your new scene!
-		# Make sure this perfectly matches your PSU scene's file path.
+		# Make sure this perfectly matches your	 PSU scene's file path.
 		next_scene_path = "res://scenes/connect_psu.tscn" 
 
 func _on_begin_button_pressed() -> void:

@@ -8,7 +8,7 @@ load_path = "res://.godot/imported/Landing Page.png-57c2f47d8444bbee656ec7f02cbc
 [node name="Main" type="Node" unique_id=472443598]
 script = ExtResource("1_6pdax")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=956714347]
+[node name="Background" type="TextureRect" parent="." unique_id=956714347]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -48,7 +48,7 @@ layout_mode = 2
 text = "Logout"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LogoutButton" to="." method="_on_logout_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LogoutButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LogoutButton" to="." method="_on_logout_button_pressed"]

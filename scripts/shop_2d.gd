@@ -1,23 +1,28 @@
 extends Control
 # Shop_2d.gd
 
-# Preload the NPC scene so Godot loads it once when the game starts, 
-# improving performance when we instance it later.
+# 1. Preload the Manual Popup Scene right next to your other preloads
 const NPC_SCENE = preload("res://scenes/NpcCustomer.tscn")
 const ISSUE_POPUP_SCENE = preload("res://scenes/issue_popup_ui.tscn")
+const MANUAL_POPUP_SCENE = preload("res://scenes/manual_popup.tscn") # <--- ADD THIS
 
-@onready var npc_spawn_position: Control = $NpcSpawnPoint # Assuming you add a Marker2D in your scene editor
-@onready var dialogue_system = $DialogueSystem # Assuming you have a node to manage dialogue UI
+@onready var npc_spawn_position: Control = $NpcSpawnPoint
+@onready var dialogue_system = $DialogueSystem
 @onready var taskboard_overlay = $TaskboardOverlay
+@onready var manual_button: Button = $BackgroundManual/ManualButton # <--- ADD THIS
 
-# Tracks the current NPC instance
+# Tracks the current instances
 var current_npc: Area2D = null 
 var current_popup: Node = null
+var manual_popup_instance: Node = null # <--- ADD THIS to keep track of the manual
 
 func _ready() -> void:
 	# Add a short delay so the player can orient themselves 
-	# when the scene loads before the robot starts talking.
 	get_tree().create_timer(1.0).timeout.connect(TutorialManager.start_tutorial)
+	
+	# 2. Connect the manual button signal via code 
+	# (Since it wasn't connected in the .tscn file)
+	manual_button.pressed.connect(_on_manual_button_pressed)
 
 func _on_bell_button_pressed() -> void:
 	print("Bell pressed! Attempting to spawn NPC.")
@@ -87,3 +92,17 @@ func _on_taskboard_button_pressed() -> void:
 		taskboard_overlay.visible = !taskboard_overlay.visible
 	else:
 		print("ERROR: TaskboardOverlay node not found!")
+
+
+# 3. Replace your empty _on_manual_button_pressed function with this:
+func _on_manual_button_pressed() -> void:
+	print("Manual Button Pressed!")
+	
+	# Check if the manual is already instanced to save memory. 
+	# If not, we instantiate it and add it to the scene tree.
+	if not is_instance_valid(manual_popup_instance):
+		manual_popup_instance = MANUAL_POPUP_SCENE.instantiate()
+		add_child(manual_popup_instance)
+		
+	# Call the public API function we created in manual_popup.gd!
+	manual_popup_instance.open_manual()
