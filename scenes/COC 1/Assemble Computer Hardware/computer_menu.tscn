@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://ca73xsgb35dn6"]
+
+[ext_resource type="Script" uid="uid://dymlel703jq3a" path="res://scripts/COC 1/Assemble Computer Hardware/computer_menu.gd" id="1_7f1np"]
+[ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/xtra 5.png" id="2_koa5v"]
+[ext_resource type="PackedScene" uid="uid://djtqi6181mla7" path="res://scenes/COC 1/Assemble Computer Hardware/task_items.tscn" id="3_h8157"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="4_c1ttk"]
+[ext_resource type="Texture2D" uid="uid://6r3wk2y43lnh" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/Rectangle 68.png" id="5_c3h6u"]
+[ext_resource type="Texture2D" uid="uid://q87jwr5gtlax" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/System Unit ONLY.png" id="6_iilsr"]
+
+[node name="ComputerMenu" type="Control" unique_id=1461508389]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_7f1np")
+
+[node name="BackgroundComp" type="TextureRect" parent="." unique_id=173307303]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_koa5v")
+expand_mode = 1
+
+[node name="TaskItems" parent="." unique_id=1845423026 instance=ExtResource("3_h8157")]
+
+[node name="BeginButton" type="Button" parent="." unique_id=1767760911]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -380.0
+offset_top = -151.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.67376655, 0.5788467)
+theme_override_fonts/font = ExtResource("4_c1ttk")
+theme_override_font_sizes/font_size = 45
+text = "Begin"
+icon = ExtResource("5_c3h6u")
+flat = true
+icon_alignment = 1
+
+[node name="SystemUnit" type="TextureRect" parent="." unique_id=1556790482]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.114583336
+anchor_top = 0.12345679
+anchor_right = 0.36979166
+anchor_bottom = 0.742284
+offset_bottom = -3.0517578e-05
+grow_vertical = 2
+texture = ExtResource("6_iilsr")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="BeginButton" to="." method="_on_begin_button_pressed"]

@@ -16,7 +16,4 @@ func _on_start_button_pressed() -> void:
 	GlobalState.reset_game_state()
 	
 	# Now go to the menu
-	get_tree().change_scene_to_file("res://scenes/computer_menu.tscn")
-func _on_begin_button_pressed() -> void:
-	print("Moving to Hardware Assembly!")
-	get_tree().change_scene_to_file("res://scenes/hardware_assembly.tscn")
+	get_tree().change_scene_to_file("res://scenes/COC 1/Assemble Computer Hardware/computer_menu.tscn")
