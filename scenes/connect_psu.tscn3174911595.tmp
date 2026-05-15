@@ -1,49 +1,32 @@
 [gd_scene format=3 uid="uid://d3wwxtfo8fmw8"]
 
 [ext_resource type="Script" uid="uid://ccq5f0iqvn4dp" path="res://scripts/connect_psu.gd" id="1_0ds7c"]
-[ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/xtra 5.png" id="1_hb0cm"]
+[ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/Lets Assemble Computer Hardware/xtra 5.png" id="1_hb0cm"]
 [ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="2_c7qxd"]
-[ext_resource type="Texture2D" uid="uid://dd6dx011jrcdw" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/PSU.png" id="3_hb0cm"]
-[ext_resource type="Texture2D" uid="uid://d3qls6mvkpkxr" path="res://assets/2D Assets/2D Materials/LeftArrow.png" id="6_6njhu"]
+[ext_resource type="Texture2D" uid="uid://b0dqys4okxxud" path="res://assets/Connect PSU/PSU.png" id="3_hb0cm"]
+[ext_resource type="Texture2D" uid="uid://ckr54thhbang2" path="res://assets/Connect PSU/PSU other side.png" id="3_obduy"]
+[ext_resource type="Texture2D" uid="uid://d3qls6mvkpkxr" path="res://assets/2D Assets/LeftArrow.png" id="6_6njhu"]
 [ext_resource type="Script" uid="uid://nm3royjjlii1" path="res://scripts/socket_24_pin.gd" id="6_os86s"]
-[ext_resource type="Texture2D" uid="uid://3x30ubdxxo8x" path="res://assets/2D Assets/2D Materials/Check.png" id="7_2j1fd"]
-[ext_resource type="Texture2D" uid="uid://i4mdkm1245me" path="res://assets/2D Assets/2D Materials/RightArrow.png" id="7_mrp0e"]
-[ext_resource type="Script" uid="uid://cwop1wqporovp" path="res://scripts/power_plug.gd" id="8_2j1fd"]
-[ext_resource type="Script" uid="uid://cfvwi8amlyidc" path="res://scripts/cable_24_pin.gd" id="9_os86s"]
+[ext_resource type="Texture2D" uid="uid://i4mdkm1245me" path="res://assets/2D Assets/RightArrow.png" id="7_mrp0e"]
 [ext_resource type="Script" uid="uid://deei0k0tfbj03" path="res://scripts/cable_sata.gd" id="10_2j1fd"]
-[ext_resource type="Texture2D" uid="uid://dakw3x40jmjvw" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/cpu1.png" id="11_1ix4a"]
-[ext_resource type="Texture2D" uid="uid://cvh13nyhvpcd7" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/gpu1.png" id="12_i2alo"]
+[ext_resource type="Texture2D" uid="uid://dakw3x40jmjvw" path="res://assets/Lets Assemble Computer Hardware/cpu1.png" id="11_1ix4a"]
+[ext_resource type="Texture2D" uid="uid://cvh13nyhvpcd7" path="res://assets/Lets Assemble Computer Hardware/gpu1.png" id="12_i2alo"]
 [ext_resource type="Script" uid="uid://bxokfmfh2tu04" path="res://scripts/cable_power_plug.gd" id="13_to12e"]
+
+[sub_resource type="GDScript" id="GDScript_l3vtr"]
 
 [sub_resource type="GDScript" id="GDScript_30enj"]
 script/source = "extends TextureRect
 
-# Set this in the Inspector for each cable! (e.g., \"24-pin\", \"SATA\")
-@export var cable_type: String = \"\"
 
-# Built-in Godot 4 function triggered when the user clicks and drags this node
-func _get_drag_data(at_position: Vector2) -> Variant:
-	# 1. Create a visual preview that follows the mouse
-	var preview_texture = TextureRect.new()
-	preview_texture.texture = texture
-	preview_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	preview_texture.size = Vector2(64, 64) # Adjust to your preferred preview size
-	
-	# 2. Center the preview on the mouse pointer
-	var preview_control = Control.new()
-	preview_control.add_child(preview_texture)
-	preview_texture.position = -preview_texture.size / 2.0
-	
-	# Tell Godot to use this visual as the drag preview
-	set_drag_preview(preview_control)
-	
-	# 3. Pass data to the drop zone. 
-	# We include 'source_node: self' so the socket can delete this icon from the tray later!
-	return {
-		\"type\": \"cable\",
-		\"cable_id\": cable_type,
-		\"source_node\": self 
-	}
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 "
 
 [node name="Connect_PSU" type="Control" unique_id=279847819]
@@ -54,6 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0ds7c")
+psu_textures = Array[Texture2D]([ExtResource("3_hb0cm"), ExtResource("3_obduy")])
 
 [node name="Background" type="TextureRect" parent="." unique_id=1709710412]
 layout_mode = 1
@@ -101,11 +85,9 @@ offset_bottom = 87.0
 
 [node name="Socket_24Pin" type="TextureRect" parent="PSU/FrontSockets" unique_id=790019699]
 layout_mode = 0
-offset_right = 99.0
-offset_bottom = 96.0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("6_os86s")
-required_cable = "24_Pin"
-plugged_in_texture = ExtResource("7_2j1fd")
 
 [node name="BackSockets" type="Control" parent="PSU" unique_id=1887253187]
 anchors_preset = 0
@@ -114,13 +96,40 @@ offset_bottom = 40.0
 
 [node name="PowerPlug" type="TextureRect" parent="PSU/BackSockets" unique_id=1956150881]
 layout_mode = 0
-offset_left = 646.0
-offset_top = 205.0
-offset_right = 802.0
+offset_left = 693.0
+offset_top = 217.0
+offset_right = 733.0
 offset_bottom = 257.0
-script = ExtResource("8_2j1fd")
-required_cable = "PowerPlug"
-plugged_in_texture = ExtResource("7_2j1fd")
+
+[node name="LeftArrow" type="TextureButton" parent="." unique_id=110022622]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0078125
+anchor_top = 0.6373457
+anchor_right = 0.10577497
+anchor_bottom = 0.78596354
+offset_top = 3.0517578e-05
+offset_right = 124.14723
+offset_bottom = 137.69562
+grow_vertical = 2
+scale = Vector2(0.476172, 0.41155708)
+texture_normal = ExtResource("6_6njhu")
+metadata/_edit_use_anchors_ = true
+
+[node name="RightArrow" type="TextureButton" parent="." unique_id=196930307]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8958333
+anchor_top = 0.6296296
+anchor_right = 0.9800432
+anchor_bottom = 0.7713851
+offset_right = 139.99023
+offset_bottom = 142.14249
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.40932414, 0.39255354)
+texture_normal = ExtResource("7_mrp0e")
+metadata/_edit_use_anchors_ = true
 
 [node name="CableTray" type="HBoxContainer" parent="." unique_id=279769627]
 layout_mode = 1
@@ -140,8 +149,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Cable_24Pin" type="TextureRect" parent="CableTray" unique_id=968667055]
 layout_mode = 2
 texture = ExtResource("6_6njhu")
-script = ExtResource("9_os86s")
-cable_type = "24_Pin"
+script = SubResource("GDScript_l3vtr")
 
 [node name="Cable_SATA" type="TextureRect" parent="CableTray" unique_id=1275887573]
 layout_mode = 2
@@ -159,3 +167,6 @@ layout_mode = 2
 texture = ExtResource("12_i2alo")
 script = ExtResource("13_to12e")
 cable_type = "PowerPlug"
+
+[connection signal="pressed" from="LeftArrow" to="." method="_on_left_arrow_pressed"]
+[connection signal="pressed" from="RightArrow" to="." method="_on_right_arrow_pressed"]

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://wsoibpe76ngv"]
+
+[ext_resource type="Script" uid="uid://b1x8ck0xywixy" path="res://scripts/COC 1/Assemble Computer Hardware/MOBO Assembly/cpu.gd" id="1_5i68j"]
+[ext_resource type="Texture2D" uid="uid://dakw3x40jmjvw" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/cpu1.png" id="2_16h3v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16h3v"]
+size = Vector2(496, 488)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5i68j"]
+font_size = 17
+
+[node name="CPU" type="Area2D" unique_id=1511945674]
+script = ExtResource("1_5i68j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=810678338]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_16h3v")
+
+[node name="Label" type="Label" parent="." unique_id=1992213123]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -80.0
+offset_right = -96.0
+offset_bottom = -56.0
+grow_vertical = 2
+scale = Vector2(7.548084, 6.4421053)
+size_flags_horizontal = 0
+text = "CPU"
+label_settings = SubResource("LabelSettings_5i68j")
+
+[node name="Cpu1" type="Sprite2D" parent="." unique_id=1569919175]
+position = Vector2(-2, 1)
+texture = ExtResource("2_16h3v")
+
+[node name="ErrorPopup" type="Label" parent="." unique_id=1323875186]
+offset_left = -18.0
+offset_top = -269.0
+offset_right = 22.0
+offset_bottom = -246.0
+theme_override_colors/font_color = Color(0.707489, 0.0003911105, 0.71023864, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1

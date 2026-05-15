@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://duq7ti5mwo7du"]
+
+[ext_resource type="Script" uid="uid://b6lkm44prl4gb" path="res://scripts/COC 1/Assemble Computer Hardware/MOBO Assembly/assemble_motherboard.gd" id="1_65j4w"]
+[ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/xtra 5.png" id="2_51d51"]
+[ext_resource type="Texture2D" uid="uid://q87jwr5gtlax" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/System Unit ONLY.png" id="3_b00cs"]
+[ext_resource type="Script" uid="uid://bkxqje0x5liu1" path="res://scripts/draggable_motherboard.gd" id="4_ptgu0"]
+[ext_resource type="Texture2D" uid="uid://c1l5qb7algj8w" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/motherboard closed and colored bg removedf.png" id="5_hvx02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rstot"]
+size = Vector2(291, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74gfa"]
+size = Vector2(332, 246)
+
+[node name="AssembleMotherboard" type="Control" unique_id=1802961849]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_65j4w")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1988051582]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_51d51")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=597574566]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 5.0
+offset_right = 451.0
+offset_bottom = 676.0
+texture = ExtResource("3_b00cs")
+expand_mode = 1
+
+[node name="Motherboard_Tray" type="Area2D" parent="." unique_id=1660359980]
+position = Vector2(183.99988, 279.9999)
+scale = Vector2(0.34980106, 0.23368178)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Motherboard_Tray" unique_id=663911490]
+position = Vector2(1, -2)
+scale = Vector2(1.0907913, -16.504955)
+shape = SubResource("RectangleShape2D_rstot")
+
+[node name="DraggableMotherboard" type="Area2D" parent="." unique_id=332584423]
+position = Vector2(819, 227)
+scale = Vector2(0.6059848, 0.5029088)
+script = ExtResource("4_ptgu0")
+
+[node name="Sprite2D" type="Sprite2D" parent="DraggableMotherboard" unique_id=1687275353]
+position = Vector2(6.1035156e-05, -1.000001)
+scale = Vector2(0.3801108, 0.4082419)
+texture = ExtResource("5_hvx02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableMotherboard" unique_id=622467248]
+position = Vector2(7, 4)
+scale = Vector2(1.3697284, 2.0108984)
+shape = SubResource("RectangleShape2D_74gfa")
+
+[node name="CompleteButton" type="Button" parent="." unique_id=1898701217]
+layout_mode = 0
+offset_left = 790.0
+offset_top = 433.0
+offset_right = 873.0
+offset_bottom = 464.0
+scale = Vector2(3.2288954, 4.080677)
+text = "Complete"

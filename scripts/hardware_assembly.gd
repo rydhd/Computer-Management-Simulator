@@ -58,7 +58,7 @@ func _on_complete_button_pressed() -> void:
 	GlobalState.complete_task("Fix PC: Motherboard Assembly")
 	
 	# Transition to the system unit casing scene instead of the shop
-	var next_scene_path: String = "res://scenes/assemble_motherboard.tscn" # UPDATE THIS PATH
+	var next_scene_path: String = "res://scenes/COC 1/Assemble Computer Hardware/MOBO Assembly/assemble_motherboard.tscn" # UPDATE THIS PATH
 	
 	var error: Error = get_tree().change_scene_to_file(next_scene_path)
 	if error != OK:

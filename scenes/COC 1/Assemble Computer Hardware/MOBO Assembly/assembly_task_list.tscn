@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cp4veoehhj8k0"]
+
+[ext_resource type="Script" uid="uid://dkfcgck0wgwxj" path="res://scripts/COC 1/Assemble Computer Hardware/MOBO Assembly/assembly_task_list.gd" id="1_4hvi0"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="2_lboq7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4jyud"]
+font = ExtResource("2_lboq7")
+
+[node name="AssemblyTaskList" type="CanvasLayer" unique_id=1972073169]
+scale = Vector2(10, 6)
+transform = Transform2D(10, 0, 0, 6, 0, 0)
+script = ExtResource("1_4hvi0")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=828324371]
+offset_right = 320.0
+offset_bottom = 100.0
+scale = Vector2(0.8541413, 1.5414498)
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=464799996]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1202968219]
+layout_mode = 2
+text = "Motherboard Assembly"
+label_settings = SubResource("LabelSettings_4jyud")
+horizontal_alignment = 1
+
+[node name="CpuTask" type="CheckBox" parent="PanelContainer/VBoxContainer" unique_id=831219133]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_lboq7")
+text = "Install The CPU"
+
+[node name="GpuTask" type="CheckBox" parent="PanelContainer/VBoxContainer" unique_id=1794551756]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_lboq7")
+text = "Install The GPU"
+
+[node name="RamTask" type="CheckBox" parent="PanelContainer/VBoxContainer" unique_id=767826095]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("2_lboq7")
+text = "Install The Ram"
