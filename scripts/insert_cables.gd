@@ -19,8 +19,6 @@ var current_cables_connected: int = 0
 func _ready() -> void:
 	cable_tray.hide()
 	mobo_zoom_popup.hide()
-	
-	# Hide the complete button at the start!
 	complete_button.hide()
 	
 	# Connect existing signals
@@ -28,15 +26,13 @@ func _ready() -> void:
 	mobo_button.pressed.connect(_on_mobo_clicked)
 	close_zoom_button.pressed.connect(_on_close_zoom_clicked)
 	
-	# --- NEW: Connect all sockets on the zoomed motherboard to our tracking function ---
-	# We loop through all the children of ZoomedMoboVisual to find our sockets automatically!
+	# --- NEW: Connect the Complete Button! ---
+	complete_button.pressed.connect(_on_complete_button_pressed)
+	
 	var zoomed_mobo = $MoboZoomPopup/ZoomedMoboVisual
 	for child in zoomed_mobo.get_children():
-		# Check if the child has our custom signal (meaning it's a mobo socket!)
 		if child.has_signal("cable_plugged_in"):
 			child.cable_plugged_in.connect(_on_any_cable_plugged_in)
-
-
 func _on_psu_installed() -> void:
 	cable_tray.show()
 
@@ -63,5 +59,17 @@ func _on_any_cable_plugged_in() -> void:
 		complete_button.show()
 
 
+# --- NEW: The Completion Logic ---
 func _on_complete_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/COC 1/Assemble Computer Hardware/computer_menu.tscn")
+	print("Cables inserted! Returning to Computer Menu...")
+	
+	# 1. Mark this specific sub-task as complete in the Global State.
+	# IMPORTANT: Change "Insert Cables" to match the EXACT text used in your computer_menu list!
+	GlobalState.complete_task("Insert Cables")
+	
+	# 2. Return to the Computer Menu scene
+	# (Right-click computer_menu.tscn in your FileSystem and select "Copy Path" if this path is wrong)
+	var err = get_tree().change_scene_to_file("res://scenes/COC 1/Assemble Computer Hardware/computer_menu.tscn")
+	
+	if err != OK:
+		push_error("Failed to load computer_menu scene. Please check the file path!")

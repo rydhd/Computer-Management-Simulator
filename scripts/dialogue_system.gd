@@ -77,19 +77,24 @@ func _close_dialogue() -> void:
 		dialogue_finished.emit()
 	)
 
-# NEW: This intercepts mouse clicks while the dialogue box is visible
+# This intercepts mouse clicks while the dialogue box is visible
 func _input(event: InputEvent) -> void:
+	# If the dialogue is visible and the player left-clicks...
 	if visible and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		get_viewport().set_input_as_handled() # Prevent clicking objects behind UI
+		
+		# 1. BULLETPROOF FIX: Stop the click from passing through the UI!
+		# This prevents you from accidentally clicking the Bell or other buttons behind the text.
+		get_viewport().set_input_as_handled()
 		
 		if is_typing:
-			# Skip typewriter effect and instantly show all text
-			if _text_tween and _text_tween.is_valid():
+			# If the text is still animating, instantly finish typing it
+			if _text_tween and _text_tween.is_valid(): 
 				_text_tween.kill()
 			label.visible_ratio = 1.0
 			is_typing = false
 		else:
-			# Move to the next line
-			if not dialogue_queue.is_empty():
-				dialogue_queue.pop_front()
+			# 2. CRITICAL FIX: Remove the sentence we just read from the front of the line!
+			dialogue_queue.pop_front()
+			
+			# Now show whatever is next in line
 			_show_current_line()

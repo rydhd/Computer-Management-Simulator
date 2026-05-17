@@ -5,7 +5,7 @@ extends Node
 signal trigger_robot_dialogue(text: String)
 signal continue_tutorial_dialogue
 signal npc_arrived
-
+signal hide_bell_arrow
 # --- FIX: Strongly type this signal so it expects the String you are passing! ---
 signal issue_clipped_to_board(issue_id: String)
 signal show_bell_arrow

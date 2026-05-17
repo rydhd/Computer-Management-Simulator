@@ -2,7 +2,6 @@ extends Control
 
 const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
 
-
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var task_list: VBoxContainer = $MarginContainer/TaskList
 @onready var close_button: Button = $CloseButton
@@ -21,8 +20,8 @@ const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
 @export var list_padding_top: int = 50   # Pushes the text down from the top
 # ---------------------------
 
-# Use an Array of Dictionaries so the tasks stay in a strict, ordered sequence.
-var tasks: Array = [] # Start empty!
+# NOTE: The local 'var tasks: Array = []' has been removed! 
+# We now use GlobalState.active_tasks to ensure it survives scene changes.
 
 func _ready() -> void:
 	visible = false
@@ -33,42 +32,41 @@ func _ready() -> void:
 	margin_container.add_theme_constant_override("margin_top", list_padding_top)
 	task_list.add_theme_constant_override("separation", vertical_spacing_between_tasks)
 	
-	# --- NEW CODE: Connect to the EventBus ---
+	# Connect to the EventBus
 	EventBus.issue_clipped_to_board.connect(_on_issue_clipped)
 	
 	_populate_tasks()
 	
-# --- NEW FUNCTION ---
+
 # This runs automatically when the "Clip" button in IssuePopupUI is clicked
-# Inside taskboard_overlay.gd
-
-# Inside taskboard_overlay.gd
-
 func _on_issue_clipped(issue_id: String) -> void:
+	# ALWAYS clear the global active tasks before adding a new combo!
+	GlobalState.active_tasks.clear()
+	
 	# Match the string ID sent by the popup to create the correct tasks!
 	match issue_id:
 		# --- THE GELO COMBO ---
 		"task_001_gelo":
 			# Append all 3 tasks in the exact order they need to be completed!
-			tasks.append({"name": "Assemble Computer Hardware", "scene": "res://scenes/COC 1/Assemble Computer Hardware/lets_assemble_comp.tscn"})
-			tasks.append({"name": "Installing Operating System", "scene": "res://scenes/COC 1/Installing OS/installing_os.tscn"})
-			tasks.append({"name": "Arrange Cables", "scene": "res://scenes/COC 1/Arrange Cables/arrange_cables.tscn"})
+			GlobalState.active_tasks.append({"name": "Assemble Computer Hardware", "scene": "res://scenes/COC 1/Assemble Computer Hardware/lets_assemble_comp.tscn"})
+			GlobalState.active_tasks.append({"name": "Installing Operating System", "scene": "res://scenes/COC 1/Installing OS/installing_os.tscn"})
+			GlobalState.active_tasks.append({"name": "Arrange Cables", "scene": "res://scenes/arrange_cables.tscn"})
 			
 		# --- INDIVIDUAL TASKS (For other customers) ---
 		"issue_computer_hardware":
-			tasks.append({
+			GlobalState.active_tasks.append({
 				"name": "Assemble Computer Hardware", 
 				"scene": "res://scenes/hardware_assembly.tscn"
 			})
 			
 		"issue_install_operating_system":
-			tasks.append({
+			GlobalState.active_tasks.append({
 				"name": "Installing Operating System", 
 				"scene": "res://scenes/installing_os.tscn"
 			})
 			
 		"issue_arrange_cables":
-			tasks.append({
+			GlobalState.active_tasks.append({
 				"name": "Arrange Cables", 
 				"scene": "res://scenes/arrange_cables.tscn"
 			})
@@ -80,6 +78,8 @@ func _on_issue_clipped(issue_id: String) -> void:
 	
 	# Re-populate the UI so the new CheckBox(es) appear!
 	_populate_tasks()
+
+
 func _populate_tasks() -> void:
 	# Clear existing children first
 	for child in task_list.get_children():
@@ -87,9 +87,10 @@ func _populate_tasks() -> void:
 
 	var is_next_task_locked = false
 
-	for i in range(tasks.size()):
-		var task_name = tasks[i]["name"]
-		var scene_path = tasks[i]["scene"]
+	# USE THE GLOBAL STATE ARRAY HERE!
+	for i in range(GlobalState.active_tasks.size()):
+		var task_name = GlobalState.active_tasks[i]["name"]
+		var scene_path = GlobalState.active_tasks[i]["scene"]
 		
 		# Create a CheckBox instead of a regular Button
 		var cb = CheckBox.new()
@@ -128,6 +129,7 @@ func _populate_tasks() -> void:
 		
 		task_list.add_child(cb)
 
+
 func _on_task_clicked(task_name: String, target_scene_path: String) -> void:
 	# Save the active task to GlobalState so the next scene knows what to do
 	GlobalState.current_issue = task_name 
@@ -136,6 +138,8 @@ func _on_task_clicked(task_name: String, target_scene_path: String) -> void:
 	var err = get_tree().change_scene_to_file(target_scene_path)
 	if err != OK:
 		push_error("Failed to load scene at path: " + target_scene_path)
+
+
 func show_board() -> void:
 	# Re-populate tasks every time the board is shown to catch any new completions!
 	_populate_tasks()
