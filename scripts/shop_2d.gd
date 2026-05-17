@@ -52,7 +52,7 @@ func _on_first_job_complete() -> void:
 	GlobalState.first_job_acknowledged = true
 	# 2. Connect the manual button signal via code 
 	# (Since it wasn't connected in the .tscn file)
-	manual_button.pressed.connect(_on_manual_button_pressed)
+	
 func _on_bell_button_pressed() -> void:
 	print("Bell pressed! Attempting to spawn NPC.")
 	

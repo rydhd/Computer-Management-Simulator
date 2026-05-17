@@ -26,8 +26,6 @@ func _ready() -> void:
 	mobo_button.pressed.connect(_on_mobo_clicked)
 	close_zoom_button.pressed.connect(_on_close_zoom_clicked)
 	
-	# --- NEW: Connect the Complete Button! ---
-	complete_button.pressed.connect(_on_complete_button_pressed)
 	
 	var zoomed_mobo = $MoboZoomPopup/ZoomedMoboVisual
 	for child in zoomed_mobo.get_children():
