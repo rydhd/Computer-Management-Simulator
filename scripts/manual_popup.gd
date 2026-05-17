@@ -43,10 +43,6 @@ var manual_pages: Array[Dictionary] = [
 # BUILT-IN FUNCTIONS
 # ==========================================
 func _ready() -> void:
-	# 1. Connect signals using Godot 4.x syntax
-	close_button.pressed.connect(_on_close_button_pressed)
-	left_button.pressed.connect(_on_left_button_pressed)
-	right_button.pressed.connect(_on_right_button_pressed)
 	
 	# 2. Hide the manual by default when the scene loads
 	hide()

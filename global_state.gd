@@ -3,6 +3,10 @@ extends Node
 var current_issue: String = ""
 # This array holds the exact names of all tasks the player has finished.
 var completed_tasks: Array[String] = []
+# --- NEW: Store the current task sequence globally! ---
+var active_tasks: Array = []
+var first_job_acknowledged: bool = false
+
 
 func complete_task(task_name: String) -> void:
 	if task_name not in completed_tasks:

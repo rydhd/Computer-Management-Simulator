@@ -3,19 +3,29 @@
 [ext_resource type="Texture2D" uid="uid://cjajbtkaf18is" path="res://assets/2D Assets/2D Materials/Gelo _Chip_ Vergara.png" id="1_mtav4"]
 [ext_resource type="Script" uid="uid://d2vhom0l6kenr" path="res://scripts/npc_customer.gd" id="1_u0jq1"]
 
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u0jq1"]
 radius = 152.0
 height = 374.0
 
-[node name="CustomerArea" type="Area2D"]
+[node name="CustomerArea" type="Area2D" unique_id=1840309139]
 script = ExtResource("1_u0jq1")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(181.50002, 57.999977)
-scale = Vector2(0.39637095, 0.37185356)
+[node name="Sprite2D" type="TextureRect" parent="." unique_id=1966407300]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -468.6267
+offset_top = -598.8277
+offset_right = 468.6267
+offset_bottom = 710.8277
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_mtav4")
+expand_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(173, 360)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1239756513]
+position = Vector2(-1, 70)
 shape = SubResource("CapsuleShape2D_u0jq1")
+debug_color = Color(0, 0.6, 0.69803923, 0.2901961)

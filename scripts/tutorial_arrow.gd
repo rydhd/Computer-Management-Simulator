@@ -23,6 +23,7 @@ func _ready() -> void:
 	# 3. Check WHICH arrow this is, and connect the right signals!
 	if arrow_type == ArrowType.BELL:
 		EventBus.show_bell_arrow.connect(start_floating)
+		EventBus.hide_bell_arrow.connect(hide)
 		EventBus.npc_arrived.connect(stop_floating)
 		
 	elif arrow_type == ArrowType.TASKBOARD:

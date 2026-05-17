@@ -57,7 +57,9 @@ func _on_issue_clipped(issue_id: String) -> void:
 	if current_step == TutorialStep.WAITING_FOR_CLIP:
 		EventBus.reset_robot_position.emit()
 		EventBus.trigger_robot_dialogue.emit("Great job! You've clipped the issue to the board. Click the Taskboard to get to work.")
-		
+		# --- NEW: Officially mark the tutorial as done! ---
+		current_step = TutorialStep.COMPLETED
+		print("DEBUG: Tutorial is now COMPLETED!")
 		print("DEBUG: Emitting show_taskboard_arrow now!")
 		EventBus.show_taskboard_arrow.emit()
 		

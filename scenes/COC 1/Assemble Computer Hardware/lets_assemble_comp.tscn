@@ -53,3 +53,4 @@ alignment = 0
 autowrap_trim_flags = 0
 
 [connection signal="pressed" from="BackgroundAssemble/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="BackgroundAssemble/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
