@@ -1,0 +1,497 @@
+[gd_scene format=3 uid="uid://c5ji6usma2qv6"]
+
+[ext_resource type="Texture2D" uid="uid://da66pok606k6c" path="res://assets/COC 1/Install OS/USB INSTALL.png" id="1_um18m"]
+[ext_resource type="Script" uid="uid://cxto45gnwj22a" path="res://scripts/COC 1/Install OS/windows_installation_screen.gd" id="1_vujbi"]
+[ext_resource type="Texture2D" uid="uid://c4dyrlpsrngb0" path="res://assets/COC 1/Install OS/butter.png" id="3_6e1p0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8qdw2"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a3sp6"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dofh3"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vujbi"]
+bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_4bf84"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="WindowsInstallationScreen" type="Control" unique_id=1986123908]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vujbi")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1554968329]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_um18m")
+expand_mode = 1
+
+[node name="SetupWindow" type="ColorRect" parent="." unique_id=1349658542]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 268.0
+offset_top = 91.0
+offset_right = 920.0
+offset_bottom = 478.0
+color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+
+[node name="Screen1_Language" type="Control" parent="SetupWindow" unique_id=417972518]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SetupWindow/Screen1_Language" unique_id=237312635]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.0
+offset_top = 67.0
+offset_right = 126.0
+offset_bottom = 107.0
+grow_horizontal = 2
+theme_override_constants/separation = -43
+
+[node name="TextureRect" type="TextureRect" parent="SetupWindow/Screen1_Language/HBoxContainer" unique_id=1704550950]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_6e1p0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="RichTextLabel" parent="SetupWindow/Screen1_Language/HBoxContainer" unique_id=978979091]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(1, 0.9137255, 0.9137255, 1)
+text = "Exotic Butters"
+vertical_alignment = 1
+
+[node name="NextButton" type="Button" parent="SetupWindow/Screen1_Language" unique_id=2077847917]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetupWindow/Screen1_Language" unique_id=1098708019]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -38.5
+offset_right = 176.0
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SetupWindow/Screen1_Language/VBoxContainer" unique_id=2019544056]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SetupWindow/Screen1_Language/VBoxContainer/HBoxContainer" unique_id=2117498164]
+layout_mode = 2
+text = "Language to install:"
+label_settings = SubResource("LabelSettings_8qdw2")
+
+[node name="LanguageDropdown" type="OptionButton" parent="SetupWindow/Screen1_Language/VBoxContainer/HBoxContainer" unique_id=442428751]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SetupWindow/Screen1_Language/VBoxContainer" unique_id=28225724]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="SetupWindow/Screen1_Language/VBoxContainer/HBoxContainer2" unique_id=2046359378]
+layout_mode = 2
+text = "Time and currency format:"
+label_settings = SubResource("LabelSettings_a3sp6")
+
+[node name="TimeDropdown" type="OptionButton" parent="SetupWindow/Screen1_Language/VBoxContainer/HBoxContainer2" unique_id=1461294386]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SetupWindow/Screen1_Language/VBoxContainer" unique_id=1515627262]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="SetupWindow/Screen1_Language/VBoxContainer/HBoxContainer3" unique_id=440577099]
+layout_mode = 2
+text = "Keyboard or input method:"
+label_settings = SubResource("LabelSettings_dofh3")
+
+[node name="KeyboardDropdown" type="OptionButton" parent="SetupWindow/Screen1_Language/VBoxContainer/HBoxContainer3" unique_id=1857328812]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Screen2_Install" type="Control" parent="SetupWindow" unique_id=30788709]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InstallButton" type="Button" parent="SetupWindow/Screen2_Install" unique_id=211203631]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.25
+offset_top = -29.0
+offset_right = 57.25
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Install Now"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SetupWindow/Screen2_Install" unique_id=342060266]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.25
+offset_top = 56.0
+offset_right = 113.25
+offset_bottom = 134.0
+grow_horizontal = 2
+theme_override_constants/separation = -15
+
+[node name="TextureRect" type="TextureRect" parent="SetupWindow/Screen2_Install/HBoxContainer" unique_id=1616622984]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_6e1p0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SetupWindow/Screen2_Install/HBoxContainer" unique_id=641961484]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(1, 0.9137255, 0.9137255, 1)
+text = "ExoticButters"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Screen_License" type="Control" parent="SetupWindow" unique_id=1233083059]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LicenseWindowFrame" type="PanelContainer" parent="SetupWindow/Screen_License" unique_id=152774278]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -94.5
+offset_right = 193.0
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vujbi")
+
+[node name="MarginContainer" type="MarginContainer" parent="SetupWindow/Screen_License/LicenseWindowFrame" unique_id=795638365]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="LicenseText" type="RichTextLabel" parent="SetupWindow/Screen_License/LicenseWindowFrame/MarginContainer" unique_id=1653883375]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Last updated June 2021
+
+[color=27374D]EXOTIC BUTTERS SOFTWARE LICENSE TERMS[/color]
+
+[color=27374D]EXOTIC BUTTERS OPERATING SYSTEM[/color]
+
+[color=27374D]IF YOU LIVE IN (OR IF YOUR PRINCIPAL PLACE OF BUSINESS IS IN) THE UNITED STATES, PLEASE READ THE BINDING ARBITRATION CLAUSE AND CLASS ACTION WAIVER IN SECTION 11. IT AFFECTS HOW DISPUTES ARE RESOLVED.[/color]
+
+[center][b][color=#0078D7]END USER LICENSE AGREEMENT (EULA)[/color][/b][/center]
+
+[b]SIMULATED OPERATING SYSTEM SOFTWARE[/b]
+
+Please read these license terms carefully. By clicking \"Next\" or installing this software, you agree to be bound by these terms. If you do not accept them, do not install the software.
+
+[b]1. INSTALLATION AND USE RIGHTS.[/b]
+You may install and use one copy of the software on your simulated device. You may not make unauthorized copies of the software, distribute it, or use it to mine virtual cryptocurrency without proper cooling.
+
+[b]2. VIRTUAL WARRANTY.[/b]
+This software is provided [color=red]\"AS IS\"[/color]. We do not guarantee that it will not crash, show a blue screen, or occasionally throttle your CPU. You bear the sole risk of using it.
+
+[b]3. DIAGNOSTIC DATA.[/b]
+We may collect diagnostic data regarding your simulated hardware assembly skills. If you forget to apply thermal paste before installing the cooler, we [color=#0078D7]will[/color] know, and we [color=#0078D7]will[/color] log it in the system registry.
+
+[b]4. LIMITATION OF LIABILITY.[/b]
+Under no circumstances shall the developers be held liable for any virtual hardware damage, loss of simulated save data, or real-world frustration caused by forgetting to plug in the motherboard power cables.
+
+[b]5. COMPLIANCE.[/b]
+You must comply with all domestic and international laws regarding the disposal of virtual electronic waste.
+
+By checking the [color=green]\"I accept the license terms\"[/color] box below, you acknowledge that you have read, understood, and agreed to these terms.
+
+Thank you for choosing [color=#F5E8AA]Exotic Butters![/color]
+"
+
+[node name="AcceptCheckBox" type="CheckBox" parent="SetupWindow/Screen_License" unique_id=1332588260]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -112.5
+offset_top = -31.0
+offset_right = 112.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "I accept the license terms"
+
+[node name="LicenseNextButton" type="Button" parent="SetupWindow/Screen_License" unique_id=223365866]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next"
+
+[node name="Screen_InstallType" type="Control" parent="SetupWindow" unique_id=1491826468]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SetupWindow/Screen_InstallType" unique_id=1794850124]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.0
+offset_right = 144.0
+offset_bottom = 55.0
+grow_horizontal = 2
+text = "Which type of installation do you want?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetupWindow/Screen_InstallType" unique_id=33357994]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = -20.0
+offset_right = 261.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="UpgradeButton" type="Button" parent="SetupWindow/Screen_InstallType/VBoxContainer" unique_id=418800109]
+layout_mode = 2
+text = "Upgrade: Install Windows and keep files, settings, and applications"
+
+[node name="CustomButton" type="Button" parent="SetupWindow/Screen_InstallType/VBoxContainer" unique_id=40149120]
+layout_mode = 2
+text = "Custom: Install Windows only (advanced)"
+
+[node name="Screen3_Drive" type="Control" parent="SetupWindow" unique_id=1591487058]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetupWindow/Screen3_Drive" unique_id=157186579]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="SetupWindow/Screen3_Drive/VBoxContainer" unique_id=633338439]
+layout_mode = 2
+
+[node name="DriveList" type="Tree" parent="SetupWindow/Screen3_Drive/VBoxContainer" unique_id=390868239]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ToolBarBox" type="HBoxContainer" parent="SetupWindow/Screen3_Drive/VBoxContainer" unique_id=1076445657]
+layout_mode = 2
+
+[node name="RefreshBtn" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/ToolBarBox" unique_id=456781803]
+layout_mode = 2
+text = "Refresh"
+
+[node name="DeleteBtn" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/ToolBarBox" unique_id=63096725]
+layout_mode = 2
+text = "Delete"
+
+[node name="FormatBtn" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/ToolBarBox" unique_id=429516909]
+layout_mode = 2
+text = "Format"
+
+[node name="NewBtn" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/ToolBarBox" unique_id=755092379]
+layout_mode = 2
+text = "New"
+
+[node name="FooterBox" type="HBoxContainer" parent="SetupWindow/Screen3_Drive/VBoxContainer" unique_id=148543561]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="WarningLabel" type="RichTextLabel" parent="SetupWindow/Screen3_Drive/VBoxContainer/FooterBox" unique_id=1878892867]
+visible = false
+layout_mode = 2
+text = "Windows can't be installed on..."
+
+[node name="Control" type="Control" parent="SetupWindow/Screen3_Drive/VBoxContainer/FooterBox" unique_id=297961149]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DriveNextButton" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/FooterBox" unique_id=1858240647]
+layout_mode = 2
+text = "Next"
+
+[node name="Label" type="RichTextLabel" parent="SetupWindow/Screen3_Drive" unique_id=498107660]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_right = 152.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Where do you want to install Windows?"
+
+[node name="Screen4_Progress" type="Control" parent="SetupWindow" unique_id=125617570]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusLabel" type="Label" parent="SetupWindow/Screen4_Progress" unique_id=1187912671]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -11.5
+offset_right = 93.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Copying Windows files..."
+label_settings = SubResource("LabelSettings_4bf84")
+
+[node name="ProgressBar" type="ProgressBar" parent="SetupWindow/Screen4_Progress" unique_id=1424090330]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.0
+offset_top = 33.5
+offset_right = 65.0
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen_Restart" type="Control" parent="SetupWindow" unique_id=1340455686]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="SetupWindow/Screen_Restart" unique_id=1977683231]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SetupWindow/Screen_Restart" unique_id=245849930]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -123.0
+offset_right = 113.0
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRect" type="TextureRect" parent="SetupWindow/Screen_Restart/VBoxContainer" unique_id=1359794986]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_6e1p0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RestartLabel" type="Label" parent="SetupWindow/Screen_Restart/VBoxContainer" unique_id=267167994]
+layout_mode = 2
+text = "Restarting..."
+horizontal_alignment = 1

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://df1dlabw6qfgk" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/MOBO zoomed.png" id="7_gx0hr"]
 [ext_resource type="Texture2D" uid="uid://i4mdkm1245me" path="res://assets/2D Assets/2D Materials/RightArrow.png" id="8_caf5w"]
 [ext_resource type="Script" uid="uid://7dhhxsewapdd" path="res://scripts/mobo_socket.gd" id="8_sk4qr"]
-[ext_resource type="Texture2D" uid="uid://cn517q0fbakfb" path="res://assets/COC 1/Assemble Computer Hardware/us-power-plug-cable-isolated-white-background-273655341.webp" id="9_cdg2y"]
+[ext_resource type="Texture2D" uid="uid://cn517q0fbakfb" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/us-power-plug-cable-isolated-white-background-273655341.webp" id="9_cdg2y"]
 [ext_resource type="Script" uid="uid://cp6iwm1pueo24" path="res://scripts/draggable_item.gd" id="10_sprjb"]
 
 [node name="TestPhase" type="Control" unique_id=1468298398]

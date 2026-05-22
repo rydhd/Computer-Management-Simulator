@@ -139,38 +139,37 @@ stretch_mode = 3
 
 [node name="MoboSocket_24Pin" type="Control" parent="MoboZoomPopup/ZoomedMoboVisual" unique_id=1353874270]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -19.999996
-offset_top = -20.0
-offset_right = 19.999996
-offset_bottom = 20.0
+anchor_left = 0.9193504
+anchor_top = 0.32762963
+anchor_right = 0.9634888
+anchor_bottom = 0.52207404
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_nkx8n")
 required_cable_id = "24-pin"
+metadata/_edit_use_anchors_ = true
 
 [node name="MoboSocket_8Pin" type="Control" parent="MoboZoomPopup/ZoomedMoboVisual" unique_id=305902033]
 layout_mode = 1
-anchors_preset = 0
-offset_right = 39.999992
-offset_bottom = 40.0
+anchor_left = 0.10426086
+anchor_top = 0.07762965
+anchor_right = 0.19548027
+anchor_bottom = 0.1331852
 script = ExtResource("11_nkx8n")
 required_cable_id = "8-pin"
+metadata/_edit_use_anchors_ = true
 
 [node name="MoboSocket_6Pin" type="Control" parent="MoboZoomPopup/ZoomedMoboVisual" unique_id=1632732718]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 39.999992
+anchor_left = 0.230791
+anchor_top = 0.75355554
+anchor_right = 0.27198687
+anchor_bottom = 0.8461481
+offset_top = -1.5258789e-05
 grow_vertical = 0
 script = ExtResource("11_nkx8n")
 required_cable_id = "6-pin"
+metadata/_edit_use_anchors_ = true
 
 [node name="CableTray" type="HBoxContainer" parent="." unique_id=1771569630]
 layout_mode = 1

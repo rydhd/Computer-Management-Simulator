@@ -1,0 +1,460 @@
+[gd_scene format=3 uid="uid://cade33e004haw"]
+
+[ext_resource type="Script" uid="uid://cbilc5kxbllyp" path="res://scripts/COC 1/Install OS/windows_installation_part_2.gd" id="1_0xyow"]
+[ext_resource type="Texture2D" uid="uid://b41q3dubh4kxd" path="res://assets/COC 1/Install OS/USB INSTALL (1).png" id="2_3iba3"]
+[ext_resource type="Texture2D" uid="uid://b7sl5x3wpf7ir" path="res://assets/COC 1/Install OS/image 868.png" id="3_s4f8b"]
+[ext_resource type="Texture2D" uid="uid://dbmno5ol10ng4" path="res://assets/COC 1/Install OS/Wifi.png" id="4_nucw0"]
+
+[node name="WindowsInstallationPart2" type="Control" unique_id=1172563133]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xyow")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1129916367]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3iba3")
+expand_mode = 1
+
+[node name="PCWindow" type="ColorRect" parent="." unique_id=551009171]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 98.0
+offset_right = 993.0
+offset_bottom = 544.0
+color = Color(0.8666667, 0.9019608, 0.92941177, 1)
+
+[node name="Screen1_Region" type="Control" parent="PCWindow" unique_id=1617601279]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PCWindow/Screen1_Region" unique_id=1577967553]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -111.5
+offset_right = 289.0
+offset_bottom = 111.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Title" type="VBoxContainer" parent="PCWindow/Screen1_Region/VBoxContainer" unique_id=1360821036]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Title" unique_id=456206512]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+text = "Is this the right country region?"
+fit_content = true
+
+[node name="Selection" type="VBoxContainer" parent="PCWindow/Screen1_Region/VBoxContainer" unique_id=1709443083]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=626927576]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+text = "Hong Kong SAR"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=462243171]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+text = "Philippines"
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=1016401426]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+text = "Iceland"
+fit_content = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=1684604986]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+text = "Indonesia"
+fit_content = true
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=494514682]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+text = "Thailand"
+fit_content = true
+
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen1_Region" unique_id=1975801006]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -222.5
+offset_right = 409.0
+offset_bottom = 222.5
+grow_vertical = 2
+texture = ExtResource("3_s4f8b")
+
+[node name="NextButton" type="Button" parent="PCWindow/Screen1_Region" unique_id=242003256]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -107.0
+offset_top = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "YES"
+
+[node name="Screen2_Network" type="Control" parent="PCWindow" unique_id=1680994278]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Questions" type="VBoxContainer" parent="PCWindow/Screen2_Network" unique_id=1072044270]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -465.0
+offset_top = 21.0
+offset_right = -87.0
+offset_bottom = 113.0
+grow_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen2_Network/Questions" unique_id=1198485515]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Is this the right keyboard layout or input method?"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PCWindow/Screen2_Network/Questions" unique_id=1399627330]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+text = "If you also use another keyboard layout you can add that next"
+fit_content = true
+
+[node name="KeyboardLayout" type="VBoxContainer" parent="PCWindow/Screen2_Network" unique_id=1550388111]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = 123.0
+offset_right = 225.0
+offset_bottom = 388.0
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=222825761]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "US"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=450976196]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Canadian Multilingual Standard "
+fit_content = true
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=1233354951]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "English India"
+fit_content = true
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=1805015034]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Irish"
+fit_content = true
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=1351648368]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "NZ"
+fit_content = true
+
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen2_Network" unique_id=706047617]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NextButton" type="Button" parent="PCWindow/Screen2_Network" unique_id=2056455412]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "YES"
+
+[node name="Screen3_Account" type="Control" parent="PCWindow" unique_id=45538223]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen3_Account" unique_id=2132969222]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -184.0
+offset_right = 184.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Want to add a second keyboard layout?"
+
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen3_Account" unique_id=164514193]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PCWindow/Screen3_Account" unique_id=831663561]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="AddLayoutButton" type="Button" parent="PCWindow/Screen3_Account/HBoxContainer" unique_id=640091662]
+layout_mode = 2
+text = "Add Layout
+"
+
+[node name="NextButton" type="Button" parent="PCWindow/Screen3_Account/HBoxContainer" unique_id=1498789224]
+layout_mode = 2
+text = "Skip"
+
+[node name="Screen4_Internet" type="Control" parent="PCWindow" unique_id=1177263194]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen4_Internet" unique_id=73867708]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.0
+offset_right = 123.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Let’s connect you to a network"
+fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="PCWindow/Screen4_Internet" unique_id=1919357256]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.75
+offset_top = -42.0
+offset_right = 117.75
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer" unique_id=945506200]
+layout_mode = 2
+theme_override_constants/separation = 17
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer" unique_id=484061279]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1731129456]
+layout_mode = 2
+texture = ExtResource("4_nucw0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer/HBoxContainer" unique_id=445505760]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tp-link AX 5G Secured"
+fit_content = true
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer" unique_id=1136966341]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1970901287]
+layout_mode = 2
+texture = ExtResource("4_nucw0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1235269672]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hidden Network"
+fit_content = true
+vertical_alignment = 1
+
+[node name="NoInternetButton" type="Button" parent="PCWindow/Screen4_Internet" unique_id=1416818745]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -40.0
+offset_right = 217.0
+grow_vertical = 0
+text = "I don't have internet"
+
+[node name="Screen5_Final" type="Control" parent="PCWindow" unique_id=1007622099]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PCWindow/Screen5_Final" unique_id=1710165025]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -269.25
+offset_right = 269.25
+offset_bottom = 96.0
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen5_Final/VBoxContainer" unique_id=1750201398]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "Let’s name your device"
+fit_content = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PCWindow/Screen5_Final/VBoxContainer" unique_id=181985868]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Make it yours with a unique name that's easy to recognize when connecting to it from other devices. Your device will restart after you name it.
+"
+fit_content = true
+
+[node name="LineEdit" type="LineEdit" parent="PCWindow/Screen5_Final" unique_id=620165835]
+layout_mode = 0
+offset_left = 124.75
+offset_top = 166.0
+offset_right = 309.0
+offset_bottom = 197.0
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+max_length = 15
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PCWindow/Screen5_Final" unique_id=684927185]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -269.0
+offset_top = -221.0
+offset_right = 181.5
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen5_Final/VBoxContainer2" unique_id=1063758164]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Can't contain only numbers No more than 15 characters
+No spaces or any of the following special characters"
+fit_content = true
+
+[node name="NextButton" type="Button" parent="PCWindow/Screen5_Final" unique_id=1112871122]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next"
+
+[node name="Screen6_Done" type="Control" parent="PCWindow" unique_id=1015616801]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusLabel" type="RichTextLabel" parent="PCWindow/Screen6_Done" unique_id=1542081688]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.5
+offset_top = -88.5
+offset_right = 184.5
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="PCWindow/Screen1_Region/NextButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="PCWindow/Screen2_Network/NextButton" to="." method="_on_screen_2_button_pressed"]
+[connection signal="pressed" from="PCWindow/Screen3_Account/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="PCWindow/Screen5_Final/NextButton" to="." method="_on_next_button_pressed"]
