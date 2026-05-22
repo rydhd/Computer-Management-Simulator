@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://bpde50furdymf"]
+
+[ext_resource type="Script" uid="uid://db0qiq4b8lq5v" path="res://scripts/COC 1/Install OS/bios_screen.gd" id="1_thuj4"]
+[ext_resource type="Texture2D" uid="uid://be6m7hvsipwb2" path="res://assets/COC 1/Install OS/BIOS Screen.png" id="1_twqqx"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="2_thuj4"]
+[ext_resource type="Texture2D" uid="uid://wkjqivn11o6y" path="res://assets/COC 1/Install OS/BIOS.png" id="3_g6jir"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xy3q3"]
+font = ExtResource("2_thuj4")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_o17k4"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_50sbi"]
+size = Vector2(150, 30)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_acm41"]
+size = Vector2(150, 30)
+
+[node name="BiosScreen" type="Control" unique_id=539901231]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_thuj4")
+
+[node name="Background" type="TextureRect" parent="." unique_id=272598646]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_twqqx")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Background" unique_id=2072572566]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -418.0
+offset_top = 57.0
+offset_right = 152.0
+offset_bottom = 99.0
+grow_horizontal = 2
+text = "BIOS UTILITY SYSTEM"
+label_settings = SubResource("LabelSettings_xy3q3")
+
+[node name="BootPriority" type="PanelContainer" parent="." unique_id=92358057]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -217.0
+offset_right = -100.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BootPriority" unique_id=1462990262]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BootPriority/VBoxContainer" unique_id=1567580438]
+layout_mode = 2
+text = "Boot Priority"
+label_settings = SubResource("LabelSettings_o17k4")
+horizontal_alignment = 1
+
+[node name="WindowsBoot" type="TextureButton" parent="BootPriority/VBoxContainer" unique_id=968033399]
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_50sbi")
+
+[node name="Flashdrive" type="TextureButton" parent="BootPriority/VBoxContainer" unique_id=886009395]
+layout_mode = 2
+texture_normal = SubResource("PlaceholderTexture2D_acm41")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=665081034]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -419.0
+offset_top = 135.0
+offset_right = 181.0
+offset_bottom = 238.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=2108772215]
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1180103053]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture = ExtResource("3_g6jir")
+stretch_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=417920914]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=986087279]
+layout_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=766532961]
+layout_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1667992603]
+layout_mode = 2
+
+[connection signal="pressed" from="BootPriority/VBoxContainer/Flashdrive" to="." method="_on_flashdrive_pressed"]

@@ -79,7 +79,7 @@ position = Vector2(-2, 5)
 shape = SubResource("RectangleShape2D_kj3go")
 
 [node name="Socket_RAM" type="Area2D" parent="." unique_id=828015522]
-position = Vector2(807, 249.00003)
+position = Vector2(803.00006, 249)
 rotation = -1.5717435
 scale = Vector2(0.6226849, -0.672853)
 
