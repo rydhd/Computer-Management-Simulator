@@ -7,6 +7,8 @@ var completed_tasks: Array[String] = []
 var active_tasks: Array = []
 var first_job_acknowledged: bool = false
 
+# --- NEW: Flag to track when a player returns from a successful job ---
+var customer_job_finished: bool = false
 
 func complete_task(task_name: String) -> void:
 	if task_name not in completed_tasks:

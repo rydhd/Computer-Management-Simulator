@@ -4,45 +4,108 @@ extends Control
 # 1. Preload the Manual Popup Scene right next to your other preloads
 const NPC_SCENE = preload("res://scenes/NpcCustomer.tscn")
 const ISSUE_POPUP_SCENE = preload("res://scenes/issue_popup_ui.tscn")
-const MANUAL_POPUP_SCENE = preload("res://scenes/manual_popup.tscn") # <--- ADD THIS
+const MANUAL_POPUP_SCENE = preload("res://scenes/manual_popup.tscn") 
 
 @onready var npc_spawn_position: Control = $NpcSpawnPoint
 @onready var dialogue_system = $DialogueSystem
 @onready var taskboard_overlay = $TaskboardOverlay
-@onready var manual_button: Button = $BackgroundManual/ManualButton # <--- ADD THIS
+@onready var manual_button: Button = $BackgroundManual/ManualButton 
 
 # Tracks the current instances
 var current_npc: Area2D = null 
 var current_popup: Node = null
-var manual_popup_instance: Node = null # <--- ADD THIS to keep track of the manual
+var manual_popup_instance: Node = null 
 
 func _ready() -> void:
 	# --- BULLETPROOF TUTORIAL OVERRIDE ---
-	# If we have ANY completed tasks, forcefully set the tutorial to COMPLETED.
-	# This prevents the tutorial from restarting even if you test scenes directly!
 	if GlobalState.completed_tasks.size() > 0:
 		TutorialManager.current_step = TutorialManager.TutorialStep.COMPLETED
 
-	# 1. Check if they just finished Gelo's PC!
-	# (CRITICAL FIX: Changed from "Test PC" to "Assemble Computer Hardware" to match the Taskboard)
-	if "Assemble Computer Hardware" in GlobalState.completed_tasks and not GlobalState.first_job_acknowledged:
-		# Trigger the congratulatory dialogue after a 1-second delay
-		get_tree().create_timer(1.0).timeout.connect(_on_first_job_complete)
-		
-	# 2. Only trigger the initial tutorial if we are genuinely at the START of the game
-	elif TutorialManager.current_step == TutorialManager.TutorialStep.START:
-		get_tree().create_timer(1.0).timeout.connect(TutorialManager.start_tutorial)
-		
-	# Connect the manual button signal
+	# Connect the manual button
 	if manual_button and not manual_button.pressed.is_connected(_on_manual_button_pressed):
 		manual_button.pressed.connect(_on_manual_button_pressed)
-# --- NEW FUNCTION FOR THE POST-JOB DIALOGUE ---
-func _on_first_job_complete() -> void:
-	# Because of your awesome EventBus setup, we can control the robot from anywhere!
-	EventBus.trigger_robot_dialogue.emit("Great work getting that PC running again!")
+
+	# ==========================================================
+	# --- DYNAMIC STATE MACHINE FOR RETURNING TO THE SHOP ---
+	# ==========================================================
+	
+	# 1. NEW: Safely determine if ALL main tasks are actually done
+	var all_main_tasks_done: bool = false
+	
+	if GlobalState.active_tasks.size() > 0:
+		all_main_tasks_done = true
+		for task in GlobalState.active_tasks:
+			# If even one main task is missing from the completed list, they aren't done!
+			if not GlobalState.completed_tasks.has(task["name"]):
+				all_main_tasks_done = false
+				break
+
+	if all_main_tasks_done:
+		print("All tasks for customer finished! Playing completion dialogue.")
+		
+		# 1. SPAWN THE NPC BACK IN
+		current_npc = NPC_SCENE.instantiate()
+		current_npc.scale = Vector2(0.3, 0.3)
+		$NpcLayer.add_child(current_npc)
+		current_npc.global_position = npc_spawn_position.global_position
+		current_npc.modulate = Color.WHITE # Ensure they are fully visible immediately
+		
+		# Wait half a second for the scene to settle
+		await get_tree().create_timer(0.5).timeout
+		
+		# 2. Play the NPC's specific "Thank You" dialogue
+		dialogue_system.show_dialogue(current_npc.my_name + ": " + current_npc.my_outro)
+		await dialogue_system.dialogue_finished
+		
+		# 3. Fade the NPC out as they leave the shop
+		var tween = create_tween()
+		tween.tween_property(current_npc, "modulate:a", 0.0, 1.0)
+		await tween.finished
+		current_npc.queue_free()
+		
+		# 4. Clear the board for the next customer
+		GlobalState.completed_tasks.clear()
+		GlobalState.active_tasks.clear()
+		GlobalState.customer_job_finished = false 
+		
+		# 5. Have Chip the Robot prompt the next loop
+		EventBus.trigger_robot_dialogue.emit("Excellent work! Click the bell again to invite a new customer.")
+		await EventBus.continue_tutorial_dialogue
+		EventBus.fade_out_robot.emit()
+		
+		# 6. Point to the bell for the next customer
+		EventBus.show_bell_arrow.emit()
+	# 2. Did they just finish OS Install (Task 2)?
+	elif "Installing Operating System" in GlobalState.completed_tasks and not GlobalState.has_meta("os_install_acknowledged"):
+		get_tree().create_timer(1.0).timeout.connect(_on_os_install_complete)
+		
+	# 3. Did they just finish Hardware Assembly (Task 1)?
+	elif "Assemble Computer Hardware" in GlobalState.completed_tasks and not GlobalState.first_job_acknowledged:
+		get_tree().create_timer(1.0).timeout.connect(_on_first_job_complete)
+		
+	# 4. Is this the very beginning of the game?
+	elif TutorialManager.current_step == TutorialManager.TutorialStep.START:
+		get_tree().create_timer(1.0).timeout.connect(TutorialManager.start_tutorial)
+# --- NEW FUNCTION FOR THE OS DIALOGUE ---
+func _on_os_install_complete() -> void:
+	EventBus.trigger_robot_dialogue.emit("Great job! You successfully installed the Operating System.")
 	await EventBus.continue_tutorial_dialogue
 	
-	EventBus.trigger_robot_dialogue.emit("Open the Taskboard to check off your final task and grab your next job!")
+	EventBus.trigger_robot_dialogue.emit("Open the Taskboard to check off your task and move on to arranging the cables!")
+	await EventBus.continue_tutorial_dialogue
+	
+	# Send the robot away
+	EventBus.fade_out_robot.emit()
+	
+	# Set the meta tag so this congratulation never plays again
+	GlobalState.set_meta("os_install_acknowledged", true)
+
+# --- FUNCTION FOR THE POST-HARDWARE DIALOGUE ---
+func _on_first_job_complete() -> void:
+	EventBus.trigger_robot_dialogue.emit("Great work getting that PC assembled!")
+	await EventBus.continue_tutorial_dialogue
+	
+	EventBus.trigger_robot_dialogue.emit("Open the Taskboard to check off your task and grab your next job!")
 	await EventBus.continue_tutorial_dialogue
 	
 	# Send the robot away
@@ -50,9 +113,7 @@ func _on_first_job_complete() -> void:
 	
 	# Mark it true so this congratulation never plays again!
 	GlobalState.first_job_acknowledged = true
-	# 2. Connect the manual button signal via code 
-	# (Since it wasn't connected in the .tscn file)
-	
+
 func _on_bell_button_pressed() -> void:
 	print("Bell pressed! Attempting to spawn NPC.")
 	
@@ -62,6 +123,9 @@ func _on_bell_button_pressed() -> void:
 		print("An NPC is already here. Help them first!")
 		return
 		
+	# --- TELL THE TUTORIAL WE RUNG THE BELL ---
+	EventBus.hide_bell_arrow.emit()
+	
 	# 2. Instantiate the NPC
 	current_npc = NPC_SCENE.instantiate()
 	current_npc.scale = Vector2(0.3, 0.3) 
@@ -75,115 +139,21 @@ func _on_bell_button_pressed() -> void:
 	# Tell the rest of the game the NPC arrived
 	EventBus.npc_arrived.emit()
 	
-	# 4. Start the multi-page dialogue!
-	var dialogue_lines: Array[String] = [
-		current_npc.my_intro,
-		"Can you fix these for me?"
-	]
-	
-	if is_instance_valid(dialogue_system):
-		dialogue_system.start_dialogue(dialogue_lines)
-		
-		# 5. WAIT for the player to click through all the text
-		await dialogue_system.dialogue_finished
-		
-		# Prevents crashes if the scene was changed while the player was reading
-		if not is_inside_tree():
-			return 
-		
-		# 6. Spawn the Issue UI Popup
-		if is_instance_valid(current_popup):
-			current_popup.queue_free()
-			
-		current_popup = ISSUE_POPUP_SCENE.instantiate()
-		add_child(current_popup) 
-		current_popup.setup_issue(current_npc.my_name, current_npc.my_issues, current_npc.my_id)
-		
-	else:
-		print("ERROR: Dialogue system node is not valid!")
-	print("Bell pressed! Attempting to spawn NPC.")
-	
-	if is_instance_valid(current_npc):
-		print("An NPC is already here!")
-		return
-		
-	# --- TELL THE TUTORIAL WE RUNG THE BELL ---
-	EventBus.hide_bell_arrow.emit()
-	EventBus.npc_arrived.emit()
-	
-	# 1. Instantiate the NPC
-	var npc_instance = NPC_SCENE.instantiate()
-	
-	# 2. Add it to the tree BEFORE setting its position!
-	add_child(npc_instance)
-	
-	# 3. Now set the position
-	npc_instance.global_position = npc_spawn_position.global_position
-	current_npc = npc_instance
-	
-	# 4. Generate random issues and setup the dialogue
-	var customer_name = npc_instance.my_name
-	var issues = npc_instance.my_issues
-	var issue_id = npc_instance.my_id
-	
-	
-	if is_instance_valid(dialogue_system):
-		# Use start_dialogue() instead of show_dialogue()!
-		dialogue_system.start_dialogue(dialogue_lines)
-		
-		# WAIT FOR THE SIGNAL! 
-		# This halts the code until the player clicks through all dialogue pages.
-		await dialogue_system.dialogue_finished
-		
-		# Prevents crashes if the scene was changed while the player was reading
-		if not is_inside_tree():
-			return 
-		
-		# --- SPAWN THE UI POPUP ---
-		if is_instance_valid(current_popup):
-			current_popup.queue_free()
-			
-		current_popup = ISSUE_POPUP_SCENE.instantiate()
-		add_child(current_popup) 
-		current_popup.setup_issue(customer_name, issues, issue_id)
-		
-	else:
-		print("ERROR: Dialogue system node is not valid!")
-	print("Bell pressed! Attempting to spawn NPC.")
-	
-	if is_instance_valid(current_npc):
-		start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
-		return
-		
-	current_npc = NPC_SCENE.instantiate()
-	current_npc.scale = Vector2(0.3, 0.3) 
-	$NpcLayer.add_child(current_npc)
-	current_npc.global_position = npc_spawn_position.global_position
-	
-	# 1. CONNECT FIRST! Tell Godot to listen for the signal.
-	current_npc.fade_in_complete.connect(_on_npc_fade_in_complete)
-	
-	# 2. TRIGGER SECOND! Now that we are listening, start the fade.
-	current_npc.fade_in_and_signal()
-	
-	EventBus.npc_arrived.emit()
+	# 4. Start the dialogue sequence automatically!
+	start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
 
-
-func _on_npc_fade_in_complete() -> void:
-	# Ensure the NPC still exists when the fade finishes
-	if is_instance_valid(current_npc):
-		
-		# 3. DISCONNECT IMMEDIATELY! Prevent memory leaks and double-firing.
-		if current_npc.fade_in_complete.is_connected(_on_npc_fade_in_complete):
-			current_npc.fade_in_complete.disconnect(_on_npc_fade_in_complete)
-			
-	
-# UPDATE: Function now expects an Array for the issues!
 func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array, issue_id: String) -> void:
 	print("NPC fade-in finished, starting dialogue!")
 	
 	if is_instance_valid(dialogue_system):
-		dialogue_system.show_dialogue(intro_text)
+		
+		# Build a multi-page array out of the NPC's intro text
+		var dialogue_lines: Array[String] = [
+			intro_text,
+			"Can you fix these for me?"
+		]
+		
+		dialogue_system.start_dialogue(dialogue_lines)
 		
 		# WAIT FOR THE SIGNAL! 
 		# This halts the code until the player clicks through all dialogue pages.
@@ -201,9 +171,10 @@ func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array
 		add_child(current_popup) 
 		current_popup.setup_issue(customer_name, issues, issue_id)
 		
+		# (Deleted the EventBus emits from here!)
+		
 	else:
 		print("ERROR: Dialogue system node is not valid!")
-
 func _on_taskboard_button_pressed() -> void:
 	EventBus.fade_out_robot.emit()
 	print("Taskboard Button Pressed!")
@@ -216,8 +187,6 @@ func _on_taskboard_button_pressed() -> void:
 	else:
 		print("ERROR: TaskboardOverlay node not found!")
 
-
-# 3. Replace your empty _on_manual_button_pressed function with this:
 func _on_manual_button_pressed() -> void:
 	print("Manual Button Pressed!")
 	

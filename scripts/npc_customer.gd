@@ -10,6 +10,9 @@ const FADE_IN_DURATION: float = 1.0
 @export_category("Customer Data")
 @export var my_name: String = "Gelo"
 @export_multiline var my_intro: String = "Hello there! I'm Gelo. I'm trying to build my first PC but I have no idea what I'm doing."
+# --- NEW: Add an outro message for when the task is finished ---
+@export_multiline var my_outro: String = "Thank you so much! My PC is running perfectly now. Here is your payment!"
+
 @export var my_issues: Array[String] = [
 	"Assemble computer hardware",
 	"Install OS",
