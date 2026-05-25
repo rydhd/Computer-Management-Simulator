@@ -1,5 +1,42 @@
 [gd_scene format=3 uid="uid://cvlry34swqfxl"]
 
+[ext_resource type="Script" uid="uid://do7787yed7h8" path="res://scripts/COC 1/Arrange Cables/arrange_cables.gd" id="1_jqbsa"]
+[ext_resource type="Texture2D" uid="uid://6a7tbsdi4qaf" path="res://assets/COC 1/Arrange Cables/Setup Menu.png" id="2_dfynq"]
+[ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/xtra 5.png" id="3_diyc5"]
+[ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="4_set7h"]
+[ext_resource type="Texture2D" uid="uid://cvbbdnu3dr5qv" path="res://assets/COC 1/Arrange Cables/image 17.png" id="5_ftg1n"]
+[ext_resource type="Texture2D" uid="uid://35k7yv46y5vc" path="res://assets/COC 1/Arrange Cables/wires/Orange.png" id="6_f53sr"]
+[ext_resource type="Texture2D" uid="uid://bvcuoy7n6223w" path="res://assets/COC 1/Arrange Cables/wires/Green.png" id="7_4egg8"]
+[ext_resource type="Script" uid="uid://ciwgk1r1c8cot" path="res://scripts/COC 1/Arrange Cables/draggable_wire.gd" id="7_diyc5"]
+[ext_resource type="Texture2D" uid="uid://djpgyg5pkb7wd" path="res://assets/COC 1/Arrange Cables/wires/Brown.png" id="8_fwbo3"]
+[ext_resource type="Texture2D" uid="uid://ckhp41bwue468" path="res://assets/COC 1/Arrange Cables/wires/Blue.png" id="9_k5mb4"]
+[ext_resource type="Texture2D" uid="uid://c4c8fq0s2gfxs" path="res://assets/COC 1/Arrange Cables/wires/GreenWhite.png" id="10_fmfci"]
+[ext_resource type="Texture2D" uid="uid://c8scoi2rbokcr" path="res://assets/COC 1/Arrange Cables/wires/BlueWhite.png" id="11_px5ih"]
+[ext_resource type="Texture2D" uid="uid://d0vevkvgtwcnu" path="res://assets/COC 1/Arrange Cables/wires/OrangeWhite.png" id="12_01rnp"]
+[ext_resource type="Texture2D" uid="uid://y31akgdm0eve" path="res://assets/COC 1/Arrange Cables/wires/BrownWhite.png" id="13_0a6g1"]
+[ext_resource type="Script" uid="uid://dsc5tdb26ilqw" path="res://scripts/COC 1/Arrange Cables/wire_slot.gd" id="15_set7h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_diyc5"]
+bg_color = Color(0.4862745, 0.5529412, 1, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.25490198, 0.5764706, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_set7h"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.25490198, 0.5764706, 0, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_diyc5"]
+font_color = Color(0, 0, 0, 1)
+
 [node name="ArrangeCables" type="Control" unique_id=216831828]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +44,339 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jqbsa")
+
+[node name="MainMenu" type="Control" parent="." unique_id=1654988425]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBackground" type="TextureRect" parent="MainMenu" unique_id=390661566]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dfynq")
+expand_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu" unique_id=409399210]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -139.5
+offset_top = -80.0
+offset_right = 139.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 13
+
+[node name="StartButton" type="Button" parent="MainMenu/HBoxContainer" unique_id=1750920735]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Start"
+
+[node name="BackButton" type="Button" parent="MainMenu/HBoxContainer" unique_id=236673530]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="GameplayPanel" type="Control" parent="." unique_id=1363771098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameplayBackground" type="TextureRect" parent="GameplayPanel" unique_id=60077019]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_diyc5")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="GameplayPanel/GameplayBackground" unique_id=153509773]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_set7h")
+expand_mode = 1
+
+[node name="RJ45Head" type="TextureRect" parent="GameplayPanel" unique_id=2130338468]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.5
+offset_right = 132.5
+offset_bottom = 301.0
+grow_horizontal = 2
+texture = ExtResource("5_ftg1n")
+expand_mode = 1
+
+[node name="WireInventory" type="HBoxContainer" parent="GameplayPanel" unique_id=629019859]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -138.0
+offset_right = 1152.0
+grow_vertical = 0
+alignment = 1
+
+[node name="OrangeWire" type="TextureRect" parent="GameplayPanel/WireInventory" unique_id=1643619164]
+layout_mode = 2
+texture = ExtResource("6_f53sr")
+expand_mode = 3
+script = ExtResource("7_diyc5")
+wire_color = "Orange"
+
+[node name="GreenWire" type="TextureRect" parent="GameplayPanel/WireInventory" unique_id=358660523]
+layout_mode = 2
+texture = ExtResource("7_4egg8")
+expand_mode = 3
+script = ExtResource("7_diyc5")
+wire_color = "Green"
+
+[node name="BrownWire" type="TextureRect" parent="GameplayPanel/WireInventory" unique_id=924374499]
+layout_mode = 2
+texture = ExtResource("8_fwbo3")
+expand_mode = 3
+script = ExtResource("7_diyc5")
+wire_color = "Brown"
+
+[node name="BlueWire" type="TextureRect" parent="GameplayPanel/WireInventory" unique_id=499967456]
+layout_mode = 2
+texture = ExtResource("9_k5mb4")
+expand_mode = 3
+script = ExtResource("7_diyc5")
+wire_color = "Blue"
+
+[node name="GreenWhiteWire" type="TextureRect" parent="GameplayPanel/WireInventory" unique_id=1178632173]
+layout_mode = 2
+texture = ExtResource("10_fmfci")
+expand_mode = 3
+script = ExtResource("7_diyc5")
+wire_color = "GreenWhite"
+
+[node name="BlueWhiteWire" type="TextureRect" parent="GameplayPanel/WireInventory" unique_id=612367068]
+layout_mode = 2
+texture = ExtResource("11_px5ih")
+expand_mode = 3
+script = ExtResource("7_diyc5")
+wire_color = "BlueWhite"
+
+[node name="OrangeWhiteWire" type="TextureRect" parent="GameplayPanel/WireInventory" unique_id=1761352612]
+layout_mode = 2
+texture = ExtResource("12_01rnp")
+expand_mode = 3
+script = ExtResource("7_diyc5")
+wire_color = "OrangeWhite"
+
+[node name="BrownWhiteWire" type="TextureRect" parent="GameplayPanel/WireInventory" unique_id=2014270323]
+layout_mode = 2
+texture = ExtResource("13_0a6g1")
+expand_mode = 3
+script = ExtResource("7_diyc5")
+wire_color = "BrownWhite"
+
+[node name="WiringSlots" type="HBoxContainer" parent="GameplayPanel" unique_id=1169670755]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -328.5
+offset_top = 89.0
+offset_right = 328.5
+offset_bottom = 264.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="GreenSlot" type="TextureRect" parent="GameplayPanel/WiringSlots" unique_id=1260937881]
+texture_repeat = 1
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+script = ExtResource("15_set7h")
+
+[node name="Panel" type="Panel" parent="GameplayPanel/WiringSlots/GreenSlot" unique_id=2045293586]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_diyc5")
+
+[node name="BrownSlot" type="TextureRect" parent="GameplayPanel/WiringSlots" unique_id=1610950044]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+script = ExtResource("15_set7h")
+slot_index = 1
+
+[node name="Panel" type="Panel" parent="GameplayPanel/WiringSlots/BrownSlot" unique_id=1332501393]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_set7h")
+
+[node name="BlueSlot" type="TextureRect" parent="GameplayPanel/WiringSlots" unique_id=551008647]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+script = ExtResource("15_set7h")
+slot_index = 2
+
+[node name="Panel" type="Panel" parent="GameplayPanel/WiringSlots/BlueSlot" unique_id=1582721722]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_set7h")
+
+[node name="GreenWhiteSlot" type="TextureRect" parent="GameplayPanel/WiringSlots" unique_id=882138507]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+script = ExtResource("15_set7h")
+slot_index = 3
+
+[node name="Panel" type="Panel" parent="GameplayPanel/WiringSlots/GreenWhiteSlot" unique_id=1294350996]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_set7h")
+
+[node name="BlueWhiteSlot" type="TextureRect" parent="GameplayPanel/WiringSlots" unique_id=1063746217]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+script = ExtResource("15_set7h")
+slot_index = 4
+
+[node name="Panel" type="Panel" parent="GameplayPanel/WiringSlots/BlueWhiteSlot" unique_id=977035292]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_set7h")
+
+[node name="OrangeWhiteSlot" type="TextureRect" parent="GameplayPanel/WiringSlots" unique_id=679382955]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+script = ExtResource("15_set7h")
+slot_index = 5
+
+[node name="Panel" type="Panel" parent="GameplayPanel/WiringSlots/OrangeWhiteSlot" unique_id=1944186327]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_set7h")
+
+[node name="OrangeSlot" type="TextureRect" parent="GameplayPanel/WiringSlots" unique_id=554855850]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+script = ExtResource("15_set7h")
+slot_index = 6
+
+[node name="Panel" type="Panel" parent="GameplayPanel/WiringSlots/OrangeSlot" unique_id=1447872480]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_set7h")
+
+[node name="BrownWhiteSlot" type="TextureRect" parent="GameplayPanel/WiringSlots" unique_id=730767648]
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 1
+script = ExtResource("15_set7h")
+slot_index = 7
+
+[node name="Panel" type="Panel" parent="GameplayPanel/WiringSlots/BrownWhiteSlot" unique_id=330124409]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_set7h")
+
+[node name="FeedbackLabel" type="RichTextLabel" parent="GameplayPanel" unique_id=540201872]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = 42.0
+offset_right = 130.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+
+[node name="TargetStandardLabel" type="Label" parent="GameplayPanel" unique_id=2106201706]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_right = 64.5
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Target Standard:"
+label_settings = SubResource("LabelSettings_diyc5")
+
+[connection signal="pressed" from="MainMenu/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
