@@ -28,7 +28,7 @@ TutorialManager="*uid://blbw2qj8yvavh"
 
 window/size/mode=1
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="ignore"
 
 [editor_plugins]
 

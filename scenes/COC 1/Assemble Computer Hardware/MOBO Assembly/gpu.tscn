@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://b7047snqqi8vx"]
 
 [ext_resource type="Script" uid="uid://dfeyw25sxe13l" path="res://scripts/COC 1/Assemble Computer Hardware/MOBO Assembly/gpu.gd" id="1_6s3po"]
-[ext_resource type="Texture2D" uid="uid://cvh13nyhvpcd7" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/gpu1.png" id="2_14ext"]
-
+[ext_resource type="Texture2D" uid="uid://bh8jovx2x0qsa" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/GPU.png" id="2_ei2lr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_14ext"]
 size = Vector2(224, 96)
@@ -13,12 +12,7 @@ script = ExtResource("1_6s3po")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2051044833]
 shape = SubResource("RectangleShape2D_14ext")
 
-[node name="Label" type="Label" parent="." unique_id=606159318]
-offset_right = 40.0
-offset_bottom = 23.0
-text = "GPU"
-
 [node name="Gpu1" type="Sprite2D" parent="." unique_id=412861151]
-position = Vector2(-2.0000002, -1)
-scale = Vector2(0.12494809, 0.12466516)
-texture = ExtResource("2_14ext")
+position = Vector2(-7.6293945e-06, 0.5)
+scale = Vector2(0.049966544, 0.04041667)
+texture = ExtResource("2_ei2lr")

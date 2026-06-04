@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://b137h2od4gp3h"]
+
+[ext_resource type="Texture2D" uid="uid://ds5tgwk8fbqiw" path="res://assets/2D Assets/2D Materials/Background FixMyPC.png" id="1_c32w3"]
+
+[node name="NetworkDiagram" type="Control" unique_id=232041565]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=133323901]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_c32w3")
+expand_mode = 1
+
+[node name="Router" type="PanelContainer" parent="." unique_id=1187894482]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -264.0
+offset_right = 263.0
+offset_bottom = -125.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Router" unique_id=985635360]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Router/VBoxContainer" unique_id=562076762]
+layout_mode = 2
+text = "ROUTER"
+
+[node name="Label2" type="Label" parent="Router/VBoxContainer" unique_id=9616337]
+layout_mode = 2
+text = "IP"
+
+[node name="Label3" type="Label" parent="Router/VBoxContainer" unique_id=116424654]
+layout_mode = 2
+text = "10.10.0.1"
+
+[node name="Label4" type="Label" parent="Router/VBoxContainer" unique_id=421565258]
+layout_mode = 2
+text = "172.16.0.1"
+
+[node name="Label5" type="Label" parent="Router/VBoxContainer" unique_id=333838395]
+layout_mode = 2
+text = "192.168.0.1"
+
+[node name="AccessPoint" type="PanelContainer" parent="." unique_id=103881570]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1.0
+offset_top = -263.0
+offset_right = 112.0
+offset_bottom = -124.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AccessPoint" unique_id=1780824875]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="AccessPoint/VBoxContainer" unique_id=1795920129]
+layout_mode = 2
+text = "AccessPoint"
+
+[node name="Label2" type="Label" parent="AccessPoint/VBoxContainer" unique_id=1086112854]
+layout_mode = 2
+text = "IP"
+
+[node name="Label3" type="Label" parent="AccessPoint/VBoxContainer" unique_id=1810942250]
+layout_mode = 2
+text = "10.10.0.4"
+
+[node name="Label4" type="Label" parent="AccessPoint/VBoxContainer" unique_id=1341258182]
+layout_mode = 2
+text = "172.16.0.4"
+
+[node name="Label5" type="Label" parent="AccessPoint/VBoxContainer" unique_id=1263223833]
+layout_mode = 2
+text = "192.168.0.4"
+
+[node name="PC 1" type="PanelContainer" parent="." unique_id=1419172058]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -267.0
+offset_right = -177.0
+offset_bottom = -128.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PC 1" unique_id=295711065]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PC 1/VBoxContainer" unique_id=365890790]
+layout_mode = 2
+text = "PC 1"
+
+[node name="Label2" type="Label" parent="PC 1/VBoxContainer" unique_id=461849923]
+layout_mode = 2
+text = "IP"
+
+[node name="Label3" type="Label" parent="PC 1/VBoxContainer" unique_id=987327203]
+layout_mode = 2
+text = "10.10.0.2"
+
+[node name="Label4" type="Label" parent="PC 1/VBoxContainer" unique_id=940305518]
+layout_mode = 2
+text = "172.16.0.2"
+
+[node name="Label5" type="Label" parent="PC 1/VBoxContainer" unique_id=2106037314]
+layout_mode = 2
+text = "192.168.0.2"
+
+[node name="PC 2" type="PanelContainer" parent="." unique_id=908124078]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -411.0
+offset_top = -268.0
+offset_right = -298.0
+offset_bottom = -129.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PC 2" unique_id=1789398584]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PC 2/VBoxContainer" unique_id=1423417823]
+layout_mode = 2
+text = "PC 2"
+
+[node name="Label2" type="Label" parent="PC 2/VBoxContainer" unique_id=839796308]
+layout_mode = 2
+text = "IP"
+
+[node name="Label3" type="Label" parent="PC 2/VBoxContainer" unique_id=67618326]
+layout_mode = 2
+text = "10.10.0.3	"
+
+[node name="Label4" type="Label" parent="PC 2/VBoxContainer" unique_id=49464430]
+layout_mode = 2
+text = "172.16.0.3"
+
+[node name="Label5" type="Label" parent="PC 2/VBoxContainer" unique_id=405591701]
+layout_mode = 2
+text = "192.168.0.3"
+
+[node name="Patch Panel" type="PanelContainer" parent="." unique_id=1305308830]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -412.0
+offset_top = -116.0
+offset_right = -299.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Patch Panel" unique_id=1001454015]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Patch Panel/VBoxContainer" unique_id=1356090604]
+layout_mode = 2
+text = "Patch Panel"
+
+[node name="Switch" type="PanelContainer" parent="." unique_id=7108488]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -114.0
+offset_right = -167.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Switch" unique_id=329453003]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Switch/VBoxContainer" unique_id=975778434]
+layout_mode = 2
+text = "Switch:"
+
+[node name="ModularBox" type="PanelContainer" parent="." unique_id=960057604]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -265.0
+offset_right = -32.0
+offset_bottom = -126.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModularBox" unique_id=710182739]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ModularBox/VBoxContainer" unique_id=885982557]
+layout_mode = 2
+text = "ModularBox"
+
+[node name="Line2D" type="Line2D" parent="ModularBox" unique_id=973169553]
+default_color = Color(0, 0, 0, 1)
