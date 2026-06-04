@@ -42,7 +42,7 @@ texture = ExtResource("3_b00cs")
 expand_mode = 1
 
 [node name="Motherboard_Tray" type="Area2D" parent="." unique_id=1660359980]
-position = Vector2(183.99988, 279.9999)
+position = Vector2(236, 280.00003)
 scale = Vector2(0.34980106, 0.23368178)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Motherboard_Tray" unique_id=663911490]

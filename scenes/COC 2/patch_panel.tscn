@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://fag2x0yjofrn"]
+
+[ext_resource type="Texture2D" uid="uid://ds5tgwk8fbqiw" path="res://assets/2D Assets/2D Materials/Background FixMyPC.png" id="1_8nagn"]
+[ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="2_silq7"]
+
+[node name="PatchPanel" type="Control" unique_id=1964783705]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="." unique_id=1247706018]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8nagn")
+expand_mode = 1
+
+[node name="Table" type="TextureRect" parent="Background" unique_id=527223607]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_silq7")
+expand_mode = 1
