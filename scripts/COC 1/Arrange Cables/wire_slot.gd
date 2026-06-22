@@ -7,12 +7,12 @@ extends TextureRect
 signal wire_dropped(index: int, color: String)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	# Only accept the drop if the data is a String and the slot is currently empty
-	# Assuming texture is null when empty. If using a placeholder texture, check a boolean instead.
-	return typeof(data) == TYPE_STRING and texture == null
+	# NEW: Accept the drop if the data is a Dictionary containing "color", and the slot is empty
+	return typeof(data) == TYPE_DICTIONARY and data.has("color") and texture == null
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	var dropped_color: String = data
+	# Extract the color from our dictionary payload
+	var dropped_color: String = data["color"]
 	
 	# Construct the exact file path using your specific project directory
 	var file_path: String = "res://assets/COC 1/Arrange Cables/wires/" + dropped_color + ".png"
@@ -23,6 +23,12 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 		texture = new_texture
 	else:
 		printerr("Texture not found at path: ", file_path)
+		
+	# NEW: Disable the original wire so it cannot be dragged again
+	data["original_node"].is_placed = true
+	
+	# NEW: Dim the original wire in the inventory so the player knows it is used
+	data["original_node"].modulate.a = 0.3 
 	
 	# Notify the main game logic
 	emit_signal("wire_dropped", slot_index, dropped_color)

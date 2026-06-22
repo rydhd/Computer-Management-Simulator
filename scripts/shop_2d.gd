@@ -1,11 +1,10 @@
 extends Control
-# Shop_2d.gd
 
 # 1. Preload the Manual Popup Scene right next to your other preloads
 const NPC_SCENE = preload("res://scenes/NpcCustomer.tscn")
 const ISSUE_POPUP_SCENE = preload("res://scenes/issue_popup_ui.tscn")
 const MANUAL_POPUP_SCENE = preload("res://scenes/manual_popup.tscn") 
-
+@onready var bell_sound = $BackgroundBell/BellSound
 @onready var npc_spawn_position: Control = $NpcSpawnPoint
 @onready var dialogue_system = $DialogueSystem
 @onready var taskboard_overlay = $TaskboardOverlay
@@ -15,6 +14,7 @@ const MANUAL_POPUP_SCENE = preload("res://scenes/manual_popup.tscn")
 var current_npc: Area2D = null 
 var current_popup: Node = null
 var manual_popup_instance: Node = null 
+var is_processing_bell: bool = false
 
 func _ready() -> void:
 	# --- BULLETPROOF TUTORIAL OVERRIDE ---
@@ -29,7 +29,7 @@ func _ready() -> void:
 	# --- DYNAMIC STATE MACHINE FOR RETURNING TO THE SHOP ---
 	# ==========================================================
 	
-	# 1. NEW: Safely determine if ALL main tasks are actually done
+	# Safely determine if ALL main tasks are actually done
 	var all_main_tasks_done: bool = false
 	
 	if GlobalState.active_tasks.size() > 0:
@@ -46,6 +46,22 @@ func _ready() -> void:
 		# 1. SPAWN THE NPC BACK IN
 		current_npc = NPC_SCENE.instantiate()
 		current_npc.scale = Vector2(0.3, 0.3)
+		
+		# --- UPDATE: Check which customer is returning based on the task ---
+		if GlobalState.active_tasks[0]["name"] == "Set-up Computer Networks":
+			current_npc.my_name = "Miyamura"
+			current_npc.my_outro = "Thanks! The network is up and running smoothly."
+			
+			# Record that Miyamura is completely done
+			GlobalState.set_meta("miyamura_finished", true)
+		else:
+			# If it's not Miyamura's task, it must be Chase's hardware combo
+			current_npc.my_name = "Chase"
+			
+			# Record that Chase is completely done
+			GlobalState.set_meta("chase_finished", true)
+		# ----------------------------------------------------------------
+		
 		$NpcLayer.add_child(current_npc)
 		current_npc.global_position = npc_spawn_position.global_position
 		current_npc.modulate = Color.WHITE # Ensure they are fully visible immediately
@@ -75,6 +91,7 @@ func _ready() -> void:
 		
 		# 6. Point to the bell for the next customer
 		EventBus.show_bell_arrow.emit()
+		
 	# 2. Did they just finish OS Install (Task 2)?
 	elif "Installing Operating System" in GlobalState.completed_tasks and not GlobalState.has_meta("os_install_acknowledged"):
 		get_tree().create_timer(1.0).timeout.connect(_on_os_install_complete)
@@ -86,6 +103,7 @@ func _ready() -> void:
 	# 4. Is this the very beginning of the game?
 	elif TutorialManager.current_step == TutorialManager.TutorialStep.START:
 		get_tree().create_timer(1.0).timeout.connect(TutorialManager.start_tutorial)
+
 # --- NEW FUNCTION FOR THE OS DIALOGUE ---
 func _on_os_install_complete() -> void:
 	EventBus.trigger_robot_dialogue.emit("Great job! You successfully installed the Operating System.")
@@ -115,32 +133,58 @@ func _on_first_job_complete() -> void:
 	GlobalState.first_job_acknowledged = true
 
 func _on_bell_button_pressed() -> void:
-	print("Bell pressed! Attempting to spawn NPC.")
-	
-	# 1. If an NPC is already here, DO NOTHING! 
-	# (This prevents the dialogue from restarting if you click the bell twice)
+	# 1. Anti-Spam Lock: If we are already processing a click, ignore this one!
+	if is_processing_bell:
+		return
+		
+	# 2. State Check: If an NPC is already here, DO NOTHING!
 	if is_instance_valid(current_npc):
 		print("An NPC is already here. Help them first!")
 		return
 		
+	# Lock the bell logic now that we've passed the checks
+	is_processing_bell = true
+	print("Bell pressed! Attempting to spawn NPC.")
+	
+	# 3. Play the AudioStreamPlayer sound
+	$BackgroundBell/BellSound.play()
+	
 	# --- TELL THE TUTORIAL WE RUNG THE BELL ---
 	EventBus.hide_bell_arrow.emit()
 	
-	# 2. Instantiate the NPC
+	# 4. Instantiate the NPC
 	current_npc = NPC_SCENE.instantiate()
 	current_npc.scale = Vector2(0.3, 0.3) 
+	
+	# --- UPDATE: Sequential Spawning based on GlobalState ---
+	if not GlobalState.has_meta("chase_finished"):
+		# If Chase HAS NOT finished his job yet, force Chase to spawn.
+		current_npc.my_name = "Chase"
+		current_npc.my_id = "task_001_chase"
+	else:
+		# If Chase HAS finished his job, force Miyamura to spawn next!
+		current_npc.my_name = "Miyamura"
+		current_npc.my_intro = "Hi! My office computers can't talk to each other. Can you set up our network?"
+		current_npc.my_outro = "Thanks! The network is up and running smoothly."
+		current_npc.my_issues = ["Set-up Computer Networks"]
+		current_npc.my_id = "task_002_network"
+	# ------------------------------------------------------------------
+	
 	$NpcLayer.add_child(current_npc)
 	current_npc.global_position = npc_spawn_position.global_position
 	
-	# 3. Trigger the fade-in animation and WAIT for it to finish!
+	# 5. Trigger the fade-in animation and WAIT for it to finish
 	current_npc.fade_in_and_signal()
 	await current_npc.fade_in_complete
 	
 	# Tell the rest of the game the NPC arrived
 	EventBus.npc_arrived.emit()
 	
-	# 4. Start the dialogue sequence automatically!
+	# 6. Start the dialogue sequence automatically!
 	start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
+	
+	# Unlock the bell logic so it can be used again in the future
+	is_processing_bell = false
 
 func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array, issue_id: String) -> void:
 	print("NPC fade-in finished, starting dialogue!")
@@ -169,12 +213,11 @@ func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array
 			
 		current_popup = ISSUE_POPUP_SCENE.instantiate()
 		add_child(current_popup) 
-		current_popup.setup_issue(customer_name, issues, issue_id)
-		
-		# (Deleted the EventBus emits from here!)
+		current_popup.setup_issue( issues, issue_id)
 		
 	else:
 		print("ERROR: Dialogue system node is not valid!")
+
 func _on_taskboard_button_pressed() -> void:
 	EventBus.fade_out_robot.emit()
 	print("Taskboard Button Pressed!")
@@ -190,7 +233,7 @@ func _on_taskboard_button_pressed() -> void:
 func _on_manual_button_pressed() -> void:
 	print("Manual Button Pressed!")
 	
-	# Check if the manual is already instanced to save memory. 
+	# Check if the manual is already instanced to save memory.
 	# If not, we instantiate it and add it to the scene tree.
 	if not is_instance_valid(manual_popup_instance):
 		manual_popup_instance = MANUAL_POPUP_SCENE.instantiate()

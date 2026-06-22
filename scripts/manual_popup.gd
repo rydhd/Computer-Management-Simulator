@@ -4,11 +4,18 @@ extends CanvasLayer
 # NODE REFERENCES
 # ==========================================
 @onready var close_button: Button = $BookCenter/BookBackground/CloseButton
+@onready var book_background: TextureRect = $BookCenter/BookBackground # <--- ADD THIS LINE
+
+# Tab Buttons
+@onready var parts_button: Button = $BookCenter/TabButtonsHBox/PartsButton
+@onready var errors_button: Button = $BookCenter/TabButtonsHBox/ErrorsButton
+
+# Navigation Updates
+@onready var left_button: TextureButton = $BookCenter/BookBackground/NavigationHBox/LeftButton
+@onready var right_button: TextureButton = $BookCenter/BookBackground/NavigationHBox/RightButton
+@onready var page_label: Label = $BookCenter/BookBackground/NavigationHBox/Label
 
 # Right Page Updates
-@onready var left_button: Button = $BookCenter/BookBackground/NavigationHBox/LeftButton
-@onready var right_button: Button = $BookCenter/BookBackground/NavigationHBox/RightButton
-@onready var page_label: Label = $BookCenter/BookBackground/NavigationHBox/Label
 @onready var page_text: RichTextLabel = $BookCenter/BookBackground/RightPage/RightVBox/PageText
 
 # Left Page Updates
@@ -19,23 +26,46 @@ extends CanvasLayer
 # STATE & DATA
 # ==========================================
 var current_page: int = 0
+var active_pages: Array[Dictionary] = []
 
-# An Array of Dictionaries acts as our local database for the book's contents.
-var manual_pages: Array[Dictionary] = [
+# --- BACKGROUND TEXTURES ---
+# Preload your default Parts journal image
+var parts_bg_texture: Texture2D = preload("res://assets/2D Assets/2D Materials/Journal Overlay 1.png")
+
+# Preload your new Errors journal image (REPLACE THIS PATH WITH YOUR ACTUAL IMAGE PATH!)
+var errors_bg_texture: Texture2D = preload("res://assets/2D Assets/2D Materials/Journal Overlay 2.png")
+# This variable holds whichever array we are currently looking at!
+
+
+# --- DATABASE 1: PARTS ---
+var parts_pages: Array[Dictionary] = [
 	{
 		"title": "Introduction",
-		"text": "Welcome to your new PC repair shop!\n\nHere you will learn how to identify, repair, and install hardware components. Use the buttons below to flip through the manual.",
+		"text": "Welcome to your new PC repair shop!\n\nHere you will learn how to identify, repair, and install hardware components.",
 		"image": null
 	},
 	{
 		"title": "The CPU (Processor)",
-		"text": "[b]What does it do?[/b]\nThe Central Processing Unit is the brain of the computer. It handles all the complex calculations and instructions.\n\n[b]Installation Steps:[/b]\n1. Lift the socket lever.\n2. Align the golden triangle.\n3. Drop it in gently.\n\n[color=red]WARNING:[/color] Always ensure thermal paste is applied before attaching the cooler!",
+		"text": "[b]What does it do?[/b]\nThe Central Processing Unit is the brain of the computer.\n\n[color=red]WARNING:[/color] Always ensure thermal paste is applied before attaching the cooler!",
 		"image": null
+	}
+]
+
+# --- DATABASE 2: ERRORS ---
+var errors_pages: Array[Dictionary] = [
+	{
+		"title": "Blue Screen of Death (BSOD)",
+		"text": "[b]What is it?[/b]\nA fatal system error indicating the operating system has crashed.\n\n[b]Common Causes:[/b]\n1. Faulty RAM\n2. Overheating CPU\n3. Corrupt Drivers",
+		
+		# REPLACE "null" WITH YOUR IMAGE PATH!
+		"image": null # Put your exact image path here!
 	},
 	{
-		"title": "Graphics Processing Unit",
-		"text": "[b]What does it do?[/b]\nThe [color=green]GPU[/color] renders images, video, and 2D/3D graphics. \n\nIt slots into the PCIe lane on the motherboard. Always ensure it is seated properly and the power cables are connected.",
-		"image": null
+		"title": "No POST (Power On Self Test)",
+		"text": "[b]Symptoms:[/b]\nThe computer turns on, fans spin, but the screen stays black and there are no beeps.\n\n[b]Solution:[/b]\nCheck if the RAM is fully seated and the CPU power cable is plugged in.",
+		
+		# You can leave this as null if this specific page doesn't need an image
+		"image": null 
 	}
 ]
 
@@ -43,65 +73,86 @@ var manual_pages: Array[Dictionary] = [
 # BUILT-IN FUNCTIONS
 # ==========================================
 func _ready() -> void:
+	close_button.pressed.connect(_on_close_button_pressed)
+	left_button.pressed.connect(_on_left_button_pressed)
+	right_button.pressed.connect(_on_right_button_pressed)
 	
-	# 2. Hide the manual by default when the scene loads
+	# Connect the new tab buttons!
+	parts_button.pressed.connect(_on_parts_button_pressed)
+	errors_button.pressed.connect(_on_errors_button_pressed)
+	
 	hide()
 	
-	# 3. Initialize the visual state
-	update_page_display()
+	# Set default tab to Parts when the game loads
+	_on_parts_button_pressed()
 
 # ==========================================
 # CORE LOGIC
 # ==========================================
 func update_page_display() -> void:
-	if manual_pages.is_empty():
+	if active_pages.is_empty():
 		return
 		
-	var page_data = manual_pages[current_page]
+	var page_data = active_pages[current_page]
 	
-	# Populate Title
 	title_label.text = page_data["title"]
-	
-	# Populate RichTextLabel securely 
 	page_text.clear()
-	# Using append_text parses BBCode correctly (like bolding and colors!)
 	page_text.append_text(page_data["text"])
 	
-	# Populate Image (Hide TextureRect if there's no image for this page to save space)
 	if page_data["image"] != null:
 		page_image.texture = page_data["image"]
 		page_image.show()
 	else:
 		page_image.hide()
 		
-	# Update Navigation UI
-	page_label.text = str(current_page + 1) + " / " + str(manual_pages.size())
+	page_label.text = str(current_page + 1) + " / " + str(active_pages.size())
 	
-	# Disable buttons if we are at the beginning or end of the book
+	# Disable buttons dynamically based on the active array size
 	left_button.disabled = (current_page == 0)
-	right_button.disabled = (current_page == manual_pages.size() - 1)
+	right_button.disabled = (current_page == active_pages.size() - 1)
 
 # ==========================================
 # SIGNAL CALLBACKS
 # ==========================================
+func _on_parts_button_pressed() -> void:
+	active_pages = parts_pages  
+	current_page = 0            
+	
+	# SWAP THE BACKGROUND IMAGE!
+	book_background.texture = parts_bg_texture
+	
+	parts_button.disabled = true
+	errors_button.disabled = false
+	
+	update_page_display()
+
+func _on_errors_button_pressed() -> void:
+	active_pages = errors_pages 
+	current_page = 0            
+	
+	# SWAP THE BACKGROUND IMAGE!
+	book_background.texture = errors_bg_texture
+	
+	errors_button.disabled = true
+	parts_button.disabled = false
+	
+	update_page_display()
+
 func _on_left_button_pressed() -> void:
 	if current_page > 0:
 		current_page -= 1
 		update_page_display()
 
 func _on_right_button_pressed() -> void:
-	if current_page < manual_pages.size() - 1:
+	if current_page < active_pages.size() - 1:
 		current_page += 1
 		update_page_display()
 
 func _on_close_button_pressed() -> void:
-	# Hide the CanvasLayer entirely
 	hide()
 
 # ==========================================
 # PUBLIC API
 # ==========================================
 func open_manual() -> void:
-	current_page = 0
-	update_page_display()
 	show()

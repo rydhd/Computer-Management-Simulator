@@ -26,6 +26,7 @@ texture = ExtResource("1_mtav4")
 expand_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1239756513]
+visible = false
 position = Vector2(-1, 70)
 shape = SubResource("CapsuleShape2D_u0jq1")
-debug_color = Color(0, 0.6, 0.69803923, 0.2901961)
+debug_color = Color(0, 0.6, 0.69803923, 1)

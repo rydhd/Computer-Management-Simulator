@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5rrknt1akeg2"
+path="res://.godot/imported/Screw In - Sound Effect (HD).mp3-ce868e692917abdeea8bf957f50ad2ff.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/Screw In - Sound Effect (HD).mp3"
+dest_files=["res://.godot/imported/Screw In - Sound Effect (HD).mp3-ce868e692917abdeea8bf957f50ad2ff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

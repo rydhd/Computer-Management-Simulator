@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://dd7e2rfgueux4"]
+
+[ext_resource type="Script" uid="uid://mrpmt80mftaf" path="res://scripts/cutscene.gd" id="1_a320b"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="2_0sipp"]
+[ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/xtra 5.png" id="3_2bm7f"]
+[ext_resource type="Texture2D" uid="uid://bbnprgv5klmcs" path="res://assets/2D Assets/2D Materials/Logo Overlay 1.png" id="4_fs8wb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2bm7f"]
+font = ExtResource("2_0sipp")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_bb0yx"]
+font = ExtResource("2_0sipp")
+font_size = 28
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3ptll"]
+font = ExtResource("2_0sipp")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d18fx"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2bm7f"]
+bg_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[node name="Cutscene" type="Control" unique_id=233372577]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a320b")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1863072639]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ReferenceRect" type="ReferenceRect" parent="ColorRect" unique_id=19553612]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -550.0
+offset_top = -182.0
+offset_right = 555.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+border_color = Color(1, 1, 1, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="DialogueText" type="RichTextLabel" parent="ColorRect/ReferenceRect" unique_id=546083164]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_0sipp")
+bbcode_enabled = true
+text = "MY NAME'S RENIER. I LIVE WITH MY DAD IN A SMALL NEIGHBORHOOD THAT'S SEEN BETTER DAYS. PEOPLE HERE DON'T HAVE MUCH, BUT THEY MAKE DO. WE RUN A TINY COMPUTER REPAIR SHOP AT THE CORNER OF THE STREET. IT'S NOTHING FANCY-JUST SHELVES OF OLD PARTS, WIRES HANGING EVERYWHERE, AND MACHINES THAT HAVE MORE HISTORY THAN LIFE LEFT IN THEM."
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=1780839218]
+layout_mode = 0
+offset_left = 791.0
+offset_top = 433.0
+offset_right = 1131.0
+offset_bottom = 456.0
+text = "Click to continue"
+label_settings = SubResource("LabelSettings_2bm7f")
+
+[node name="WelcomeScreen" type="ColorRect" parent="." unique_id=455637224]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="TextureRect" type="TextureRect" parent="WelcomeScreen" unique_id=1433483315]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_2bm7f")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="WelcomeScreen/TextureRect" unique_id=626503205]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_fs8wb")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="WelcomeScreen/TextureRect" unique_id=1466663774]
+light_mask = 0
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -160.0
+offset_right = 324.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "PRESS ANYWHERE TO START"
+label_settings = SubResource("LabelSettings_bb0yx")
+
+[node name="LoadingScreen" type="ColorRect" parent="." unique_id=2123907858]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="LoadingScreen" unique_id=1499624049]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_2bm7f")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="LoadingScreen/TextureRect" unique_id=516401785]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -4.0
+offset_right = -24.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING..."
+label_settings = SubResource("LabelSettings_3ptll")
+
+[node name="LoadingBar" type="ProgressBar" parent="LoadingScreen" unique_id=879578908]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = 20.0
+offset_right = 184.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_d18fx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2bm7f")
+show_percentage = false

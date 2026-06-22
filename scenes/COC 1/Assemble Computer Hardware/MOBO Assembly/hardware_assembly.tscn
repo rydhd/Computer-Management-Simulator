@@ -10,15 +10,38 @@
 [ext_resource type="PackedScene" uid="uid://wsoibpe76ngv" path="res://scenes/COC 1/Assemble Computer Hardware/MOBO Assembly/cpu.tscn" id="8_qyuvh"]
 [ext_resource type="PackedScene" uid="uid://0byfmi315lyu" path="res://scenes/COC 1/Assemble Computer Hardware/MOBO Assembly/ram.tscn" id="9_y4u54"]
 [ext_resource type="PackedScene" uid="uid://cp4veoehhj8k0" path="res://scenes/COC 1/Assemble Computer Hardware/MOBO Assembly/assembly_task_list.tscn" id="10_bs1sv"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="10_ulvih"]
+[ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="11_o17no"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bf13"]
 size = Vector2(152, 152)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1b1jb"]
-load_path = "res://.godot/imported/bruh.png-c43ca8550b51b722c76d96e2121832bd.ctex"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj3go"]
 size = Vector2(453, 42)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofhu7"]
+texture = ExtResource("10_ulvih")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_syydj"]
+texture = ExtResource("11_o17no")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4m4ie"]
+load_path = "res://.godot/imported/hover.png-1d327c2dea1bf4185c4330e0aab9bf07.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ihya0"]
+texture = SubResource("CompressedTexture2D_4m4ie")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_264bs"]
 font_color = Color(0.97539407, 0, 0.316302, 1)
@@ -75,7 +98,6 @@ offset_bottom = 545.75415
 scale = Vector2(0.18170102, 0.18744163)
 size_flags_horizontal = 6
 size_flags_vertical = 3
-texture_normal = SubResource("CompressedTexture2D_1b1jb")
 metadata/_edit_use_anchors_ = true
 
 [node name="SpinningCircle" type="Sprite2D" parent="Socket_CPU" unique_id=282865027]
@@ -117,6 +139,9 @@ position = Vector2(1028, 402)
 layout_mode = 1
 offset_right = 128.0
 offset_bottom = 64.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ofhu7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_syydj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ihya0")
 text = "Back"
 
 [node name="AssemblyTaskList" parent="." unique_id=1972073169 instance=ExtResource("10_bs1sv")]

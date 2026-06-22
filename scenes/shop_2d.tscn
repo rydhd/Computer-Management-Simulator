@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cu3n8yf78y35k" path="res://assets/2D Assets/2D Materials/Background Manual.png" id="5_dt4ex"]
 [ext_resource type="Texture2D" uid="uid://bykndi0q8vtit" path="res://assets/2D Assets/2D Materials/Background Taskboard.png" id="6_4kg1i"]
 [ext_resource type="Texture2D" uid="uid://cj54wr3m26g8" path="res://assets/2D Assets/2D Materials/Background Bell.png" id="7_4swkf"]
+[ext_resource type="AudioStream" uid="uid://b5pmdiqlmhpil" path="res://assets/Audio/bell 2.mp3" id="7_id5k1"]
 [ext_resource type="Script" uid="uid://04pswj4ru25g" path="res://scripts/dialogue_system.gd" id="8_4swkf"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="8_63r2m"]
 [ext_resource type="PackedScene" uid="uid://diul2q2ek0iop" path="res://scenes/taskboard_overlay.tscn" id="9_8ahl1"]
@@ -75,9 +76,9 @@ z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.29707092
-anchor_top = 0.8310948
-anchor_right = 0.29707092
-anchor_bottom = 0.8310948
+anchor_top = 0.85787785
+anchor_right = 0.29815415
+anchor_bottom = 0.8606443
 offset_left = 84.77423
 offset_top = 77.45056
 offset_right = 92.77423
@@ -85,6 +86,7 @@ offset_bottom = 85.45056
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(-10.596777, -9.681324)
+flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="BackgroundBell" type="TextureRect" parent="." unique_id=829162104]
@@ -110,7 +112,11 @@ anchor_bottom = 0.8981034
 offset_right = 84.713745
 offset_bottom = 72.04132
 scale = Vector2(0.7180266, 0.83046067)
+flat = true
 metadata/_edit_use_anchors_ = true
+
+[node name="BellSound" type="AudioStreamPlayer" parent="BackgroundBell" unique_id=1320471360]
+stream = ExtResource("7_id5k1")
 
 [node name="BackgroundTaskboard" type="TextureRect" parent="." unique_id=1803053726]
 z_index = 1
@@ -126,14 +132,16 @@ expand_mode = 1
 
 [node name="TaskboardButton" type="Button" parent="BackgroundTaskboard" unique_id=695502417]
 z_index = 1
-layout_mode = 0
-anchor_left = 0.4097222
-anchor_top = 0.8518519
-anchor_right = 0.48459613
-anchor_bottom = 0.9533565
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4123264
+anchor_top = 0.81790125
+anchor_right = 0.48720032
+anchor_bottom = 0.9243282
 offset_right = -78.25476
 offset_bottom = -56.65326
 scale = Vector2(10.781843, 7.21078)
+flat = true
 metadata/_edit_use_anchors_ = true
 
 [node name="NpcSpawnPoint" type="Control" parent="." unique_id=1243202528]

@@ -2,9 +2,30 @@
 
 [ext_resource type="Script" uid="uid://4qpyylim21o7" path="res://scripts/issue_popup_ui.gd" id="1_j8j1j"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="2_xt8t5"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="3_xfj1j"]
+[ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="4_wuvih"]
+[ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="5_pq1ru"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_xfj1j"]
-font = ExtResource("2_xt8t5")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lvjvm"]
+texture = ExtResource("3_xfj1j")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_skqwc"]
+texture = ExtResource("4_wuvih")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v7uwb"]
+texture = ExtResource("5_pq1ru")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [node name="IssuePopupUI" type="CanvasLayer" unique_id=639928974]
 script = ExtResource("1_j8j1j")
@@ -24,14 +45,23 @@ size_flags_vertical = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2124406661]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=660369216]
 layout_mode = 2
+theme_override_constants/separation = 14
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1435948338]
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1867874133]
 layout_mode = 2
-text = "CustomerNameLabel"
-label_settings = SubResource("LabelSettings_xfj1j")
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_xt8t5")
+theme_override_styles/normal = SubResource("StyleBoxTexture_lvjvm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_skqwc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_v7uwb")
+text = "Clip"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1687131095]
 layout_mode = 2
@@ -39,9 +69,4 @@ theme_override_fonts/normal_font = ExtResource("2_xt8t5")
 bbcode_enabled = true
 text = "Issue Description"
 fit_content = true
-
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1867874133]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "Clip"
+autowrap_mode = 2

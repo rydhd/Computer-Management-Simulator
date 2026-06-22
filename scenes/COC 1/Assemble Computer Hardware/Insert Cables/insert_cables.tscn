@@ -1,23 +1,31 @@
 [gd_scene format=3 uid="uid://crl81unyijdm"]
 
 [ext_resource type="Script" uid="uid://c8f5b4j0oyai4" path="res://scripts/insert_cables.gd" id="1_brs0y"]
+[ext_resource type="Texture2D" uid="uid://dcsee3lckxveo" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/system unit complete w cables.png" id="2_0tdvh"]
 [ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/xtra 5.png" id="2_eaa8h"]
 [ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="3_0tdvh"]
 [ext_resource type="Texture2D" uid="uid://busuqhg3r0u3i" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/System unit.png" id="4_45b5g"]
 [ext_resource type="Script" uid="uid://bfuehugvafxw2" path="res://scripts/psu_drop_zone.gd" id="5_rnlsk"]
-[ext_resource type="Texture2D" uid="uid://dakw3x40jmjvw" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/cpu1.png" id="6_cqoya"]
 [ext_resource type="Texture2D" uid="uid://dd6dx011jrcdw" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/PSU.png" id="7_o0adv"]
 [ext_resource type="Script" uid="uid://dmyy56w2nlny" path="res://scripts/psu.gd" id="8_ilue1"]
 [ext_resource type="Texture2D" uid="uid://df1dlabw6qfgk" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/MOBO zoomed.png" id="9_nc1cq"]
 [ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/2D Assets/2D Materials/X.png" id="10_ilk4g"]
 [ext_resource type="Script" uid="uid://7dhhxsewapdd" path="res://scripts/mobo_socket.gd" id="11_nkx8n"]
-[ext_resource type="Texture2D" uid="uid://c7yr45pcux16k" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/image 892.png" id="12_2ky2w"]
+[ext_resource type="Texture2D" uid="uid://cst6ret6qu3vn" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/24pin CPU.png" id="12_brs0y"]
 [ext_resource type="Script" uid="uid://cp6iwm1pueo24" path="res://scripts/draggable_item.gd" id="13_6fpu1"]
-[ext_resource type="Texture2D" uid="uid://ce6o0hf0p831j" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/image 893.png" id="14_0npft"]
-[ext_resource type="Texture2D" uid="uid://dle0m8iora1ck" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/image 894.png" id="15_yki5j"]
+[ext_resource type="Texture2D" uid="uid://bl0e0th0ct82f" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/CPU cable.png" id="14_eaa8h"]
+[ext_resource type="Texture2D" uid="uid://w3t8sqjhdif3" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/pcie gpu.png" id="16_0tdvh"]
+[ext_resource type="Texture2D" uid="uid://4ccvmtm3qdqu" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/GPU zoomed.png" id="16_eaa8h"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xabfi"]
-load_path = "res://.godot/imported/Square.png-56b110934d2ebe9cb8d885fb60e2a04e.ctex"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eaa8h"]
+bg_color = Color(0, 0, 0, 0.5176471)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_eaa8h"]
+font_color = Color(0.8738018, 0, 0.14194083, 1)
 
 [node name="Insert_Cables" type="Control" unique_id=1825963719]
 layout_mode = 3
@@ -26,8 +34,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_brs0y")
-total_cables_needed = 3
+completed_system_unit_texture = ExtResource("2_0tdvh")
 
 [node name="Background" type="TextureRect" parent="." unique_id=2018168005]
 layout_mode = 1
@@ -69,7 +78,6 @@ anchor_top = 0.65
 anchor_right = 0.34
 anchor_bottom = 0.715
 script = ExtResource("5_rnlsk")
-installed_psu_texture = ExtResource("6_cqoya")
 metadata/_edit_use_anchors_ = true
 
 [node name="PSUSocket" type="TextureRect" parent="SystemUnit/PSUDropZone" unique_id=663473970]
@@ -80,13 +88,21 @@ offset_bottom = 40.0
 [node name="MoboButton" type="TextureButton" parent="SystemUnit" unique_id=2123564919]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.387
-anchor_top = 0.311
-anchor_right = 0.529
+anchor_left = 0.16101696
+anchor_top = 0.25988224
+anchor_right = 0.62711865
 anchor_bottom = 0.424
-texture_normal = SubResource("CompressedTexture2D_xabfi")
 ignore_texture_size = true
 stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="GpuButton" type="TextureButton" parent="SystemUnit" unique_id=1433206250]
+layout_mode = 0
+anchor_left = 0.19915254
+anchor_top = 0.47518924
+anchor_right = 0.55932206
+anchor_bottom = 0.54247266
+metadata/_edit_use_anchors_ = true
 
 [node name="PSU" type="TextureRect" parent="." unique_id=1638621619]
 layout_mode = 1
@@ -105,6 +121,56 @@ expand_mode = 1
 script = ExtResource("8_ilue1")
 item_category = "psu"
 
+[node name="GpuZoomPopup" type="ColorRect" parent="." unique_id=1702739290]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6862745)
+
+[node name="ZoomedGpuVisual" type="TextureRect" parent="GpuZoomPopup" unique_id=1212332316]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.0
+offset_top = -163.0
+offset_right = 171.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_eaa8h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CloseGpuButton" type="TextureButton" parent="GpuZoomPopup/ZoomedGpuVisual" unique_id=1505358116]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture_normal = ExtResource("10_ilk4g")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="GpuSocket_6Pin" type="Control" parent="GpuZoomPopup/ZoomedGpuVisual" unique_id=1632732718]
+layout_mode = 1
+anchor_left = 0.45614034
+anchor_top = 0.38650307
+anchor_right = 0.58187133
+anchor_bottom = 0.46625763
+grow_vertical = 0
+script = ExtResource("11_nkx8n")
+required_cable_id = "6-pin"
+metadata/_edit_use_anchors_ = true
+
 [node name="MoboZoomPopup" type="ColorRect" parent="." unique_id=1204923219]
 layout_mode = 1
 anchors_preset = 15
@@ -112,6 +178,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 0.6862745)
 
 [node name="ZoomedMoboVisual" type="TextureRect" parent="MoboZoomPopup" unique_id=500079142]
@@ -159,18 +226,6 @@ script = ExtResource("11_nkx8n")
 required_cable_id = "8-pin"
 metadata/_edit_use_anchors_ = true
 
-[node name="MoboSocket_6Pin" type="Control" parent="MoboZoomPopup/ZoomedMoboVisual" unique_id=1632732718]
-layout_mode = 1
-anchor_left = 0.230791
-anchor_top = 0.75355554
-anchor_right = 0.27198687
-anchor_bottom = 0.8461481
-offset_top = -1.5258789e-05
-grow_vertical = 0
-script = ExtResource("11_nkx8n")
-required_cable_id = "6-pin"
-metadata/_edit_use_anchors_ = true
-
 [node name="CableTray" type="HBoxContainer" parent="." unique_id=1771569630]
 layout_mode = 1
 anchors_preset = 3
@@ -186,7 +241,7 @@ grow_vertical = 0
 [node name="Cable_24Pin" type="TextureRect" parent="CableTray" unique_id=197666673]
 custom_minimum_size = Vector2(134, 0)
 layout_mode = 2
-texture = ExtResource("12_2ky2w")
+texture = ExtResource("12_brs0y")
 expand_mode = 1
 script = ExtResource("13_6fpu1")
 specific_id = "24-pin"
@@ -194,7 +249,7 @@ specific_id = "24-pin"
 [node name="Cable_8Pin" type="TextureRect" parent="CableTray" unique_id=205378377]
 custom_minimum_size = Vector2(98, 0)
 layout_mode = 2
-texture = ExtResource("14_0npft")
+texture = ExtResource("14_eaa8h")
 expand_mode = 1
 script = ExtResource("13_6fpu1")
 specific_id = "8-pin"
@@ -202,7 +257,7 @@ specific_id = "8-pin"
 [node name="Cable_6Pin" type="TextureRect" parent="CableTray" unique_id=1166038874]
 custom_minimum_size = Vector2(62, 0)
 layout_mode = 2
-texture = ExtResource("15_yki5j")
+texture = ExtResource("16_0tdvh")
 expand_mode = 1
 script = ExtResource("13_6fpu1")
 specific_id = "6-pin"
@@ -221,4 +276,56 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "Task Complete"
 
+[node name="TaskOverlay" type="CanvasLayer" parent="." unique_id=1164786247]
+layer = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="TaskOverlay" unique_id=1488417730]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -235.0
+offset_bottom = 305.0
+grow_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TaskOverlay/PanelContainer" unique_id=1324546585]
+layout_mode = 2
+
+[node name="TaskTitle" type="Label" parent="TaskOverlay/PanelContainer/VBoxContainer" unique_id=478918293]
+layout_mode = 2
+text = "Tasks:"
+
+[node name="TaskPSU" type="CheckBox" parent="TaskOverlay/PanelContainer/VBoxContainer" unique_id=692291284]
+layout_mode = 2
+text = "Install the PSU"
+
+[node name="Task24Pin" type="CheckBox" parent="TaskOverlay/PanelContainer/VBoxContainer" unique_id=295194832]
+layout_mode = 2
+mouse_filter = 2
+text = "Connect 24-Pin ATX"
+
+[node name="Task8Pin" type="CheckBox" parent="TaskOverlay/PanelContainer/VBoxContainer" unique_id=1440504044]
+layout_mode = 2
+mouse_filter = 2
+text = "Connect 8-Pin CPU"
+
+[node name="Task6Pin" type="CheckBox" parent="TaskOverlay/PanelContainer/VBoxContainer" unique_id=50664240]
+layout_mode = 2
+mouse_filter = 2
+text = "Connect 6-Pin PCIe"
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=136364747]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 53.0
+offset_right = 742.0
+offset_bottom = 93.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_eaa8h")
+
+[node name="InstructionPrompt" type="Label" parent="PanelContainer" unique_id=895881405]
+layout_mode = 2
+text = "Click the Motherboard or GPU to connect the wires!"
+label_settings = SubResource("LabelSettings_eaa8h")
+
+[connection signal="pressed" from="SystemUnit/GpuButton" to="." method="_on_gpu_button_pressed"]
+[connection signal="pressed" from="GpuZoomPopup/ZoomedGpuVisual/CloseGpuButton" to="." method="_on_close_gpu_button_pressed"]
 [connection signal="pressed" from="CompleteButton" to="." method="_on_complete_button_pressed"]

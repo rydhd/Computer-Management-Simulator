@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://diul2q2ek0iop"]
 
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="2_hkuvw"]
 [ext_resource type="Script" uid="uid://da13y5gkst4l2" path="res://scripts/taskboard_overlay.gd" id="2_jrgkd"]
 [ext_resource type="Shader" uid="uid://blihgxoc5id3r" path="res://shader/dim_background.gdshader" id="2_l8koe"]
 [ext_resource type="Texture2D" uid="uid://dy7gmub0473cj" path="res://assets/2D Assets/2D Materials/Taskboard Overlay.png" id="2_wuukr"]
+[ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/2D Assets/2D Materials/X.png" id="4_jrgkd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jrgkd"]
 shader = ExtResource("2_l8koe")
@@ -19,8 +21,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_jrgkd")
-text_font_size = 30
-vertical_spacing_between_tasks = 40
+text_font = ExtResource("2_hkuvw")
+text_font_size = 20
+vertical_spacing_between_tasks = 0
+list_padding_top = 30
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2010608476]
 layout_mode = 1
@@ -55,13 +59,15 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CloseButton" type="Button" parent="." unique_id=775193161]
+[node name="CloseButton" type="TextureButton" parent="." unique_id=130430360]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.70312506
-anchor_top = 0.13425927
-anchor_right = 0.81857646
-anchor_bottom = 0.23302473
+anchor_left = 0.71875
+anchor_top = 0.14351854
+anchor_right = 0.7878966
+anchor_bottom = 0.20550509
 grow_horizontal = 2
 scale = Vector2(0.5774769, 1.0207306)
+texture_normal = ExtResource("4_jrgkd")
+stretch_mode = 0
 metadata/_edit_use_anchors_ = true
