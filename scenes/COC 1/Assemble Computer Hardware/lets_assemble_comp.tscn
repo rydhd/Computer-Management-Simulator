@@ -2,6 +2,52 @@
 
 [ext_resource type="Script" uid="uid://b2q2vdvgukcnx" path="res://scripts/lets_assemble_comp.gd" id="1_hw6d0"]
 [ext_resource type="Texture2D" uid="uid://y5hvgosrnaor" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/Assemble Menu (1).png" id="2_tihpq"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="3_c6p2s"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="4_5e3nd"]
+[ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="5_yx6ak"]
+[ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="6_wbml8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b2mg1"]
+texture = ExtResource("4_5e3nd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rn2ui"]
+texture = ExtResource("5_yx6ak")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1aw67"]
+texture = ExtResource("6_wbml8")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sdii6"]
+texture = ExtResource("4_5e3nd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4uffs"]
+texture = ExtResource("5_yx6ak")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3rwny"]
+texture = ExtResource("6_wbml8")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [node name="LetsAssembleComp" type="Control" unique_id=677367258]
 layout_mode = 3
@@ -29,27 +75,36 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -178.5
-offset_top = -141.0
-offset_right = -83.5
-offset_bottom = -110.0
+offset_left = -284.375
+offset_top = -160.0
+offset_right = 284.375
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(4, 4)
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="StartButton" type="Button" parent="BackgroundAssemble/HBoxContainer" unique_id=107944537]
 unique_name_in_owner = true
 layout_direction = 1
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_c6p2s")
+theme_override_styles/normal = SubResource("StyleBoxTexture_b2mg1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rn2ui")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1aw67")
 text = "Start"
 
 [node name="BackButton" type="Button" parent="BackgroundAssemble/HBoxContainer" unique_id=2008531314]
 unique_name_in_owner = true
 layout_direction = 1
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_c6p2s")
+theme_override_styles/normal = SubResource("StyleBoxTexture_sdii6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4uffs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3rwny")
 text = "Back"
-alignment = 0
 autowrap_trim_flags = 0
 
 [connection signal="pressed" from="BackgroundAssemble/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

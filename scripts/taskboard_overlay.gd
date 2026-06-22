@@ -4,10 +4,11 @@ const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
 
 @onready var margin_container: MarginContainer = $MarginContainer
 @onready var task_list: VBoxContainer = $MarginContainer/TaskList
-@onready var close_button: Button = $CloseButton
+@onready var close_button: TextureButton = $CloseButton
 
 # --- INSPECTOR VARIABLES ---
 @export_group("Task Text Styling")
+@export var text_font: Font  
 @export var text_font_size: int = 24
 @export var normal_text_color: Color = Color(0.1, 0.1, 0.1)
 @export var hover_text_color: Color = Color(0.2, 0.4, 0.8)
@@ -16,12 +17,9 @@ const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
 @export_group("Task Text Layout & Position")
 @export var text_alignment: HorizontalAlignment = HORIZONTAL_ALIGNMENT_LEFT
 @export var vertical_spacing_between_tasks: int = 10
-@export var list_padding_left: int = 30  # Pushes the text to the right
-@export var list_padding_top: int = 50   # Pushes the text down from the top
+@export var list_padding_left: int = 30  
+@export var list_padding_top: int = 50   
 # ---------------------------
-
-# NOTE: The local 'var tasks: Array = []' has been removed! 
-# We now use GlobalState.active_tasks to ensure it survives scene changes.
 
 func _ready() -> void:
 	visible = false
@@ -36,7 +34,6 @@ func _ready() -> void:
 	EventBus.issue_clipped_to_board.connect(_on_issue_clipped)
 	
 	_populate_tasks()
-	
 
 # This runs automatically when the "Clip" button in IssuePopupUI is clicked
 func _on_issue_clipped(issue_id: String) -> void:
@@ -45,12 +42,16 @@ func _on_issue_clipped(issue_id: String) -> void:
 	
 	# Match the string ID sent by the popup to create the correct tasks!
 	match issue_id:
-		# --- THE GELO COMBO ---
-		"task_001_gelo":
+		# --- CHASE'S COMBO (Formerly Gelo) ---
+		"task_001_chase":
 			# Append all 3 tasks in the exact order they need to be completed!
 			GlobalState.active_tasks.append({"name": "Assemble Computer Hardware", "scene": "res://scenes/COC 1/Assemble Computer Hardware/lets_assemble_comp.tscn"})
 			GlobalState.active_tasks.append({"name": "Installing Operating System", "scene": "res://scenes/COC 1/Installing OS/installing_os.tscn"})
 			GlobalState.active_tasks.append({"name": "Arrange Cables", "scene": "res://scenes/COC 1/Arrange Cables/arrange_cables.tscn"})
+			
+		# --- MIYAMURA'S COMBO ---
+		"task_002_network":
+			GlobalState.active_tasks.append({"name": "Set-up Computer Networks", "scene": "res://scenes/COC 2/set_up_computer_networks.tscn"})
 			
 		# --- INDIVIDUAL TASKS (For other customers) ---
 		"issue_computer_hardware":
@@ -98,6 +99,11 @@ func _populate_tasks() -> void:
 		
 		# --- APPLY OUR EXPORTED VARIABLES HERE ---
 		cb.alignment = text_alignment
+		
+		# Apply custom font if one is assigned in the Inspector
+		if text_font != null:
+			cb.add_theme_font_override("font", text_font)
+			
 		cb.add_theme_font_size_override("font_size", text_font_size)
 		cb.add_theme_color_override("font_color", normal_text_color)
 		cb.add_theme_color_override("font_hover_color", hover_text_color)
@@ -138,7 +144,6 @@ func _on_task_clicked(task_name: String, target_scene_path: String) -> void:
 	var err = get_tree().change_scene_to_file(target_scene_path)
 	if err != OK:
 		push_error("Failed to load scene at path: " + target_scene_path)
-
 
 func show_board() -> void:
 	# Re-populate tasks every time the board is shown to catch any new completions!

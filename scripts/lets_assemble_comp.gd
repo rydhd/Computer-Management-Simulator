@@ -1,15 +1,10 @@
 extends Control # Or Node2D, depending on your root node
 
 @onready var start_button: Button = %StartButton
-@onready var begin_button: Button = %BeginButton
+@onready var back_button: Button = %BackButton
 
 func _ready() -> void:
-	# Make sure the Begin button is active when the scene loads
-	if begin_button:
-		begin_button.disabled = false
-		
-		# Optional: If you want to connect the signal purely in code:
-		# begin_button.pressed.connect(_on_begin_button_pressed)
+	pass
 
 func _on_start_button_pressed() -> void:
 	# Wipe old data so the player starts fresh!

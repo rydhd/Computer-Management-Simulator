@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://cg47keae7f1n0" path="res://scripts/manual_popup.gd" id="1_p51ek"]
 [ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/2D Assets/2D Materials/X.png" id="2_p51ek"]
 [ext_resource type="Texture2D" uid="uid://dakw3x40jmjvw" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/cpu1.png" id="4_ujo2t"]
+[ext_resource type="Texture2D" uid="uid://bna6y2a1a42ud" path="res://assets/2D Assets/2D Materials/arrow.png" id="5_o3d2x"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="6_a1w5q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ujo2t"]
 
@@ -44,12 +46,13 @@ anchor_left = 0.7708333
 anchor_top = 0.118199594
 anchor_right = 0.82259554
 anchor_bottom = 0.118199594
-offset_top = 50.406677
+offset_top = 59.406662
 offset_right = -33.630066
-offset_bottom = 76.40668
+offset_bottom = 85.40666
 grow_horizontal = 0
 scale = Vector2(2.293465, -1.9387183)
 icon = ExtResource("2_p51ek")
+flat = true
 
 [node name="LeftPage" type="MarginContainer" parent="BookCenter/BookBackground" unique_id=278457431]
 custom_minimum_size = Vector2(250, 0)
@@ -113,7 +116,9 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
+offset_left = 499.0
+offset_top = -90.0
+offset_right = -503.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(7, -8)
@@ -121,17 +126,53 @@ size_flags_vertical = 8
 size_flags_stretch_ratio = 0.0
 alignment = 1
 
-[node name="LeftButton" type="Button" parent="BookCenter/BookBackground/NavigationHBox" unique_id=1931306492]
+[node name="LeftButton" type="TextureButton" parent="BookCenter/BookBackground/NavigationHBox" unique_id=1976820619]
 layout_mode = 2
-text = "Left"
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_o3d2x")
+ignore_texture_size = true
+stretch_mode = 5
+flip_h = true
 
 [node name="Label" type="Label" parent="BookCenter/BookBackground/NavigationHBox" unique_id=1961537976]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_ujo2t")
 
-[node name="RightButton" type="Button" parent="BookCenter/BookBackground/NavigationHBox" unique_id=1069970896]
+[node name="RightButton" type="TextureButton" parent="BookCenter/BookBackground/NavigationHBox" unique_id=1844758418]
 layout_mode = 2
-text = "Right"
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_o3d2x")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TabButtonsHBox" type="HBoxContainer" parent="BookCenter" unique_id=112132426]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -299.0
+offset_right = -15.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="PartsButton" type="Button" parent="BookCenter/TabButtonsHBox" unique_id=870120516]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_a1w5q")
+text = "Parts"
+flat = true
+
+[node name="ErrorsButton" type="Button" parent="BookCenter/TabButtonsHBox" unique_id=1008310581]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_a1w5q")
+text = "Errors"
+flat = true
 
 [connection signal="pressed" from="BookCenter/BookBackground/CloseButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="BookCenter/BookBackground/NavigationHBox/LeftButton" to="." method="_on_left_button_pressed"]

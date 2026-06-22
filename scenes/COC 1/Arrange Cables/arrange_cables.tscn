@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://do7787yed7h8" path="res://scripts/COC 1/Arrange Cables/arrange_cables.gd" id="1_jqbsa"]
 [ext_resource type="Texture2D" uid="uid://6a7tbsdi4qaf" path="res://assets/COC 1/Arrange Cables/Setup Menu.png" id="2_dfynq"]
 [ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/xtra 5.png" id="3_diyc5"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="3_f53sr"]
+[ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="4_4egg8"]
 [ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="4_set7h"]
-[ext_resource type="Texture2D" uid="uid://cvbbdnu3dr5qv" path="res://assets/COC 1/Arrange Cables/image 17.png" id="5_ftg1n"]
+[ext_resource type="Texture2D" uid="uid://evcxbvtm75hq" path="res://assets/COC 1/Arrange Cables/RJ45.png" id="5_diyc5"]
+[ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="5_fwbo3"]
 [ext_resource type="Texture2D" uid="uid://35k7yv46y5vc" path="res://assets/COC 1/Arrange Cables/wires/Orange.png" id="6_f53sr"]
 [ext_resource type="Texture2D" uid="uid://bvcuoy7n6223w" path="res://assets/COC 1/Arrange Cables/wires/Green.png" id="7_4egg8"]
 [ext_resource type="Script" uid="uid://ciwgk1r1c8cot" path="res://scripts/COC 1/Arrange Cables/draggable_wire.gd" id="7_diyc5"]
@@ -15,6 +18,27 @@
 [ext_resource type="Texture2D" uid="uid://d0vevkvgtwcnu" path="res://assets/COC 1/Arrange Cables/wires/OrangeWhite.png" id="12_01rnp"]
 [ext_resource type="Texture2D" uid="uid://y31akgdm0eve" path="res://assets/COC 1/Arrange Cables/wires/BrownWhite.png" id="13_0a6g1"]
 [ext_resource type="Script" uid="uid://dsc5tdb26ilqw" path="res://scripts/COC 1/Arrange Cables/wire_slot.gd" id="15_set7h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5mb4"]
+texture = ExtResource("3_f53sr")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fmfci"]
+texture = ExtResource("4_4egg8")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_px5ih"]
+texture = ExtResource("5_fwbo3")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_diyc5"]
 bg_color = Color(0.4862745, 0.5529412, 1, 0)
@@ -36,6 +60,8 @@ border_blend = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_diyc5"]
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_set7h"]
 
 [node name="ArrangeCables" type="Control" unique_id=216831828]
 layout_mode = 3
@@ -71,9 +97,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -139.5
-offset_top = -80.0
-offset_right = 139.5
+offset_left = -193.25
+offset_top = -151.0
+offset_right = 193.25
+offset_bottom = -71.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 13
@@ -81,11 +108,17 @@ theme_override_constants/separation = 13
 [node name="StartButton" type="Button" parent="MainMenu/HBoxContainer" unique_id=1750920735]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_k5mb4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fmfci")
+theme_override_styles/hover = SubResource("StyleBoxTexture_px5ih")
 text = "Start"
 
 [node name="BackButton" type="Button" parent="MainMenu/HBoxContainer" unique_id=236673530]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_k5mb4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fmfci")
+theme_override_styles/hover = SubResource("StyleBoxTexture_px5ih")
 text = "Back"
 
 [node name="GameplayPanel" type="Control" parent="." unique_id=1363771098]
@@ -117,17 +150,22 @@ texture = ExtResource("4_set7h")
 expand_mode = 1
 
 [node name="RJ45Head" type="TextureRect" parent="GameplayPanel" unique_id=2130338468]
-visible = false
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -132.5
-offset_right = 132.5
-offset_bottom = 301.0
+anchor_bottom = 1.0
+offset_left = -182.0
+offset_top = -136.0
+offset_right = 303.27075
+offset_bottom = 220.01636
 grow_horizontal = 2
-texture = ExtResource("5_ftg1n")
+grow_vertical = 0
+rotation = 4.712389
+texture = ExtResource("5_diyc5")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="WireInventory" type="HBoxContainer" parent="GameplayPanel" unique_id=629019859]
 layout_mode = 1
@@ -200,10 +238,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -328.5
-offset_top = 89.0
-offset_right = 328.5
-offset_bottom = 264.0
+offset_left = -113.0
+offset_top = 195.0
+offset_right = 107.0
+offset_bottom = 262.0
 grow_horizontal = 2
 theme_override_constants/separation = 12
 
@@ -353,18 +391,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_set7h")
 
 [node name="FeedbackLabel" type="RichTextLabel" parent="GameplayPanel" unique_id=540201872]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -129.0
-offset_top = 42.0
-offset_right = 130.0
-offset_bottom = 145.0
+anchors_preset = -1
+anchor_left = 0.6310764
+anchor_top = 0.39814815
+anchor_right = 0.8559028
+anchor_bottom = 0.55709875
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="TargetStandardLabel" type="Label" parent="GameplayPanel" unique_id=2106201706]
 layout_mode = 1
@@ -377,6 +412,24 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "Target Standard:"
 label_settings = SubResource("LabelSettings_diyc5")
+
+[node name="InstructionLabel" type="Label" parent="GameplayPanel" unique_id=337024658]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -452.0
+offset_top = -64.0
+offset_right = -149.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "drag the wires to the highlighted shape"
+label_settings = SubResource("LabelSettings_set7h")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="MainMenu/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MainMenu/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

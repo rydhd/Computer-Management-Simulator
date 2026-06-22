@@ -4,8 +4,31 @@
 [ext_resource type="Texture2D" uid="uid://b1s0sdscim27h" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/xtra 5.png" id="2_koa5v"]
 [ext_resource type="PackedScene" uid="uid://djtqi6181mla7" path="res://scenes/COC 1/Assemble Computer Hardware/task_items.tscn" id="3_h8157"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="4_c1ttk"]
-[ext_resource type="Texture2D" uid="uid://6r3wk2y43lnh" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/Rectangle 68.png" id="5_c3h6u"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="5_ne1si"]
+[ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="6_5cae0"]
 [ext_resource type="Texture2D" uid="uid://q87jwr5gtlax" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/System Unit ONLY.png" id="6_iilsr"]
+[ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="7_gveqd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cok2q"]
+texture = ExtResource("5_ne1si")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rpnci"]
+texture = ExtResource("6_5cae0")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xhk25"]
+texture = ExtResource("7_gveqd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [node name="ComputerMenu" type="Control" unique_id=1461508389]
 z_index = 1
@@ -46,10 +69,11 @@ grow_vertical = 0
 scale = Vector2(0.67376655, 0.5788467)
 theme_override_fonts/font = ExtResource("4_c1ttk")
 theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxTexture_cok2q")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_rpnci")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xhk25")
 text = "Begin"
-icon = ExtResource("5_c3h6u")
-flat = true
-icon_alignment = 1
+autowrap_mode = 2
 
 [node name="SystemUnit" type="TextureRect" parent="." unique_id=1556790482]
 layout_mode = 1

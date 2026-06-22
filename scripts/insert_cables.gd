@@ -1,73 +1,126 @@
 extends Control
 
-# --- REFERENCES ---
+# --- UI REFERENCES ---
 @onready var cable_tray: Control = $CableTray
 @onready var psu_drop_zone: Control = $SystemUnit/PSUDropZone
+@onready var system_unit_rect: TextureRect = $SystemUnit
+@export var completed_system_unit_texture: Texture2D 
+@onready var complete_button: Button = $CompleteButton
+
+# --- NEW: Fixed Overlay References ---
+# Point to the PanelContainer to show/hide the dark background
+@onready var instruction_overlay: PanelContainer = $PanelContainer
+# Point to the Label inside it to change the text
+@onready var instruction_prompt: Label = $PanelContainer/InstructionPrompt
+
+# --- POPUP REFERENCES ---
 @onready var mobo_button: TextureButton = $SystemUnit/MoboButton
 @onready var mobo_zoom_popup: ColorRect = $MoboZoomPopup
 @onready var close_zoom_button: TextureButton = $MoboZoomPopup/ZoomedMoboVisual/CloseButton
 
-# --- NEW: Reference to the Complete Button ---
-@onready var complete_button: Button = $CompleteButton
+@onready var gpu_button: TextureButton = $SystemUnit/GpuButton
+@onready var gpu_zoom_popup: ColorRect = $GpuZoomPopup
+@onready var close_gpu_button: TextureButton = $GpuZoomPopup/ZoomedGpuVisual/CloseGpuButton
 
-# --- NEW: Tracking Variables ---
-# Set this to however many cables you have in your scene! (e.g., 2 or 3)
-@export var total_cables_needed: int = 2 
+# --- TASK LIST REFERENCES ---
+@onready var task_psu: CheckBox = $TaskOverlay/PanelContainer/VBoxContainer/TaskPSU
+@onready var task_24pin: CheckBox = $TaskOverlay/PanelContainer/VBoxContainer/Task24Pin
+@onready var task_8pin: CheckBox = $TaskOverlay/PanelContainer/VBoxContainer/Task8Pin
+@onready var task_6pin: CheckBox = $TaskOverlay/PanelContainer/VBoxContainer/Task6Pin
+
+# --- SOCKET REFERENCES ---
+@onready var socket_24pin = $MoboZoomPopup/ZoomedMoboVisual/MoboSocket_24Pin
+@onready var socket_8pin = $MoboZoomPopup/ZoomedMoboVisual/MoboSocket_8Pin
+@onready var socket_6pin = $GpuZoomPopup/ZoomedGpuVisual/GpuSocket_6Pin
+
+# --- TRACKING VARIABLES ---
+@export var total_cables_needed: int = 3 
 var current_cables_connected: int = 0
 
 
 func _ready() -> void:
 	cable_tray.hide()
 	mobo_zoom_popup.hide()
+	gpu_zoom_popup.hide() 
 	complete_button.hide()
 	
-	# Connect existing signals
+	# --- NEW: Show starting instructions ---
+	if instruction_overlay and instruction_prompt:
+		instruction_prompt.text = "Drag the Power Supply Unit (PSU) into the case."
+		instruction_overlay.show()
+	
+	# Connect existing MOBO signals
 	psu_drop_zone.psu_installed.connect(_on_psu_installed)
 	mobo_button.pressed.connect(_on_mobo_clicked)
 	close_zoom_button.pressed.connect(_on_close_zoom_clicked)
 	
-	
-	var zoomed_mobo = $MoboZoomPopup/ZoomedMoboVisual
-	for child in zoomed_mobo.get_children():
-		if child.has_signal("cable_plugged_in"):
-			child.cable_plugged_in.connect(_on_any_cable_plugged_in)
+	# Connect Sockets individually to update specific tasks
+	if socket_24pin:
+		socket_24pin.cable_plugged_in.connect(_on_24pin_plugged)
+	if socket_8pin:
+		socket_8pin.cable_plugged_in.connect(_on_8pin_plugged)
+	if socket_6pin:
+		socket_6pin.cable_plugged_in.connect(_on_6pin_plugged)
+
+# --- PSU LOGIC ---
 func _on_psu_installed() -> void:
 	cable_tray.show()
+	
+	# --- NEW: Update the instruction prompt ---
+	if instruction_overlay and instruction_prompt:
+		instruction_prompt.text = "Click the Motherboard or GPU to connect the wires!"
+		instruction_overlay.show()
+	
+	if task_psu:
+		task_psu.button_pressed = true
 
+# --- POPUP LOGIC ---
 func _on_mobo_clicked() -> void:
 	mobo_zoom_popup.show()
+	# Hide the instruction overlay since they figured out what to do
+	if instruction_overlay:
+		instruction_overlay.hide()
 
 func _on_close_zoom_clicked() -> void:
 	mobo_zoom_popup.hide()
 
+func _on_gpu_button_pressed() -> void:
+	gpu_zoom_popup.show()
+	# Hide the instruction overlay since they figured out what to do
+	if instruction_overlay:
+		instruction_overlay.hide()
 
-# --- NEW: The Tracking Logic ---
-func _on_any_cable_plugged_in() -> void:
-	# Add 1 to our tracker
+func _on_close_gpu_button_pressed() -> void:
+	gpu_zoom_popup.hide()
+
+# --- SPECIFIC CABLE LOGIC ---
+func _on_24pin_plugged() -> void:
+	task_24pin.button_pressed = true 
+	_increment_progress()
+
+func _on_8pin_plugged() -> void:
+	task_8pin.button_pressed = true
+	_increment_progress()
+
+func _on_6pin_plugged() -> void:
+	task_6pin.button_pressed = true
+	_increment_progress()
+
+# --- OVERALL PROGRESS LOGIC ---
+func _increment_progress() -> void:
 	current_cables_connected += 1
-	print("Progress: ", current_cables_connected, " / ", total_cables_needed)
 	
-	# Check if we hit the target!
 	if current_cables_connected >= total_cables_needed:
-		print("All cables connected! Showing the Complete button.")
+		if completed_system_unit_texture:
+			system_unit_rect.texture = completed_system_unit_texture
 		
-		# Optional: Auto-close the zoom popup when finished so they see the button!
-		# mobo_zoom_popup.hide() 
-		
+		mobo_zoom_popup.hide() 
+		gpu_zoom_popup.hide()
 		complete_button.show()
 
-
-# --- NEW: The Completion Logic ---
+# --- COMPLETION LOGIC ---
 func _on_complete_button_pressed() -> void:
-	print("Cables inserted! Returning to Computer Menu...")
-	
-	# 1. Mark this specific sub-task as complete in the Global State.
-	# IMPORTANT: Change "Insert Cables" to match the EXACT text used in your computer_menu list!
 	GlobalState.complete_task("Insert Cables")
-	
-	# 2. Return to the Computer Menu scene
-	# (Right-click computer_menu.tscn in your FileSystem and select "Copy Path" if this path is wrong)
 	var err = get_tree().change_scene_to_file("res://scenes/COC 1/Assemble Computer Hardware/computer_menu.tscn")
-	
 	if err != OK:
 		push_error("Failed to load computer_menu scene. Please check the file path!")

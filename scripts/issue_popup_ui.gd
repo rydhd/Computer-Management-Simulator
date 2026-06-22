@@ -1,6 +1,5 @@
 extends CanvasLayer
 
-@onready var name_label: Label = $PanelContainer/MarginContainer/VBoxContainer/Label
 @onready var description_text: RichTextLabel = $PanelContainer/MarginContainer/VBoxContainer/RichTextLabel
 @onready var clip_button: Button = $PanelContainer/MarginContainer/VBoxContainer/Button
 
@@ -9,15 +8,15 @@ var current_issue_id: String = ""
 func _ready() -> void:
 	clip_button.pressed.connect(_on_clip_button_pressed)
 
-# Updated to accept an Array of strings for the 3 issues
-func setup_issue(customer_name: String, issues: Array[String], issue_id: String) -> void:
-	name_label.text = "Customer: " + customer_name
+# FIX: Changed 'Array[String]' to 'Array' so it accepts data from any NPC
+func setup_issue(issues: Array, issue_id: String) -> void:
 	current_issue_id = issue_id
 	
-	# Formatting the 3 issues into a bulleted list for the RichTextLabel
+	# Formatting the issues into a bulleted list for the RichTextLabel
 	var formatted_text = "[b]Current Issues:[/b]\n"
 	for issue in issues:
-		formatted_text += "• " + issue + "\n"
+		# Godot will automatically convert the generic Array items to Strings here
+		formatted_text += "• " + str(issue) + "\n"
 	
 	description_text.text = formatted_text
 

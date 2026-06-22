@@ -8,7 +8,7 @@ extends Control
 @onready var target_standard_label: Label = $GameplayPanel/TargetStandardLabel # Add this line
 # --- Wiring Standards Setup ---
 enum WiringStandard { T568A, T568B }
-
+@onready var wire_inventory: HBoxContainer = $GameplayPanel/WireInventory
 # Set this based on whatever standard the player is currently tasked with
 var current_target_standard: WiringStandard = WiringStandard.T568B
 
@@ -71,7 +71,13 @@ func reset_wires() -> void:
 	# 3. Loop through all the UI slots to remove textures and reset color
 	for slot in wiring_slots.get_children():
 		slot.texture = null
-		slot.modulate = Color(1, 1, 1, 1) # Resets the tint back to pure white
+		slot.modulate = Color(1, 1, 1, 1) 
+		
+	# 4. NEW: Reset the flags and opacity of the inventory wires so the student can retry
+	for wire in wire_inventory.get_children():
+		if "is_placed" in wire:
+			wire.is_placed = false
+			wire.modulate.a = 1.0 # Restore full opacity
 func validate_wiring() -> void:
 	var target_sequence: Array[String] = T568A_COLORS if current_target_standard == WiringStandard.T568A else T568B_COLORS
 	var is_correct: bool = true

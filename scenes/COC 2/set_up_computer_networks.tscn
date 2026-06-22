@@ -2,11 +2,41 @@
 
 [ext_resource type="Script" uid="uid://egp8aatw3txb" path="res://scripts/COC 2/set_up_computer_networks.gd" id="1_mfhtn"]
 [ext_resource type="Texture2D" uid="uid://cnne5ebysgps0" path="res://assets/COC 2/Set-Up Computer Networks.png" id="1_tl318"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="3_sbdwt"]
+[ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="4_2vf6h"]
+[ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="5_b5xnj"]
+[ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/2D Assets/2D Materials/X.png" id="6_ggd1u"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_mfhtn"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_vmu6f"]
 allow_unpress = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6a7i3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ivxc"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_alm5n"]
+texture = ExtResource("3_sbdwt")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ups2s"]
+texture = ExtResource("4_2vf6h")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d38o8"]
+texture = ExtResource("5_b5xnj")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [node name="SetUpComputerNetworks" type="Control" unique_id=1509649202]
 layout_mode = 3
@@ -650,45 +680,106 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 87.0
-offset_bottom = 13.0
+offset_left = 23.5
+offset_top = -196.0
+offset_right = 110.5
+offset_bottom = -163.0
 grow_vertical = 2
 
 [node name="TimeZoneBtn" type="Button" parent="SetupScreen/Screen5/Panel/VBoxContainer" unique_id=508777137]
 layout_mode = 2
 text = "Time zone"
 
-[node name="TimeDialog" type="ColorRect" parent="SetupScreen/Screen5" unique_id=309264969]
+[node name="PopupMenuTimeZonePopupMenu" type="PopupMenu" parent="SetupScreen/Screen5" unique_id=628010355]
+oversampling_override = 1.0
+visible = true
+
+[node name="TimeZonePanel" type="Panel" parent="SetupScreen/Screen5" unique_id=1022316652]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 95.0
+offset_right = 677.0
+offset_bottom = 278.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_6a7i3")
+
+[node name="MarginContainer" type="MarginContainer" parent="SetupScreen/Screen5/TimeZonePanel" unique_id=1499451578]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 1, 1, 0)
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SetupScreen/Screen5/TimeDialog" unique_id=348666575]
+[node name="VBoxContainer2" type="VBoxContainer" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer" unique_id=438999051]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="HeaderBackground" type="ColorRect" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2" unique_id=2089864837]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.8666667, 0.9019608, 0.92941177, 1)
+
+[node name="TitleLabel" type="Label" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/HeaderBackground" unique_id=321072194]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 81.0
+offset_bottom = 23.0
+text = "Time Zone"
+label_settings = SubResource("LabelSettings_1ivxc")
 
-[node name="Label" type="Label" parent="SetupScreen/Screen5/TimeDialog/VBoxContainer" unique_id=2066275495]
+[node name="VBoxContainer" type="VBoxContainer" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2" unique_id=639281471]
 layout_mode = 2
-text = "Time Zone Settings"
+size_flags_vertical = 3
+theme_override_constants/separation = 7
 
-[node name="CloseTimeButton" type="Button" parent="SetupScreen/Screen5/TimeDialog/VBoxContainer" unique_id=51376398]
+[node name="BeijingButton" type="Button" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1860949739]
 layout_mode = 2
-text = "Close
-"
+theme_override_styles/normal = SubResource("StyleBoxTexture_alm5n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ups2s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d38o8")
+text = "(UTC+8) Beijing, Chongqing, Hong Kong, Urumqi"
 
-[node name="PopupMenuTimeZonePopupMenu" type="PopupMenu" parent="SetupScreen/Screen5" unique_id=628010355]
+[node name="TomskButton" type="Button" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=943037097]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_alm5n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ups2s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d38o8")
+text = "(UTC+7) Tomsk"
+
+[node name="HovdButton" type="Button" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=327950948]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_alm5n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ups2s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d38o8")
+text = "(UTC+7) Hovd"
+
+[node name="BangkokButton" type="Button" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1617785028]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_alm5n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ups2s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d38o8")
+text = "(UTC+7) Bangkok, Hanoi, Jakarta"
+
+[node name="KualaLumpurButton" type="Button" parent="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=526887130]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_alm5n")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ups2s")
+theme_override_styles/hover = SubResource("StyleBoxTexture_d38o8")
+text = "(UTC+8) Kuala Lumpur, Singapore"
+
+[node name="BackButton" type="Button" parent="SetupScreen/Screen5/TimeZonePanel" unique_id=243959367]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -26.0
+offset_bottom = 32.0
+grow_horizontal = 0
+icon = ExtResource("6_ggd1u")
+flat = true
 
 [connection signal="pressed" from="SetupScreen/VBoxContainer/ServerButton" to="." method="_on_server_button_pressed"]
 [connection signal="pressed" from="SetupScreen/VBoxContainer/ClientButton" to="." method="_on_client_button_pressed"]
@@ -715,5 +806,11 @@ text = "Close
 [connection signal="pressed" from="SetupScreen/Screen4/Panel/VBoxContainer/PrivateButton" to="." method="_on_private_button_pressed"]
 [connection signal="pressed" from="SetupScreen/Screen4/Panel/VBoxContainer/PublicNetwork2" to="." method="_on_public_network_2_pressed"]
 [connection signal="pressed" from="SetupScreen/Screen4/Panel/VBoxContainer/ProcButton" to="." method="_on_proc_button_pressed"]
+[connection signal="pressed" from="SetupScreen/Screen5/Panel/CancelBtn" to="." method="_on_screen_5_cancel_btn_pressed"]
 [connection signal="pressed" from="SetupScreen/Screen5/Panel/VBoxContainer/TimeZoneBtn" to="." method="_on_time_zone_btn_pressed"]
-[connection signal="pressed" from="SetupScreen/Screen5/TimeDialog/VBoxContainer/CloseTimeButton" to="." method="_on_screen_5_cancel_btn_pressed"]
+[connection signal="pressed" from="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer/BeijingButton" to="." method="_on_beijing_button_pressed"]
+[connection signal="pressed" from="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer/TomskButton" to="." method="_on_tomsk_button_pressed"]
+[connection signal="pressed" from="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer/HovdButton" to="." method="_on_hovd_button_pressed"]
+[connection signal="pressed" from="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer/BangkokButton" to="." method="_on_bangkok_button_pressed"]
+[connection signal="pressed" from="SetupScreen/Screen5/TimeZonePanel/MarginContainer/VBoxContainer2/VBoxContainer/KualaLumpurButton" to="." method="_on_kuala_lumpur_button_pressed"]
+[connection signal="pressed" from="SetupScreen/Screen5/TimeZonePanel/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,19 +1,19 @@
 extends Area2D
 class_name NPCCustomer
 
-# 1. Update signal to pass an Array instead of a single String
-signal fade_in_complete(intro_text: String, customer_name: String, issues: Array[String], issue_id: String)
+# UPDATE: Changed `issues: Array[String]` to `issues: Array` to prevent type mismatch errors
+signal fade_in_complete(intro_text: String, customer_name: String, issues: Array, issue_id: String)
 
 const FADE_IN_DURATION: float = 1.0
 
-# 2. Expose variables to the Inspector! Now this script works for ANY customer.
+# These default to Gelo, but shop_2d.gd will overwrite them with Miyamura's data when he spawns!
 @export_category("Customer Data")
 @export var my_name: String = "Gelo"
 @export_multiline var my_intro: String = "Hello there! I'm Gelo. I'm trying to build my first PC but I have no idea what I'm doing."
-# --- NEW: Add an outro message for when the task is finished ---
 @export_multiline var my_outro: String = "Thank you so much! My PC is running perfectly now. Here is your payment!"
 
-@export var my_issues: Array[String] = [
+# UPDATE: Changed from Array[String] to a standard Array to accept injected arrays from shop_2d.gd
+@export var my_issues: Array = [
 	"Assemble computer hardware",
 	"Install OS",
 	"Cable Management"
@@ -21,8 +21,7 @@ const FADE_IN_DURATION: float = 1.0
 @export var my_id: String = "task_001_gelo"
 
 func _ready() -> void:
-	# Listen for the clipping event. 
-	# It's good practice to ensure we don't double-connect!
+	# Listen for the clipping event.
 	if not EventBus.issue_clipped_to_board.is_connected(_on_issue_clipped_to_board):
 		EventBus.issue_clipped_to_board.connect(_on_issue_clipped_to_board)
 
@@ -33,7 +32,7 @@ func fade_in_and_signal() -> void:
 	# Color.WHITE is a clean, built-in constant for Color(1, 1, 1, 1)
 	tween.tween_property(self, "modulate", Color.WHITE, FADE_IN_DURATION)
 	
-	# 3. Use 'await' to pause this function's execution until the tween is done.
+	# Use 'await' to pause this function's execution until the tween is done.
 	await tween.finished
 	
 	print("NPC '%s' fade-in complete." % my_name)

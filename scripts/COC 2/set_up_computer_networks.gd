@@ -37,8 +37,7 @@ extends Control
 
 # --- Screen 5 Specific Elements ---
 @onready var screen_5: Control = $SetupScreen/Screen5
-@onready var time_dialog: ColorRect = $SetupScreen/Screen5/TimeDialog
-
+@onready var time_zone_panel: Panel = $SetupScreen/Screen5/TimeZonePanel
 func _ready() -> void:
 	# Establish baseline UI state for the main screens
 	selection_menu.show()
@@ -66,7 +65,7 @@ func _ready() -> void:
 	# Set initial state for screens 4 and 5
 	screen_4.hide()
 	screen_5.hide()
-	time_dialog.hide()
+	time_zone_panel.hide()
 	
 	# Initialize Context Menu Items
 	# The first parameter is the display text, the second is the internal ID
@@ -229,11 +228,33 @@ func _on_screen_4_cancel_btn_pressed() -> void:
 # --- Screen 5 (Change Time) ---
 
 func _on_time_zone_btn_pressed() -> void:
-	time_dialog.show()
-
-func _on_close_time_button_pressed() -> void:
-	time_dialog.hide()
+	time_zone_panel.show()
 
 func _on_screen_5_cancel_btn_pressed() -> void:
 	screen_5.hide()
 	screen_1.show()
+
+# --- New Time Zone Panel Buttons ---
+
+func _on_back_button_pressed() -> void:
+	time_zone_panel.hide()
+
+func _on_beijing_button_pressed() -> void:
+	print("Time zone updated to: (UTC+8) Beijing")
+	time_zone_panel.hide()
+
+func _on_tomsk_button_pressed() -> void:
+	print("Time zone updated to: (UTC+7) Tomsk")
+	time_zone_panel.hide()
+
+func _on_hovd_button_pressed() -> void:
+	print("Time zone updated to: (UTC+7) Hovd")
+	time_zone_panel.hide()
+
+func _on_bangkok_button_pressed() -> void:
+	print("Time zone updated to: (UTC+7) Bangkok")
+	time_zone_panel.hide()
+
+func _on_kuala_lumpur_button_pressed() -> void:
+	print("Time zone updated to: (UTC+8) Kuala Lumpur")
+	time_zone_panel.hide()
