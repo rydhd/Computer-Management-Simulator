@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="4_5e3nd"]
 [ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="5_yx6ak"]
 [ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="6_wbml8"]
+[ext_resource type="AudioStream" uid="uid://c0pfw2ska407b" path="res://assets/Audio/button.mp3" id="7_5e3nd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b2mg1"]
 texture = ExtResource("4_5e3nd")
@@ -106,6 +107,9 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_4uffs")
 theme_override_styles/hover = SubResource("StyleBoxTexture_3rwny")
 text = "Back"
 autowrap_trim_flags = 0
+
+[node name="StartAudio" type="AudioStreamPlayer" parent="." unique_id=1917974404]
+stream = ExtResource("7_5e3nd")
 
 [connection signal="pressed" from="BackgroundAssemble/HBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="BackgroundAssemble/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

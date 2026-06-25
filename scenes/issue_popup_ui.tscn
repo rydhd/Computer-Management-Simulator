@@ -1,10 +1,18 @@
 [gd_scene format=3 uid="uid://bj1o6ip0n7a0r"]
 
 [ext_resource type="Script" uid="uid://4qpyylim21o7" path="res://scripts/issue_popup_ui.gd" id="1_j8j1j"]
+[ext_resource type="Texture2D" uid="uid://bmkko4kv3pm0k" path="res://assets/2D Assets/2D Materials/image 10.png" id="2_skqwc"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="2_xt8t5"]
 [ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="3_xfj1j"]
 [ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="4_wuvih"]
 [ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="5_pq1ru"]
+[ext_resource type="AudioStream" uid="uid://bg7i3horpg5ax" path="res://assets/Audio/button_click.mp3" id="6_pq1ru"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ugswr"]
+texture = ExtResource("2_skqwc")
+expand_margin_left = 15.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lvjvm"]
 texture = ExtResource("3_xfj1j")
@@ -36,12 +44,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -140.5
-offset_top = -329.0
+offset_left = -119.0
+offset_top = -356.0
 offset_right = 140.5
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxTexture_ugswr")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2124406661]
 layout_mode = 2
@@ -54,8 +63,18 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 theme_override_constants/separation = 14
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1867874133]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1687131095]
 layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_xt8t5")
+bbcode_enabled = true
+text = "Issue Description"
+fit_content = true
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer" unique_id=1867874133]
+layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("2_xt8t5")
 theme_override_styles/normal = SubResource("StyleBoxTexture_lvjvm")
@@ -63,10 +82,5 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_skqwc")
 theme_override_styles/hover = SubResource("StyleBoxTexture_v7uwb")
 text = "Clip"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1687131095]
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("2_xt8t5")
-bbcode_enabled = true
-text = "Issue Description"
-fit_content = true
-autowrap_mode = 2
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=913987145]
+stream = ExtResource("6_pq1ru")

@@ -12,7 +12,7 @@ var is_spinning: bool = false
 # 2. Get a reference to the main background TextureRect instead of the hidden Sprite2D
 @onready var main_mobo_bg: TextureRect = $"../MotherboardClosedAndColoredBgRemovedf"
 @onready var spinning_circle: Sprite2D = $SpinningCircle 
-@onready var latch_button: TextureButton = $LatchButton
+@onready var latch_button: TextureButton = $"../LatchButton"
 
 func _ready() -> void:
 	# Initialize the background to the closed texture on startup

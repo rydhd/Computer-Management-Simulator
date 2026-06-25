@@ -11,22 +11,25 @@ var is_installed = false # New variable to track state
 func _ready():
 	start_position = global_position
 
-func _input_event(_viewport, event, _shape_idx):
-	# If already installed, stop right here and ignore the click!
+# 1. Start drag ONLY when the mouse is over the shape
+func _input_event(_viewport, event, _shape_idx) -> void:
 	if is_installed: 
 		return
-	
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				is_dragging = true
-				z_index = 10
-			else:
-				is_dragging = false
-				z_index = 0
-				_check_drop_zone() 
+		
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			is_dragging = true
+			z_index = 10
 
-func _process(_delta):
+# 2. Stop drag GLOBALLY (This guarantees the item drops even if you move the mouse fast!)
+func _input(event: InputEvent) -> void:
+	if is_dragging and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if not event.pressed: # The mouse button was released!
+			is_dragging = false
+			z_index = 0
+			_check_drop_zone()
+
+func _process(_delta) -> void:
 	if is_dragging:
 		global_position = get_global_mouse_position()
 

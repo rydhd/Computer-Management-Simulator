@@ -7,14 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://c1l5qb7algj8w" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/motherboard closed and colored bg removedf.png" id="5_hvx02"]
 [ext_resource type="Texture2D" uid="uid://b8wvt8kqujxiw" path="res://assets/COC 1/Assemble Computer Hardware/screw.png" id="6_51d51"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="6_hvx02"]
-[ext_resource type="AudioStream" uid="uid://lx2bhtcuk5qp" path="res://assets/Audio/snpa.mp3" id="7_b00cs"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="7_hgi8a"]
 [ext_resource type="AudioStream" uid="uid://c5rrknt1akeg2" path="res://assets/Audio/Screw In - Sound Effect (HD).mp3" id="8_ptgu0"]
+[ext_resource type="AudioStream" uid="uid://bj25ir211ud0v" path="res://assets/Audio/snap_audio.mp3" id="9_hgi8a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rstot"]
 size = Vector2(291, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74gfa"]
-size = Vector2(249.38736, 209.6315)
+size = Vector2(307.8186, 221.49744)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3gsow"]
+texture = ExtResource("7_hgi8a")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptgu0"]
 bg_color = Color(0.09019608, 0.1882353, 0.40784314, 0.5882353)
@@ -45,15 +53,16 @@ expand_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=597574566]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 5.0
-offset_right = 451.0
-offset_bottom = 676.0
+offset_left = -28.0
+offset_top = -47.0
+offset_right = 579.0
+offset_bottom = 713.0
 texture = ExtResource("3_b00cs")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Motherboard_Tray" type="Area2D" parent="." unique_id=1660359980]
-position = Vector2(211, 278)
+position = Vector2(177, 255)
 scale = Vector2(0.34980106, 0.23368178)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Motherboard_Tray" unique_id=663911490]
@@ -61,48 +70,51 @@ scale = Vector2(1.0907913, -16.504955)
 shape = SubResource("RectangleShape2D_rstot")
 
 [node name="DraggableMotherboard" type="Area2D" parent="." unique_id=332584423]
-position = Vector2(744.99994, 232.99997)
+position = Vector2(635, 181)
 scale = Vector2(0.6059848, 0.5029088)
 script = ExtResource("4_ptgu0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableMotherboard" unique_id=622467248]
-scale = Vector2(1.3697283, 2.0108979)
+position = Vector2(68.07092, 19.884277)
+scale = Vector2(1.3697283, 2.0108976)
 shape = SubResource("RectangleShape2D_74gfa")
 
 [node name="TextureRect" type="TextureRect" parent="DraggableMotherboard" unique_id=1321744596]
 offset_left = -310.2387
-offset_top = -441.43182
-offset_right = 305.28827
-offset_bottom = 423.53595
+offset_top = -546.81885
+offset_right = 434.00415
+offset_bottom = 580.62195
 texture = ExtResource("5_hvx02")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="CompleteButton" type="Button" parent="." unique_id=1898701217]
-layout_mode = 0
-offset_left = 790.0
-offset_top = 433.0
-offset_right = 873.0
-offset_bottom = 464.0
-scale = Vector2(3.2288954, 4.080677)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.47569445
+anchor_top = 0.7824074
+anchor_right = 0.6935764
+anchor_bottom = 0.904321
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_hvx02")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3gsow")
 text = "Complete"
+metadata/_edit_use_anchors_ = true
 
 [node name="PromptLabel" type="Label" parent="." unique_id=1089279034]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.0
-offset_top = -49.0
-offset_right = 421.0
-offset_bottom = 11.25
+anchors_preset = -1
+anchor_left = 0.4809028
+anchor_top = 0.5416667
+anchor_right = 0.8975694
+anchor_bottom = 0.63464504
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("6_hvx02")
 text = "Now click the screws to secure
-      the Motherboard!"
+the Motherboard!"
+metadata/_edit_use_anchors_ = true
 
 [node name="ScrewContainer" type="Control" parent="." unique_id=966813578]
 layout_mode = 1
@@ -119,78 +131,87 @@ grow_vertical = 0
 
 [node name="Screw1" type="TextureButton" parent="ScrewContainer" unique_id=403989407]
 layout_mode = 0
-offset_left = -170.0
-offset_top = -380.0
-offset_right = -164.0
-offset_bottom = -373.0
+anchor_left = -0.31868133
+anchor_top = -4.62069
+anchor_right = -0.2948718
+anchor_bottom = -4.4252872
+offset_top = 3.0517578e-05
 texture_normal = ExtResource("6_51d51")
 ignore_texture_size = true
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Screw2" type="TextureButton" parent="ScrewContainer" unique_id=440198331]
 layout_mode = 0
-offset_left = -25.0
-offset_top = -378.0
-offset_right = -16.0
-offset_bottom = -369.0
+anchor_left = -0.06410257
+anchor_top = -4.5172415
+anchor_right = -0.027472528
+anchor_bottom = -4.3448277
 texture_normal = ExtResource("6_51d51")
 ignore_texture_size = true
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Screw3" type="TextureButton" parent="ScrewContainer" unique_id=1008404649]
 layout_mode = 0
-offset_left = -189.0
-offset_top = -243.0
-offset_right = -179.0
-offset_bottom = -234.0
+anchor_left = -0.3791209
+anchor_top = -2.8045976
+anchor_right = -0.34615386
+anchor_bottom = -2.6436782
 texture_normal = ExtResource("6_51d51")
 ignore_texture_size = true
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Screw4" type="TextureButton" parent="ScrewContainer" unique_id=854944307]
 layout_mode = 0
-offset_left = -190.0
-offset_top = -214.0
-offset_right = -181.0
-offset_bottom = -206.0
+anchor_left = -0.32967034
+anchor_top = -2.586207
+anchor_right = -0.3003663
+anchor_bottom = -2.4252872
+offset_bottom = -1.5258789e-05
 texture_normal = ExtResource("6_51d51")
 ignore_texture_size = true
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Screw5" type="TextureButton" parent="ScrewContainer" unique_id=91050336]
 layout_mode = 0
-offset_left = -26.0
-offset_top = -215.0
-offset_right = -19.0
-offset_bottom = -207.0
+anchor_left = -0.012820513
+anchor_top = -2.7816093
+anchor_right = 0.021978023
+anchor_bottom = -2.5747128
+offset_top = 1.5258789e-05
+offset_bottom = 1.5258789e-05
 texture_normal = ExtResource("6_51d51")
 ignore_texture_size = true
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="Screw6" type="TextureButton" parent="ScrewContainer" unique_id=711923932]
 layout_mode = 0
-offset_left = -89.0
-offset_top = -276.0
-offset_right = -82.0
-offset_bottom = -269.0
+anchor_left = -0.16117217
+anchor_top = -3.2873564
+anchor_right = -0.12820514
+anchor_bottom = -3.1264367
 texture_normal = ExtResource("6_51d51")
 ignore_texture_size = true
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="SnapSound" type="AudioStreamPlayer" parent="." unique_id=1056734546]
-stream = ExtResource("7_b00cs")
+stream = ExtResource("9_hgi8a")
 
 [node name="DrillSound" type="AudioStreamPlayer" parent="." unique_id=1637851555]
 stream = ExtResource("8_ptgu0")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=759585073]
-visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.16493055
-anchor_top = 0.13117284
-anchor_right = 0.23697917
-anchor_bottom = 0.17283951
+anchor_left = 0.16145833
+anchor_top = 0.074074075
+anchor_right = 0.23350695
+anchor_bottom = 0.11574074
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -200,8 +221,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -335.0
-offset_bottom = 65.0
+offset_left = -339.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 69.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ptgu0")
 

@@ -4,14 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://6duqx6jkgtnl" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/RAM (1).png" id="2_2m2h6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghu1j"]
-size = Vector2(68, 103)
+size = Vector2(44, 135)
 
 [node name="Ram" type="Area2D" unique_id=2092034636]
 script = ExtResource("1_e104g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1702047165]
+position = Vector2(0, -86.5)
 shape = SubResource("RectangleShape2D_ghu1j")
 
-[node name="Ram1" type="Sprite2D" parent="." unique_id=945858858]
-scale = Vector2(0.13476756, 0.06995582)
+[node name="Ram1" type="TextureRect" parent="." unique_id=2122555419]
+offset_left = -164.0
+offset_top = -314.0
+offset_right = 2395.9631
+offset_bottom = 2671.5781
+scale = Vector2(0.13476756, 0.14837998)
 texture = ExtResource("2_2m2h6")
+expand_mode = 1
+stretch_mode = 5

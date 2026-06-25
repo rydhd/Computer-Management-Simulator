@@ -33,6 +33,9 @@ extends Control
 @onready var socket_8pin = $MoboZoomPopup/ZoomedMoboVisual/MoboSocket_8Pin
 @onready var socket_6pin = $GpuZoomPopup/ZoomedGpuVisual/GpuSocket_6Pin
 
+# --- NEW: AUDIO REFERENCE ---
+@onready var plug_sound: AudioStreamPlayer = $PlugSound
+
 # --- TRACKING VARIABLES ---
 @export var total_cables_needed: int = 3 
 var current_cables_connected: int = 0
@@ -107,8 +110,13 @@ func _on_6pin_plugged() -> void:
 	_increment_progress()
 
 # --- OVERALL PROGRESS LOGIC ---
+# --- OVERALL PROGRESS LOGIC ---
 func _increment_progress() -> void:
 	current_cables_connected += 1
+	
+	# --- NEW: Play the plug sound! ---
+	if plug_sound:
+		plug_sound.play()
 	
 	if current_cables_connected >= total_cables_needed:
 		if completed_system_unit_texture:
@@ -117,9 +125,11 @@ func _increment_progress() -> void:
 		mobo_zoom_popup.hide() 
 		gpu_zoom_popup.hide()
 		complete_button.show()
-
 # --- COMPLETION LOGIC ---
 func _on_complete_button_pressed() -> void:
+	# --- NEW: Stop the timer and score (e.g., 30s perfect, 90s fail) ---
+	GlobalState.stop_scene_timer_and_score("Insert Cables", 30.0, 90.0)
+
 	GlobalState.complete_task("Insert Cables")
 	var err = get_tree().change_scene_to_file("res://scenes/COC 1/Assemble Computer Hardware/computer_menu.tscn")
 	if err != OK:

@@ -1,6 +1,6 @@
 extends Control
 
-
+@onready var button_sound: AudioStreamPlayer = $ButtonSound
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,4 +16,5 @@ func _on_texture_button_2_pressed() -> void:
 
 
 func _on_flashdrive_pressed() -> void:
+	button_sound.play()
 	get_tree().change_scene_to_file("res://scenes/COC 1/Installing OS/windows_installation_screen.tscn")

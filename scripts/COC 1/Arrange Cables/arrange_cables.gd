@@ -44,7 +44,9 @@ func _on_start_button_pressed() -> void:
 	# Hide the menu and show the gameplay background and RJ45 TextureRect
 	main_menu.hide()
 	gameplay_panel.show()
-
+	
+	# --- NEW: Start the timer now that the board is visible! ---
+	GlobalState.start_scene_timer()
 func _on_back_button_pressed() -> void:
 	# Reset back to the main menu
 	gameplay_panel.hide()
@@ -93,7 +95,11 @@ func validate_wiring() -> void:
 		feedback_label.text = "Correct Alignment! Trigger RJ45 insertion sequence."
 		feedback_label.add_theme_color_override("font_color", Color(0, 1, 0)) 
 		
-		# --- NEW: Update GlobalState and transition back to Shop2d ---
+		# --- NEW: Stop the timer and calculate the score ---
+		# Example: 25 seconds for a perfect score, 90 seconds for a 0 score.
+		GlobalState.stop_scene_timer_and_score("Arrange Cables", 25.0, 90.0)
+		
+		# Update GlobalState and transition back to Shop2d
 		GlobalState.complete_task("Arrange Cables")
 		GlobalState.customer_job_finished = true
 		
@@ -101,8 +107,7 @@ func validate_wiring() -> void:
 		await get_tree().create_timer(2.5).timeout
 		
 		# Transition back to the shop. 
-		# (Verify this string exactly matches your Shop2d scene path)
-		get_tree().change_scene_to_file("res://scenes/shop_2d.tscn") 
+		get_tree().change_scene_to_file("res://scenes/shop_2d.tscn")
 		
 	else:
 		# Failure state

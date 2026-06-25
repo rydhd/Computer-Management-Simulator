@@ -5,9 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/2D Assets/2D Materials/X.png" id="2_p51ek"]
 [ext_resource type="Texture2D" uid="uid://dakw3x40jmjvw" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/cpu1.png" id="4_ujo2t"]
 [ext_resource type="Texture2D" uid="uid://bna6y2a1a42ud" path="res://assets/2D Assets/2D Materials/arrow.png" id="5_o3d2x"]
+[ext_resource type="AudioStream" uid="uid://coe14h6814uet" path="res://assets/Audio/Pages_audio.mp3" id="6_00evq"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="6_a1w5q"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_a1w5q"]
+font = ExtResource("6_a1w5q")
+font_size = 15
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_ujo2t"]
+font = ExtResource("6_a1w5q")
 
 [node name="ManualPopup" type="CanvasLayer" unique_id=898215979]
 script = ExtResource("1_p51ek")
@@ -60,19 +67,22 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.13
 anchor_bottom = 0.63
-offset_left = 260.0
-offset_top = 124.0
-offset_right = 381.0
+offset_left = 248.0
+offset_top = 107.0
+offset_right = 438.24
 offset_bottom = 215.0
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
-theme_override_constants/margin_right = 40
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 40
 
 [node name="LeftVBox" type="VBoxContainer" parent="BookCenter/BookBackground/LeftPage" unique_id=380687379]
 layout_mode = 2
+theme_override_constants/separation = 6
 
 [node name="PageImage" type="TextureRect" parent="BookCenter/BookBackground/LeftPage/LeftVBox" unique_id=1887146860]
+custom_minimum_size = Vector2(300, 300)
+layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 2
@@ -82,7 +92,7 @@ expand_mode = 1
 
 [node name="TitleLabel" type="Label" parent="BookCenter/BookBackground/LeftPage/LeftVBox" unique_id=1162971285]
 layout_mode = 2
-autowrap_mode = 3
+label_settings = SubResource("LabelSettings_a1w5q")
 
 [node name="RightPage" type="MarginContainer" parent="BookCenter/BookBackground" unique_id=863771717]
 layout_mode = 1
@@ -106,9 +116,12 @@ layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = 5
+theme_override_fonts/normal_font = ExtResource("6_a1w5q")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = " "
+fit_content = true
 
 [node name="NavigationHBox" type="HBoxContainer" parent="BookCenter/BookBackground" unique_id=1079140923]
 layout_mode = 1
@@ -144,6 +157,9 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("5_o3d2x")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="PageAudio" type="AudioStreamPlayer" parent="BookCenter/BookBackground/NavigationHBox" unique_id=667598188]
+stream = ExtResource("6_00evq")
 
 [node name="TabButtonsHBox" type="HBoxContainer" parent="BookCenter" unique_id=112132426]
 layout_mode = 1

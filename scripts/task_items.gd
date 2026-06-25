@@ -39,7 +39,8 @@ func _update_task_list() -> void:
 		task_2.modulate = Color(1.0, 1.0, 1.0, 1.0) 
 
 	# If Task 2 is done...
-	if "Connect PSU" in GlobalState.completed_tasks:
+	# FIX: Look for "Insert Cables" instead of "Connect PSU"
+	if "Insert Cables" in GlobalState.completed_tasks:
 		task_2.modulate = Color(0.5, 0.5, 0.5, 0.6) 
 		task_2.text = "2. Connect PSU [DONE]"
 		

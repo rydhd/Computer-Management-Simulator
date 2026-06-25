@@ -4,7 +4,11 @@ extends Control
 @onready var dialogue_text: RichTextLabel = $ColorRect/ReferenceRect/DialogueText
 @onready var welcome_screen: ColorRect = $WelcomeScreen
 @onready var loading_screen: ColorRect = $LoadingScreen
-@onready var loading_bar: ProgressBar = $LoadingScreen/LoadingBar # New reference
+@onready var loading_bar: ProgressBar = $LoadingScreen/LoadingBar
+
+# --- NEW AUDIO REFERENCES ---
+@onready var typing_sound: AudioStreamPlayer = $TypingSound
+@onready var typing_timer: Timer = $TypingTimer
 
 # Dialogue Data
 var dialogue_lines: Array[String] = [
@@ -27,7 +31,16 @@ func _ready() -> void:
 	welcome_screen.hide()
 	loading_screen.hide()
 	loading_bar.value = 0 # Ensure the bar starts empty
+	
+	# Connect the typing timer
+	typing_timer.timeout.connect(_on_typing_timer_timeout)
+	
 	show_current_line()
+
+func _on_typing_timer_timeout() -> void:
+	# Add pitch variation to make the text sound more natural and less repetitive!
+	typing_sound.pitch_scale = randf_range(0.95, 1.05)
+	typing_sound.play()
 
 func show_current_line() -> void:
 	dialogue_text.text = dialogue_lines[current_line_index]
@@ -41,6 +54,12 @@ func show_current_line() -> void:
 		
 	tween = create_tween()
 	tween.tween_property(dialogue_text, "visible_characters", total_characters, duration)
+	
+	# --- START THE TYPING SOUND ---
+	typing_timer.start(type_speed)
+	
+	# Tell the timer to stop exactly when the tween finishes typing
+	tween.finished.connect(func(): typing_timer.stop())
 
 func _input(event: InputEvent) -> void:
 	var is_click: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
@@ -60,6 +79,9 @@ func handle_dialogue_input() -> void:
 		# Skip typing animation
 		tween.kill()
 		dialogue_text.visible_characters = -1
+		
+		# --- STOP THE TYPING SOUND IMMEDIATELY ---
+		typing_timer.stop()
 	else:
 		# Move to next line
 		current_line_index += 1

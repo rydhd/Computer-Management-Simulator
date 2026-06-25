@@ -2,7 +2,7 @@ extends Control
 
 @onready var begin_button: Button = %BeginButton
 @onready var system_unit_sprite: TextureRect = $SystemUnit
-
+@onready var button_sound: AudioStreamPlayer = $ButtonAudio
 const MOBO_INSTALLED_TEX = preload("res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/System unit.png")
 
 # Start by assuming they are on Task 1
@@ -56,6 +56,14 @@ func _setup_all_done() -> void:
 
 # --- CLICKING THE BUTTON ---
 func _on_begin_button_pressed() -> void:
+	button_sound.play()
+	# Wait for the audio track to finish completely
+	await button_sound.finished 
+	# --- NEW: Start the timer right as they enter the specific task! ---
+	# We don't want to start the timer if the job is done and they are going to the shop
+	if next_scene_path != "res://scenes/shop_2d.tscn":
+		GlobalState.start_scene_timer()
+		
 	var err = get_tree().change_scene_to_file(next_scene_path)
 	if err != OK:
 		push_error("Failed to load scene. Check this file path: " + next_scene_path)
