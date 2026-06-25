@@ -5,12 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="3_caf5w"]
 [ext_resource type="Texture2D" uid="uid://cywvsj44chj4a" path="res://assets/2D Assets/2D Materials/Background PC.png" id="4_jyqqs"]
 [ext_resource type="Texture2D" uid="uid://d1quftixb7wh1" path="res://assets/COC 1/Assemble Computer Hardware/System Unit top.png" id="5_sk4qr"]
-[ext_resource type="Texture2D" uid="uid://b5y4vqf7vx78g" path="res://assets/COC 1/Assemble Computer Hardware/Screenshot 2026-06-19 203532.png" id="6_cdg2y"]
-[ext_resource type="Texture2D" uid="uid://i4mdkm1245me" path="res://assets/2D Assets/2D Materials/RightArrow.png" id="8_caf5w"]
+[ext_resource type="Texture2D" uid="uid://dt1iopci7yudm" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/plug.png" id="6_cdg2y"]
+[ext_resource type="AudioStream" uid="uid://ghct4q8ofoof" path="res://assets/Audio/clickty.mp3" id="8_ko4re"]
 [ext_resource type="Script" uid="uid://7dhhxsewapdd" path="res://scripts/mobo_socket.gd" id="8_sk4qr"]
-[ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/2D Assets/2D Materials/X.png" id="8_sprjb"]
-[ext_resource type="Texture2D" uid="uid://cn517q0fbakfb" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/us-power-plug-cable-isolated-white-background-273655341.webp" id="9_cdg2y"]
+[ext_resource type="AudioStream" uid="uid://c0pfw2ska407b" path="res://assets/Audio/button.mp3" id="9_sk4qr"]
+[ext_resource type="Texture2D" uid="uid://wekpdj5jxko0" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/extension.png" id="10_mr4al"]
 [ext_resource type="Script" uid="uid://cp6iwm1pueo24" path="res://scripts/draggable_item.gd" id="10_sprjb"]
+[ext_resource type="Texture2D" uid="uid://bspsi53p4470q" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/socket 1.png" id="12_6kefw"]
+[ext_resource type="AudioStream" uid="uid://ckcm2y00sftaf" path="res://assets/Audio/Microsoft Windows XP Startup Sound.mp3" id="13_sprjb"]
 
 [node name="TestPhase" type="Control" unique_id=1468298398]
 layout_mode = 3
@@ -96,67 +98,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 
-[node name="BackOfPC_Popup" type="ColorRect" parent="." unique_id=1530052364]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.5254902)
-
-[node name="ZoomedBackPanel" type="TextureRect" parent="BackOfPC_Popup" unique_id=568476478]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 50.0
-offset_top = -219.0
-offset_right = 197.0
-offset_bottom = 25.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_cdg2y")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="WallPowerSocket" type="Control" parent="BackOfPC_Popup/ZoomedBackPanel" unique_id=1732100411]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = 62.0
-offset_right = -3.5
-offset_bottom = 86.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("8_sk4qr")
-required_cable_id = "power_plug"
-
-[node name="PSUSwitch" type="TextureButton" parent="BackOfPC_Popup/ZoomedBackPanel" unique_id=1501083439]
-layout_mode = 0
-offset_left = 86.0
-offset_top = 191.0
-offset_right = 99.0
-offset_bottom = 203.0
-
-[node name="CloseButton" type="Button" parent="BackOfPC_Popup/ZoomedBackPanel" unique_id=1098705473]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -26.0
-offset_bottom = 26.0
-grow_horizontal = 0
-icon = ExtResource("8_sprjb")
-flat = true
-icon_alignment = 1
-
 [node name="CableTray" type="HBoxContainer" parent="." unique_id=1269262612]
 layout_mode = 1
 anchors_preset = 7
@@ -164,34 +105,49 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 450.0
-offset_top = -133.0
-offset_right = 573.0
-offset_bottom = -31.0
+offset_left = 183.0
+offset_top = -219.0
+offset_right = 306.0
+offset_bottom = -117.0
 grow_horizontal = 2
 grow_vertical = 0
+rotation = 1.5603243
 
 [node name="WallCable" type="TextureRect" parent="CableTray" unique_id=1136702209]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("9_cdg2y")
+texture = ExtResource("6_cdg2y")
 expand_mode = 1
+flip_h = true
 script = ExtResource("10_sprjb")
 specific_id = "power_plug"
 
-[node name="RotateToBackButton" type="TextureButton" parent="." unique_id=533888586]
+[node name="SwitchSound" type="AudioStreamPlayer" parent="." unique_id=111837416]
+stream = ExtResource("8_ko4re")
+
+[node name="CableSound" type="AudioStreamPlayer" parent="." unique_id=1815642638]
+stream = ExtResource("9_sk4qr")
+
+[node name="WallPowerSocket" type="TextureRect" parent="." unique_id=1787207333]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -491.0
-offset_top = -300.0
-offset_right = -416.0
-offset_bottom = -236.0
-grow_horizontal = 0
+offset_left = 348.0
+offset_top = 174.0
+offset_right = 577.0
+offset_bottom = 325.0
+grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("8_caf5w")
-ignore_texture_size = true
+texture = ExtResource("10_mr4al")
+expand_mode = 1
 stretch_mode = 5
+flip_h = true
+script = ExtResource("8_sk4qr")
+required_cable_id = "power_plug"
+plugged_in_texture = ExtResource("12_6kefw")
+
+[node name="BootSound" type="AudioStreamPlayer" parent="." unique_id=1307030701]
+stream = ExtResource("13_sprjb")

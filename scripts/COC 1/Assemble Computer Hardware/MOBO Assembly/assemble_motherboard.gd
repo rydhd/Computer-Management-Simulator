@@ -24,7 +24,8 @@ var required_hold_time: float = 1.5
 func _ready() -> void:
 	# --- NEW: Show starting instructions ---
 	if prompt_label:
-		prompt_label.text = "Drag the motherboard into the system unit."
+		prompt_label.text = "Drag the motherboard into the 
+		system unit."
 		prompt_label.show()
 	
 	screw_container.hide()
@@ -63,7 +64,8 @@ func _process(delta: float) -> void:
 func _on_motherboard_installed() -> void:
 	# --- NEW: Update instructions for the next phase ---
 	if prompt_label:
-		prompt_label.text = "Click and hold the screws to secure it!"
+		prompt_label.text = "Click and hold the screws 
+		to secure it!"
 	
 	screw_container.show()
 	

@@ -1,4 +1,4 @@
-extends Control
+extends TextureRect
 
 # --- NEW: Custom signal to announce a successful connection ---
 signal cable_plugged_in

@@ -8,9 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://b34nhtgh3553j" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/System unit side view.png" id="6_o863r"]
 [ext_resource type="Texture2D" uid="uid://bp5yccy2ms72s" path="res://assets/COC 1/Install OS/image 891.png" id="7_yfli5"]
 [ext_resource type="Script" uid="uid://cp6iwm1pueo24" path="res://scripts/draggable_item.gd" id="8_ept0o"]
-[ext_resource type="Script" uid="uid://7dhhxsewapdd" path="res://scripts/mobo_socket.gd" id="9_ootlq"]
 [ext_resource type="Texture2D" uid="uid://ds5tgwk8fbqiw" path="res://assets/2D Assets/2D Materials/Background FixMyPC.png" id="10_yfli5"]
 [ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="11_ept0o"]
+[ext_resource type="Script" uid="uid://dvjo8psqhtxar" path="res://scripts/usb_socket.gd" id="11_ootlq"]
 [ext_resource type="Texture2D" uid="uid://vfdv0unvgum4" path="res://assets/2D Assets/power-button.png" id="12_ept0o"]
 
 [node name="InstallingOS" type="Control" unique_id=1732626725]
@@ -151,7 +151,7 @@ offset_right = -75.5
 offset_bottom = -167.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("9_ootlq")
+script = ExtResource("11_ootlq")
 required_cable_id = "windows_os"
 
 [node name="CasePowerButton" type="TextureButton" parent="SystemUnitView" unique_id=108047787]

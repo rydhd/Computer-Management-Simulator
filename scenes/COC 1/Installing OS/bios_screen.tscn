@@ -4,18 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://be6m7hvsipwb2" path="res://assets/COC 1/Install OS/BIOS Screen.png" id="1_twqqx"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="2_thuj4"]
 [ext_resource type="Texture2D" uid="uid://wkjqivn11o6y" path="res://assets/COC 1/Install OS/BIOS.png" id="3_g6jir"]
+[ext_resource type="Texture2D" uid="uid://dibg258onl1dx" path="res://assets/COC 1/Install OS/Component 18.png" id="4_acm41"]
+[ext_resource type="Texture2D" uid="uid://brvoyhiuwpwmt" path="res://assets/COC 1/Install OS/Component 19.png" id="5_4s3dv"]
+[ext_resource type="Texture2D" uid="uid://b0gy4ex1v34jq" path="res://assets/COC 1/Install OS/hard-drive.png" id="7_oxb26"]
+[ext_resource type="Texture2D" uid="uid://b3tvd1ile6mpr" path="res://assets/COC 1/Install OS/cpu.png" id="8_5cujl"]
+[ext_resource type="Texture2D" uid="uid://dxymt0jp4o6xn" path="res://assets/COC 1/Install OS/serial number.png" id="9_6i2v4"]
+[ext_resource type="AudioStream" uid="uid://c0pfw2ska407b" path="res://assets/Audio/button.mp3" id="10_4s3dv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xy3q3"]
 font = ExtResource("2_thuj4")
 font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_o17k4"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_50sbi"]
-size = Vector2(150, 30)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_acm41"]
-size = Vector2(150, 30)
+font = ExtResource("2_thuj4")
+font_size = 10
 
 [node name="BiosScreen" type="Control" unique_id=539901231]
 layout_mode = 3
@@ -56,28 +58,42 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = -217.0
-offset_right = -100.0
+offset_left = -313.0
+offset_top = -216.0
+offset_right = -103.0
+offset_bottom = -11.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BootPriority" unique_id=1462990262]
+[node name="MarginContainer" type="MarginContainer" parent="BootPriority" unique_id=1823994110]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 
-[node name="Label" type="Label" parent="BootPriority/VBoxContainer" unique_id=1567580438]
+[node name="VBoxContainer" type="VBoxContainer" parent="BootPriority/MarginContainer" unique_id=1462990262]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="BootPriority/MarginContainer/VBoxContainer" unique_id=1567580438]
 layout_mode = 2
 text = "Boot Priority"
 label_settings = SubResource("LabelSettings_o17k4")
 horizontal_alignment = 1
 
-[node name="WindowsBoot" type="TextureButton" parent="BootPriority/VBoxContainer" unique_id=968033399]
+[node name="WindowsBoot" type="TextureButton" parent="BootPriority/MarginContainer/VBoxContainer" unique_id=968033399]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_50sbi")
+texture_normal = ExtResource("4_acm41")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Flashdrive" type="TextureButton" parent="BootPriority/VBoxContainer" unique_id=886009395]
+[node name="Flashdrive" type="TextureButton" parent="BootPriority/MarginContainer/VBoxContainer" unique_id=886009395]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
-texture_normal = SubResource("PlaceholderTexture2D_acm41")
+texture_normal = ExtResource("5_4s3dv")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=665081034]
 layout_direction = 2
@@ -85,34 +101,48 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -419.0
+offset_left = -425.0
 offset_top = 135.0
-offset_right = 181.0
-offset_bottom = 238.0
+offset_right = 205.0
+offset_bottom = 298.0
 grow_horizontal = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=2108772215]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=14520661]
 layout_mode = 2
-size_flags_horizontal = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2108772215]
+layout_mode = 2
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1180103053]
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1180103053]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
+size_flags_horizontal = 2
 texture = ExtResource("3_g6jir")
-stretch_mode = 3
+stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=417920914]
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=417920914]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+texture = ExtResource("7_oxb26")
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=986087279]
+layout_mode = 2
+texture = ExtResource("8_5cujl")
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=766532961]
+layout_mode = 2
+texture = ExtResource("9_6i2v4")
+
+[node name="TextureRect5" type="TextureRect" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1667992603]
 layout_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=986087279]
-layout_mode = 2
+[node name="ButtonSound" type="AudioStreamPlayer" parent="." unique_id=345952505]
+stream = ExtResource("10_4s3dv")
 
-[node name="TextureRect4" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=766532961]
-layout_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1667992603]
-layout_mode = 2
-
-[connection signal="pressed" from="BootPriority/VBoxContainer/Flashdrive" to="." method="_on_flashdrive_pressed"]
+[connection signal="pressed" from="BootPriority/MarginContainer/VBoxContainer/Flashdrive" to="." method="_on_flashdrive_pressed"]

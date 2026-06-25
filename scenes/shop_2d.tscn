@@ -6,8 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="3_m0brw"]
 [ext_resource type="Texture2D" uid="uid://cu3n8yf78y35k" path="res://assets/2D Assets/2D Materials/Background Manual.png" id="5_dt4ex"]
 [ext_resource type="Texture2D" uid="uid://bykndi0q8vtit" path="res://assets/2D Assets/2D Materials/Background Taskboard.png" id="6_4kg1i"]
+[ext_resource type="AudioStream" uid="uid://cdlpp1irg18ks" path="res://assets/Audio/manual_sound.mp3" id="6_oic8i"]
 [ext_resource type="Texture2D" uid="uid://cj54wr3m26g8" path="res://assets/2D Assets/2D Materials/Background Bell.png" id="7_4swkf"]
-[ext_resource type="AudioStream" uid="uid://b5pmdiqlmhpil" path="res://assets/Audio/bell 2.mp3" id="7_id5k1"]
+[ext_resource type="AudioStream" uid="uid://bvckylfe82u55" path="res://assets/Audio/bell.mp3" id="7_id5k1"]
 [ext_resource type="Script" uid="uid://04pswj4ru25g" path="res://scripts/dialogue_system.gd" id="8_4swkf"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="8_63r2m"]
 [ext_resource type="PackedScene" uid="uid://diul2q2ek0iop" path="res://scenes/taskboard_overlay.tscn" id="9_8ahl1"]
@@ -88,6 +89,9 @@ grow_vertical = 0
 scale = Vector2(-10.596777, -9.681324)
 flat = true
 metadata/_edit_use_anchors_ = true
+
+[node name="ManualSound" type="AudioStreamPlayer" parent="BackgroundManual" unique_id=931728952]
+stream = ExtResource("6_oic8i")
 
 [node name="BackgroundBell" type="TextureRect" parent="." unique_id=829162104]
 z_index = 1

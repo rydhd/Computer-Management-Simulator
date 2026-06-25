@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="4_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://c0pfw2ska407b" path="res://assets/Audio/button.mp3" id="6_tefeu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o5qli"]
 load_path = "res://.godot/imported/Landing Page.png-57c2f47d8444bbee656ec7f02cbc66f4.ctex"
@@ -111,6 +112,9 @@ theme_override_fonts/font = ExtResource("2_0wfyh")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tipki")
 theme_override_styles/hover = SubResource("StyleBoxTexture_85g3d")
 text = "Logout"
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="." unique_id=2119524152]
+stream = ExtResource("6_tefeu")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_button_pressed"]

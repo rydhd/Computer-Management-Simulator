@@ -4,13 +4,14 @@ extends CanvasLayer
 # NODE REFERENCES
 # ==========================================
 @onready var close_button: Button = $BookCenter/BookBackground/CloseButton
-@onready var book_background: TextureRect = $BookCenter/BookBackground # <--- ADD THIS LINE
+@onready var book_background: TextureRect = $BookCenter/BookBackground 
 
 # Tab Buttons
 @onready var parts_button: Button = $BookCenter/TabButtonsHBox/PartsButton
 @onready var errors_button: Button = $BookCenter/TabButtonsHBox/ErrorsButton
 
 # Navigation Updates
+@onready var nav_sound: AudioStreamPlayer = $BookCenter/BookBackground/NavigationHBox/PageAudio
 @onready var left_button: TextureButton = $BookCenter/BookBackground/NavigationHBox/LeftButton
 @onready var right_button: TextureButton = $BookCenter/BookBackground/NavigationHBox/RightButton
 @onready var page_label: Label = $BookCenter/BookBackground/NavigationHBox/Label
@@ -29,13 +30,8 @@ var current_page: int = 0
 var active_pages: Array[Dictionary] = []
 
 # --- BACKGROUND TEXTURES ---
-# Preload your default Parts journal image
 var parts_bg_texture: Texture2D = preload("res://assets/2D Assets/2D Materials/Journal Overlay 1.png")
-
-# Preload your new Errors journal image (REPLACE THIS PATH WITH YOUR ACTUAL IMAGE PATH!)
 var errors_bg_texture: Texture2D = preload("res://assets/2D Assets/2D Materials/Journal Overlay 2.png")
-# This variable holds whichever array we are currently looking at!
-
 
 # --- DATABASE 1: PARTS ---
 var parts_pages: Array[Dictionary] = [
@@ -47,7 +43,32 @@ var parts_pages: Array[Dictionary] = [
 	{
 		"title": "The CPU (Processor)",
 		"text": "[b]What does it do?[/b]\nThe Central Processing Unit is the brain of the computer.\n\n[color=red]WARNING:[/color] Always ensure thermal paste is applied before attaching the cooler!",
-		"image": null
+		"image": "res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/cpu1.png"
+	},
+	{
+		"title": "The Motherboard",
+		"text": "[b]What does it do?[/b]\nIt is the main circuit board. Every single component connects to it so they can communicate with each other.\n\n[color=red]WARNING:[/color] Handle with care! Scraping the back against the metal case can short the circuits.",
+		"image": "res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/MOBO without cpu.png"
+	},
+	{
+		"title": "RAM (Memory)",
+		"text": "[b]What does it do?[/b]\nRandom Access Memory provides fast, short-term workspace for applications that are currently running.\n\n[color=#00ff00]TIP:[/color] Press down firmly on both ends until you hear the retention clips snap into place!",
+		"image": "res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/RAM1.png" # Replace with your RAM image path
+	},
+	{
+		"title": "GPU (Graphics Card)",
+		"text": "[b]What does it do?[/b]\nThe Graphics Processing Unit handles rendering images, video, and 3D graphics to your monitor.\n\n[color=red]WARNING:[/color] High-end GPUs require their own dedicated PCIe power cables directly from the power supply.",
+		"image": "res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/gpu1.png"
+	},
+	{
+		"title": "Power Supply (PSU)",
+		"text": "[b]What does it do?[/b]\nConverts electrical power from the wall outlet into usable power for the internal components.\n\n[color=red]WARNING:[/color] Make sure the switch on the back is flipped ON before trying to boot the PC!",
+		"image": "res://assets/COC 1/Assemble Computer Hardware/Insert Cables/PSU.png"
+	},
+	{
+		"title": "Storage (HDD/SSD)",
+		"text": "[b]What does it do?[/b]\nThis is your long-term storage where the Operating System (OS), programs, and personal files are permanently saved.\n\n[color=#00ff00]TIP:[/color] Solid State Drives (SSDs) load data much faster than old mechanical Hard Drives!",
+		"image": "res://assets/COC 1/Assemble Computer Hardware/ssd - portrait.png" # Replace with your Storage image path
 	}
 ]
 
@@ -56,15 +77,11 @@ var errors_pages: Array[Dictionary] = [
 	{
 		"title": "Blue Screen of Death (BSOD)",
 		"text": "[b]What is it?[/b]\nA fatal system error indicating the operating system has crashed.\n\n[b]Common Causes:[/b]\n1. Faulty RAM\n2. Overheating CPU\n3. Corrupt Drivers",
-		
-		# REPLACE "null" WITH YOUR IMAGE PATH!
-		"image": null # Put your exact image path here!
+		"image": null 
 	},
 	{
 		"title": "No POST (Power On Self Test)",
 		"text": "[b]Symptoms:[/b]\nThe computer turns on, fans spin, but the screen stays black and there are no beeps.\n\n[b]Solution:[/b]\nCheck if the RAM is fully seated and the CPU power cable is plugged in.",
-		
-		# You can leave this as null if this specific page doesn't need an image
 		"image": null 
 	}
 ]
@@ -99,8 +116,10 @@ func update_page_display() -> void:
 	page_text.clear()
 	page_text.append_text(page_data["text"])
 	
+	# --- THIS IS THE FIX ---
+	# We added load() so it converts the string path into an actual texture
 	if page_data["image"] != null:
-		page_image.texture = page_data["image"]
+		page_image.texture = load(page_data["image"]) 
 		page_image.show()
 	else:
 		page_image.hide()
@@ -115,6 +134,8 @@ func update_page_display() -> void:
 # SIGNAL CALLBACKS
 # ==========================================
 func _on_parts_button_pressed() -> void:
+	nav_sound.play()
+	
 	active_pages = parts_pages  
 	current_page = 0            
 	
@@ -127,6 +148,8 @@ func _on_parts_button_pressed() -> void:
 	update_page_display()
 
 func _on_errors_button_pressed() -> void:
+	nav_sound.play()
+	
 	active_pages = errors_pages 
 	current_page = 0            
 	
@@ -139,11 +162,15 @@ func _on_errors_button_pressed() -> void:
 	update_page_display()
 
 func _on_left_button_pressed() -> void:
+	nav_sound.play()
+	
 	if current_page > 0:
 		current_page -= 1
 		update_page_display()
 
 func _on_right_button_pressed() -> void:
+	nav_sound.play()
+	
 	if current_page < active_pages.size() - 1:
 		current_page += 1
 		update_page_display()

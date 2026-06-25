@@ -106,12 +106,11 @@ func _on_setup_complete() -> void:
 		
 	print("OOBE Setup Complete! Transitioning to Shop...")
 	
-	# 1. Check off the task in the GlobalState so the Taskboard updates
-	# Note: Now perfectly matches the exact string in your GlobalState task list!
+	# 1. Stop timer and save score using the EXACT string from the taskboard
+	GlobalState.stop_scene_timer_and_score("Installing Operating System", 60.0, 180.0) # Adjust the fast/slow target times as needed
+	
+	# 2. Check off the task
 	GlobalState.complete_task("Installing Operating System") 
 	
-	# 2. Wait 1.5 seconds so the player can actually read the "finished!" text
 	await get_tree().create_timer(1.5).timeout
-	
-	# 3. Go back to the shop scene to arrange cables!
 	get_tree().change_scene_to_file("res://scenes/shop_2d.tscn")

@@ -29,6 +29,7 @@ var f6_presses: int = 0
 var required_presses: int = 5 # How many times they must press F6
 
 func _ready() -> void:
+	GlobalState.start_scene_timer()
 	power_menu.hide()
 	dim_overlay.hide()
 	boot_screen.hide() # Hide the boot screen at the start!

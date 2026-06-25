@@ -1,9 +1,12 @@
 extends Control
 
+const SCORE_POPUP_SCENE = preload("res://scenes/score_popup.tscn")
 # 1. Preload the Manual Popup Scene right next to your other preloads
 const NPC_SCENE = preload("res://scenes/NpcCustomer.tscn")
 const ISSUE_POPUP_SCENE = preload("res://scenes/issue_popup_ui.tscn")
 const MANUAL_POPUP_SCENE = preload("res://scenes/manual_popup.tscn") 
+
+@onready var manual_sound = $BackgroundManual/ManualSound
 @onready var bell_sound = $BackgroundBell/BellSound
 @onready var npc_spawn_position: Control = $NpcSpawnPoint
 @onready var dialogue_system = $DialogueSystem
@@ -72,6 +75,15 @@ func _ready() -> void:
 		# 2. Play the NPC's specific "Thank You" dialogue
 		dialogue_system.show_dialogue(current_npc.my_name + ": " + current_npc.my_outro)
 		await dialogue_system.dialogue_finished
+		
+		# --- NEW: SHOW THE SCORE SCREEN ---
+		var score_screen = SCORE_POPUP_SCENE.instantiate()
+		add_child(score_screen)
+		score_screen.display_scores(GlobalState.active_tasks)
+		
+		# Wait here until the player clicks the "Collect Payment" button
+		await score_screen.closed
+		# ----------------------------------
 		
 		# 3. Fade the NPC out as they leave the shop
 		var tween = create_tween()
@@ -168,6 +180,9 @@ func _on_bell_button_pressed() -> void:
 		current_npc.my_outro = "Thanks! The network is up and running smoothly."
 		current_npc.my_issues = ["Set-up Computer Networks"]
 		current_npc.my_id = "task_002_network"
+		
+		# --- ADD THIS LINE HERE ---
+		current_npc.get_node("Sprite2D").texture = load("res://assets/2D Assets/2D Materials/npc_2_miyamura.png")
 	# ------------------------------------------------------------------
 	
 	$NpcLayer.add_child(current_npc)
@@ -219,6 +234,9 @@ func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array
 		print("ERROR: Dialogue system node is not valid!")
 
 func _on_taskboard_button_pressed() -> void:
+	manual_sound.play()
+	# Wait for the audio track to finish completely
+	await manual_sound.finished 
 	EventBus.fade_out_robot.emit()
 	print("Taskboard Button Pressed!")
 	
@@ -231,6 +249,9 @@ func _on_taskboard_button_pressed() -> void:
 		print("ERROR: TaskboardOverlay node not found!")
 
 func _on_manual_button_pressed() -> void:
+	manual_sound.play()
+	# Wait for the audio track to finish completely
+	await manual_sound.finished 
 	print("Manual Button Pressed!")
 	
 	# Check if the manual is already instanced to save memory.

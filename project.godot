@@ -23,6 +23,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 GlobalState="*uid://ovjic1cisrjd"
 EventBus="*uid://c4u4iopcorv83"
 TutorialManager="*uid://blbw2qj8yvavh"
+TimerOverlay="*uid://bvfrqr2qub1vy"
 
 [display]
 

@@ -10,22 +10,50 @@
 [ext_resource type="Script" uid="uid://dmyy56w2nlny" path="res://scripts/psu.gd" id="8_ilue1"]
 [ext_resource type="Texture2D" uid="uid://df1dlabw6qfgk" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/MOBO zoomed.png" id="9_nc1cq"]
 [ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/2D Assets/2D Materials/X.png" id="10_ilk4g"]
-[ext_resource type="Script" uid="uid://7dhhxsewapdd" path="res://scripts/mobo_socket.gd" id="11_nkx8n"]
+[ext_resource type="Script" uid="uid://dlycral7hm1bh" path="res://scripts/wire_sockets.gd" id="11_eaa8h"]
 [ext_resource type="Texture2D" uid="uid://cst6ret6qu3vn" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/24pin CPU.png" id="12_brs0y"]
 [ext_resource type="Script" uid="uid://cp6iwm1pueo24" path="res://scripts/draggable_item.gd" id="13_6fpu1"]
 [ext_resource type="Texture2D" uid="uid://bl0e0th0ct82f" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/CPU cable.png" id="14_eaa8h"]
 [ext_resource type="Texture2D" uid="uid://w3t8sqjhdif3" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/pcie gpu.png" id="16_0tdvh"]
 [ext_resource type="Texture2D" uid="uid://4ccvmtm3qdqu" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/GPU zoomed.png" id="16_eaa8h"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="17_rnlsk"]
+[ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="18_cqoya"]
+[ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="19_o0adv"]
+[ext_resource type="AudioStream" uid="uid://figdkcwfhlwp" path="res://assets/Audio/plug.mp3" id="20_cqoya"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eaa8h"]
-bg_color = Color(0, 0, 0, 0.5176471)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ilue1"]
+texture = ExtResource("17_rnlsk")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nc1cq"]
+texture = ExtResource("18_cqoya")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ilk4g"]
+texture = ExtResource("19_o0adv")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnlsk"]
+bg_color = Color(0.07058824, 0.15294118, 0.32941177, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cqoya"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnlsk"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_eaa8h"]
-font_color = Color(0.8738018, 0, 0.14194083, 1)
 
 [node name="Insert_Cables" type="Control" unique_id=1825963719]
 layout_mode = 3
@@ -162,12 +190,12 @@ stretch_mode = 5
 
 [node name="GpuSocket_6Pin" type="Control" parent="GpuZoomPopup/ZoomedGpuVisual" unique_id=1632732718]
 layout_mode = 1
-anchor_left = 0.45614034
-anchor_top = 0.38650307
-anchor_right = 0.58187133
+anchor_left = 0.45321643
+anchor_top = 0.38650304
+anchor_right = 0.57602334
 anchor_bottom = 0.46625763
 grow_vertical = 0
-script = ExtResource("11_nkx8n")
+script = ExtResource("11_eaa8h")
 required_cable_id = "6-pin"
 metadata/_edit_use_anchors_ = true
 
@@ -212,7 +240,7 @@ anchor_right = 0.9634888
 anchor_bottom = 0.52207404
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("11_nkx8n")
+script = ExtResource("11_eaa8h")
 required_cable_id = "24-pin"
 metadata/_edit_use_anchors_ = true
 
@@ -222,7 +250,7 @@ anchor_left = 0.10426086
 anchor_top = 0.07762965
 anchor_right = 0.19548027
 anchor_bottom = 0.1331852
-script = ExtResource("11_nkx8n")
+script = ExtResource("11_eaa8h")
 required_cable_id = "8-pin"
 metadata/_edit_use_anchors_ = true
 
@@ -241,40 +269,47 @@ grow_vertical = 0
 [node name="Cable_24Pin" type="TextureRect" parent="CableTray" unique_id=197666673]
 custom_minimum_size = Vector2(134, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("12_brs0y")
 expand_mode = 1
+stretch_mode = 5
 script = ExtResource("13_6fpu1")
 specific_id = "24-pin"
 
 [node name="Cable_8Pin" type="TextureRect" parent="CableTray" unique_id=205378377]
 custom_minimum_size = Vector2(98, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("14_eaa8h")
 expand_mode = 1
+stretch_mode = 5
 script = ExtResource("13_6fpu1")
 specific_id = "8-pin"
 
 [node name="Cable_6Pin" type="TextureRect" parent="CableTray" unique_id=1166038874]
 custom_minimum_size = Vector2(62, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 texture = ExtResource("16_0tdvh")
 expand_mode = 1
+stretch_mode = 5
 script = ExtResource("13_6fpu1")
 specific_id = "6-pin"
 
 [node name="CompleteButton" type="Button" parent="." unique_id=1063783779]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -177.0
-offset_top = -15.5
-offset_bottom = 91.0
+anchors_preset = -1
+anchor_left = 0.7465278
+anchor_top = 0.69753087
+anchor_right = 0.9001736
+anchor_bottom = 0.78626543
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_ilue1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nc1cq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ilk4g")
 text = "Task Complete"
+metadata/_edit_use_anchors_ = true
 
 [node name="TaskOverlay" type="CanvasLayer" parent="." unique_id=1164786247]
 layer = 5
@@ -283,16 +318,22 @@ layer = 5
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -235.0
-offset_bottom = 305.0
+offset_left = -240.0
+offset_top = 7.0
+offset_right = -5.0
+offset_bottom = 214.0
 grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rnlsk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TaskOverlay/PanelContainer" unique_id=1324546585]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="TaskTitle" type="Label" parent="TaskOverlay/PanelContainer/VBoxContainer" unique_id=478918293]
 layout_mode = 2
-text = "Tasks:"
+text = "Tasks"
+label_settings = SubResource("LabelSettings_cqoya")
+horizontal_alignment = 1
 
 [node name="TaskPSU" type="CheckBox" parent="TaskOverlay/PanelContainer/VBoxContainer" unique_id=692291284]
 layout_mode = 2
@@ -314,17 +355,25 @@ mouse_filter = 2
 text = "Connect 6-Pin PCIe"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=136364747]
-layout_mode = 0
-offset_left = 339.0
-offset_top = 53.0
-offset_right = 742.0
-offset_bottom = 93.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_eaa8h")
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -204.0
+offset_top = 4.0
+offset_right = 204.0
+offset_bottom = 37.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rnlsk")
 
 [node name="InstructionPrompt" type="Label" parent="PanelContainer" unique_id=895881405]
 layout_mode = 2
 text = "Click the Motherboard or GPU to connect the wires!"
 label_settings = SubResource("LabelSettings_eaa8h")
+horizontal_alignment = 1
+
+[node name="PlugSound" type="AudioStreamPlayer" parent="." unique_id=392800789]
+stream = ExtResource("20_cqoya")
 
 [connection signal="pressed" from="SystemUnit/GpuButton" to="." method="_on_gpu_button_pressed"]
 [connection signal="pressed" from="GpuZoomPopup/ZoomedGpuVisual/CloseGpuButton" to="." method="_on_close_gpu_button_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ckcm2y00sftaf"
+path="res://.godot/imported/Microsoft Windows XP Startup Sound.mp3-bb7594afa5f4856aacd8a1773b65c76f.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/Microsoft Windows XP Startup Sound.mp3"
+dest_files=["res://.godot/imported/Microsoft Windows XP Startup Sound.mp3-bb7594afa5f4856aacd8a1773b65c76f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

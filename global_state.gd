@@ -7,9 +7,49 @@ var completed_tasks: Array[String] = []
 var active_tasks: Array = []
 var first_job_acknowledged: bool = false
 
+# --- SCORING & TIMER SYSTEM ---
+var is_timer_running: bool = false
+var current_scene_start_time: float = 0.0
+# Dictionary to save the final scores for each task (e.g., {"Arrange Cables": {"time": 45.2, "score": 85}})
+var task_scores: Dictionary = {}
+
 # --- NEW: Flag to track when a player returns from a successful job ---
 var customer_job_finished: bool = false
 
+# Call this exactly when the gameplay begins
+func start_scene_timer() -> void:
+	# Get the engine's current uptime in seconds
+	current_scene_start_time = Time.get_ticks_msec() / 1000.0 
+	is_timer_running = true
+	print("Timer started!")
+
+# Call this exactly when the player completes the task
+func stop_scene_timer_and_score(task_name: String, target_fast_time: float, max_slow_time: float) -> void:
+	is_timer_running = false
+	var end_time: float = Time.get_ticks_msec() / 1000.0
+	var time_taken: float = end_time - current_scene_start_time
+	
+	var final_score: int = 0
+	
+	# SCORING LOGIC
+	if time_taken <= target_fast_time:
+		final_score = 100 # Perfect score if they beat the fast time!
+	elif time_taken >= max_slow_time:
+		final_score = 0   # Lowest score if they took too long
+	else:
+		# Calculate a sliding scale score between 100 and 0
+		var time_range: float = max_slow_time - target_fast_time
+		var time_over: float = time_taken - target_fast_time
+		var penalty_percentage: float = time_over / time_range
+		final_score = int(100 - (penalty_percentage * 100))
+		
+	# Save the results in our global dictionary
+	task_scores[task_name] = {
+		"time_taken": snapped(time_taken, 0.01), # Rounds to 2 decimal places
+		"score": final_score
+	}
+	
+	print("Task '", task_name, "' finished in ", snapped(time_taken, 0.01), " seconds. Score: ", final_score, "/100")
 func complete_task(task_name: String) -> void:
 	if task_name not in completed_tasks:
 		completed_tasks.append(task_name)

@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="6_5cae0"]
 [ext_resource type="Texture2D" uid="uid://q87jwr5gtlax" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/System Unit ONLY.png" id="6_iilsr"]
 [ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="7_gveqd"]
+[ext_resource type="AudioStream" uid="uid://c0pfw2ska407b" path="res://assets/Audio/button.mp3" id="9_5cae0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cok2q"]
 texture = ExtResource("5_ne1si")
@@ -78,14 +79,18 @@ autowrap_mode = 2
 [node name="SystemUnit" type="TextureRect" parent="." unique_id=1556790482]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.114583336
-anchor_top = 0.12345679
-anchor_right = 0.36979166
-anchor_bottom = 0.742284
+anchor_left = 0.016493056
+anchor_top = 0.10185185
+anchor_right = 0.3654514
+anchor_bottom = 0.8657407
 offset_bottom = -3.0517578e-05
 grow_vertical = 2
 texture = ExtResource("6_iilsr")
 expand_mode = 1
+stretch_mode = 5
 metadata/_edit_use_anchors_ = true
+
+[node name="ButtonAudio" type="AudioStreamPlayer" parent="." unique_id=1213858823]
+stream = ExtResource("9_5cae0")
 
 [connection signal="pressed" from="BeginButton" to="." method="_on_begin_button_pressed"]
