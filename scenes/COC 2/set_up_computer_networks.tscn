@@ -152,6 +152,14 @@ theme_override_font_sizes/font_size = 30
 text = "Change Time"
 flat = true
 
+[node name="FinishButton" type="Button" parent="SetupScreen/Screen1/VBoxContainer" unique_id=1862645249]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_font_sizes/font_size = 30
+text = "Finish Setup
+"
+flat = true
+
 [node name="RichTextLabel" type="RichTextLabel" parent="SetupScreen/Screen1" unique_id=1498123011]
 layout_mode = 1
 offset_right = 216.0
@@ -226,9 +234,6 @@ flat = true
 layout_mode = 2
 text = "Remote"
 flat = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SetupScreen/Screen2/Panel/Panel/HBoxContainer" unique_id=1454438409]
-layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="SetupScreen/Screen2/Panel/Panel" unique_id=1179410691]
 layout_mode = 1
@@ -787,6 +792,7 @@ flat = true
 [connection signal="pressed" from="SetupScreen/Screen1/VBoxContainer/EthernetButton" to="." method="_on_ethernet_button_pressed"]
 [connection signal="pressed" from="SetupScreen/Screen1/VBoxContainer/FirewallAntivirusButton" to="." method="_on_firewall_antivirus_button_pressed"]
 [connection signal="pressed" from="SetupScreen/Screen1/VBoxContainer/ChangeTimeButton" to="." method="_on_change_time_button_pressed"]
+[connection signal="pressed" from="SetupScreen/Screen1/VBoxContainer/FinishButton" to="." method="_on_finish_button_pressed"]
 [connection signal="pressed" from="SetupScreen/Screen2/Panel/Panel/HBoxContainer/ComputerButton" to="." method="_on_computer_button_pressed"]
 [connection signal="pressed" from="SetupScreen/Screen2/Panel/Panel/HBoxContainer/RemoteButton" to="." method="_on_remote_button_pressed"]
 [connection signal="pressed" from="SetupScreen/Screen2/Panel/Panel/ColorRect/ComputerList/ChangeButton" to="." method="_on_change_button_pressed"]
