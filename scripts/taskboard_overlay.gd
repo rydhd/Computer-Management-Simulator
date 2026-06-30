@@ -46,7 +46,7 @@ func _on_issue_clipped(issue_id: String) -> void:
 		"task_001_chase":
 			# Append all 3 tasks in the exact order they need to be completed!
 			GlobalState.active_tasks.append({"name": "Assemble Computer Hardware", "scene": "res://scenes/COC 1/Assemble Computer Hardware/lets_assemble_comp.tscn"})
-			GlobalState.active_tasks.append({"name": "Installing Operating System", "scene": "res://scenes/COC 1/Installing OS/installing_os.tscn"})
+			GlobalState.active_tasks.append({"name": "Installing Operating System", "scene": "res://scenes/COC 1/Installing OS/lets_install.tscn"})
 			GlobalState.active_tasks.append({"name": "Arrange Cables", "scene": "res://scenes/COC 1/Arrange Cables/arrange_cables.tscn"})
 			
 		# --- MIYAMURA'S COMBO ---

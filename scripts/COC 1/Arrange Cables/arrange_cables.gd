@@ -56,13 +56,28 @@ func _on_back_button_pressed() -> void:
 
 # Call this function whenever a player successfully places a wire into a slot
 func place_wire(slot_index: int, wire_color: String) -> void:
+	var existing_wire_color = player_arrangement[slot_index]
+	
+	# 1. If there's already a wire here, return the old one to the inventory
+	if existing_wire_color != "":
+		return_wire_to_inventory(existing_wire_color)
+		
+	# 2. Place the new wire in the array
 	player_arrangement[slot_index] = wire_color
 	
-	# Check if all 8 slots are filled before validating
+	# 3. Check if all 8 slots are filled before validating
 	if not "" in player_arrangement:
 		validate_wiring()
-# Resets the board so the player can try again
-# Resets the board so the player can try again
+		
+# --- NEW HELPER FUNCTION ---
+# Finds the specific wire in the inventory and makes it draggable again
+func return_wire_to_inventory(color_to_restore: String) -> void:
+	for wire in wire_inventory.get_children():
+		# Make sure the node has the wire_color property and matches the one we are returning
+		if "wire_color" in wire and wire.wire_color == color_to_restore:
+			wire.is_placed = false
+			wire.modulate.a = 1.0 # Restore full opacity
+			break # We found the wire, no need to keep looping
 func reset_wires() -> void:
 	# 1. Clear the data array back to 8 empty strings
 	player_arrangement = ["", "", "", "", "", "", "", ""]

@@ -58,8 +58,11 @@ func show_current_line() -> void:
 	# --- START THE TYPING SOUND ---
 	typing_timer.start(type_speed)
 	
-	# Tell the timer to stop exactly when the tween finishes typing
-	tween.finished.connect(func(): typing_timer.stop())
+	# Tell the timer and audio to stop exactly when the tween finishes typing
+	tween.finished.connect(func(): 
+		typing_timer.stop()
+		typing_sound.stop()
+	)
 
 func _input(event: InputEvent) -> void:
 	var is_click: bool = event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT
@@ -82,6 +85,7 @@ func handle_dialogue_input() -> void:
 		
 		# --- STOP THE TYPING SOUND IMMEDIATELY ---
 		typing_timer.stop()
+		typing_sound.stop()
 	else:
 		# Move to next line
 		current_line_index += 1

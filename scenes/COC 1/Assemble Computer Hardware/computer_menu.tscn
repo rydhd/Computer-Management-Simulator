@@ -93,4 +93,13 @@ metadata/_edit_use_anchors_ = true
 [node name="ButtonAudio" type="AudioStreamPlayer" parent="." unique_id=1213858823]
 stream = ExtResource("9_5cae0")
 
+[node name="TimeWarningLabel" type="Label" parent="." unique_id=1599408223]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 390.0
+offset_right = 727.0
+offset_bottom = 468.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("4_c1ttk")
+
 [connection signal="pressed" from="BeginButton" to="." method="_on_begin_button_pressed"]

@@ -13,6 +13,10 @@
 [ext_resource type="Script" uid="uid://cp6iwm1pueo24" path="res://scripts/draggable_item.gd" id="10_sprjb"]
 [ext_resource type="Texture2D" uid="uid://bspsi53p4470q" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/socket 1.png" id="12_6kefw"]
 [ext_resource type="AudioStream" uid="uid://ckcm2y00sftaf" path="res://assets/Audio/Microsoft Windows XP Startup Sound.mp3" id="13_sprjb"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="14_mr4al"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6kefw"]
+font = ExtResource("14_mr4al")
 
 [node name="TestPhase" type="Control" unique_id=1468298398]
 layout_mode = 3
@@ -151,3 +155,18 @@ plugged_in_texture = ExtResource("12_6kefw")
 
 [node name="BootSound" type="AudioStreamPlayer" parent="." unique_id=1307030701]
 stream = ExtResource("13_sprjb")
+
+[node name="InstructionLabel" type="Label" parent="." unique_id=1900784431]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -24.0
+offset_right = 112.5
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_6kefw")

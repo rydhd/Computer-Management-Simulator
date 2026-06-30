@@ -1,16 +1,20 @@
 [gd_scene format=3 uid="uid://b6vm2skjxx00s"]
 
 [ext_resource type="Script" uid="uid://xtgg1aupienf" path="res://scripts/tutorial_robot.gd" id="1_xftmx"]
-[ext_resource type="Texture2D" uid="uid://khcnofskvvxq" path="res://assets/2D Assets/2D Materials/mascot robot 2 1.png" id="2_y40l0"]
+[ext_resource type="Texture2D" uid="uid://c043x3xpp3l44" path="res://assets/2D Assets/2D Materials/Robot 1.png" id="2_aelq0"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="3_aelq0"]
 [ext_resource type="AudioStream" uid="uid://bjcpjw08c384a" path="res://assets/Audio/cartoon-sound-effects.mp3" id="3_y40l0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aelq0"]
+font = ExtResource("3_aelq0")
+font_size = 20
 
 [node name="TutorialRobot" type="Node2D" unique_id=1949238434]
 script = ExtResource("1_xftmx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1699200026]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_y40l0")
+texture = ExtResource("2_aelq0")
 
 [node name="DialogueAnchor" type="Control" parent="." unique_id=1578992992]
 layout_mode = 3
@@ -23,18 +27,29 @@ scale = Vector2(0.31745878, 0.8923318)
 
 [node name="SpeechBubble" type="PanelContainer" parent="DialogueAnchor" unique_id=2020531500]
 layout_mode = 0
-offset_right = 500.0
-offset_bottom = 60.0
+offset_right = 935.55457
+offset_bottom = 126.63451
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogueAnchor/SpeechBubble" unique_id=1089890530]
 layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="RobotText" type="Label" parent="DialogueAnchor/SpeechBubble/MarginContainer" unique_id=1326126143]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_aelq0")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
+autowrap_mode = 3
+
+[node name="Label" type="Label" parent="DialogueAnchor/SpeechBubble" unique_id=855613641]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Click to continue ▼"
+label_settings = SubResource("LabelSettings_aelq0")
 autowrap_mode = 3
 
 [node name="BlipSound" type="AudioStreamPlayer2D" parent="." unique_id=582093337]

@@ -8,15 +8,33 @@ const TASK_BRIEFING_SCENE = preload("res://scenes/task_briefing_menu.tscn")
 @onready var task_list = %AssemblyTaskList
 
 @onready var center_popup = %CenterPopup
+
+# --- NEW: Reference to our separate instruction label ---
+@onready var instruction_label = $InstructionLabel 
+# --------------------------------------------------------
+
 @onready var back_button = $Button 
 @onready var complete_button = $CompleteButton 
-@onready var button_sound =$ButtonAudio
-# 1. Grab the reference to the CPU Socket Node
+@onready var button_sound = $ButtonAudio
 @onready var cpu_socket = $Socket_CPU 
 
 func _ready() -> void:
 	$LatchButton.move_to_front()
 	GlobalState.start_scene_timer()
+	
+	# --- NEW: Handle the separate Instruction Prompt ---
+	if instruction_label:
+		instruction_label.text = "Click and drag the parts to their correct sockets!"
+		instruction_label.modulate.a = 1.0 # Ensure it is fully visible
+		instruction_label.show()
+		
+		# Create a tween just for the instruction label so it fades out after 4 seconds
+		var tween = create_tween()
+		tween.tween_interval(4.0) 
+		tween.tween_property(instruction_label, "modulate:a", 0.0, 1.0) 
+		tween.tween_callback(func(): instruction_label.hide())
+	# ---------------------------------------------------
+	
 	if cpu and gpu and ram and task_list and cpu_socket:
 		cpu.installed.connect(task_list._on_cpu_installed)
 		gpu.installed.connect(task_list._on_gpu_installed)
@@ -26,9 +44,7 @@ func _ready() -> void:
 		gpu.installed.connect(_check_completion)
 		ram.installed.connect(_check_completion)
 		
-		# 2. Connect the new socket toggle signal
 		cpu_socket.socket_toggled.connect(_on_socket_toggled)
-		
 		cpu.installation_failed.connect(_show_center_popup)
 		
 		print("Signals connected successfully!")
@@ -38,32 +54,23 @@ func _ready() -> void:
 	if complete_button:
 		complete_button.pressed.connect(_on_complete_button_pressed)
 
-# 3. Create a function to handle the signal from the socket
-# 3. Create a function to handle the signal from the socket
 func _on_socket_toggled(is_open: bool) -> void:
-	# Check if the CPU is already placed in the socket
 	if cpu.is_installed:
-		# If the socket is open, show the CPU. If closed, hide it.
 		cpu.visible = is_open
 		
-	# Continue to check if the job is complete
 	_check_completion()
 
-# 4. Modify the completion logic
 func _check_completion() -> void:
-	# Enforce that all components are installed AND the CPU socket is closed
 	if cpu.is_installed and gpu.is_installed and ram.is_installed and not cpu_socket.is_open:
 		print("All components installed and socket secured! Revealing Complete button.")
 		complete_button.visible = true
 		back_button.visible = false
 	else:
-		# If they open the socket after completing, hide the Complete button again
 		complete_button.visible = false
 		back_button.visible = true
 
 func _on_button_pressed() -> void:
 	button_sound.play()
-	# Wait for the audio track to finish completely
 	await button_sound.finished 
 	print("Player left before finishing the assembly!")
 	get_tree().change_scene_to_file("res://scenes/shop_2d.tscn")
@@ -73,10 +80,7 @@ func _on_complete_button_pressed() -> void:
 	await button_sound.finished 
 	print("Job completed! Motherboard fully assembled.")
 	
-	# 1. Stop timer and score using the EXACT name from taskboard_overlay.gd
 	GlobalState.stop_scene_timer_and_score("Assemble Computer Hardware", 45.0, 120.0)
-	
-	# 2. Change this to match the taskboard name, otherwise the CheckBox won't check off!
 	GlobalState.complete_task("Assemble Computer Hardware")
 	
 	var next_scene_path: String = "res://scenes/COC 1/Assemble Computer Hardware/MOBO Assembly/assemble_motherboard.tscn"
@@ -84,6 +88,8 @@ func _on_complete_button_pressed() -> void:
 	var error: Error = get_tree().change_scene_to_file(next_scene_path)
 	if error != OK:
 		push_error("Failed to load the system unit assembly scene. Error code: ", error)	
+
+# Center popup is now safely reserved strictly for errors/warnings!
 func _show_center_popup(message: String) -> void:
 	if not center_popup:
 		push_warning("CenterPopup node is missing!")

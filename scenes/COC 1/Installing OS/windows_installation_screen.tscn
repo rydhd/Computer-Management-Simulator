@@ -3,15 +3,38 @@
 [ext_resource type="Texture2D" uid="uid://da66pok606k6c" path="res://assets/COC 1/Install OS/USB INSTALL.png" id="1_um18m"]
 [ext_resource type="Script" uid="uid://cxto45gnwj22a" path="res://scripts/COC 1/Install OS/windows_installation_screen.gd" id="1_vujbi"]
 [ext_resource type="Texture2D" uid="uid://c4dyrlpsrngb0" path="res://assets/COC 1/Install OS/butter.png" id="3_6e1p0"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="4_8qdw2"]
+[ext_resource type="Texture2D" uid="uid://c2nv2ixf7e4pw" path="res://assets/COC 1/Install OS/n.png" id="5_a3sp6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dofh3"]
+texture = ExtResource("5_a3sp6")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_8qdw2"]
-font_color = Color(0, 0, 0, 1)
+font = ExtResource("4_8qdw2")
+font_size = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_a3sp6"]
-font_color = Color(0, 0, 0, 1)
+font = ExtResource("4_8qdw2")
+font_size = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_dofh3"]
-font_color = Color(0, 0, 0, 1)
+font = ExtResource("4_8qdw2")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_ev4je"]
+font = ExtResource("4_8qdw2")
+font_size = 12
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8qdw2"]
+texture = ExtResource("5_a3sp6")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vujbi"]
 bg_color = Color(0.8509804, 0.8509804, 0.8509804, 1)
@@ -22,8 +45,22 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 border_blend = true
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a3sp6"]
+texture = ExtResource("5_a3sp6")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ev4je"]
+texture = ExtResource("5_a3sp6")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_4bf84"]
-font_color = Color(0, 0, 0, 1)
+font = ExtResource("4_8qdw2")
 
 [node name="WindowsInstallationScreen" type="Control" unique_id=1986123908]
 layout_mode = 3
@@ -94,10 +131,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -31.0
+offset_left = -87.0
+offset_top = -36.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("4_8qdw2")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxTexture_dofh3")
 text = "Next"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SetupWindow/Screen1_Language" unique_id=1098708019]
@@ -154,6 +195,23 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Label" type="Label" parent="SetupWindow/Screen1_Language" unique_id=908786527]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -254.5
+offset_top = -115.0
+offset_right = 254.5
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Enter your language and other preferences and click “Next” to continue."
+label_settings = SubResource("LabelSettings_ev4je")
+autowrap_mode = 2
+
 [node name="Screen2_Install" type="Control" parent="SetupWindow" unique_id=30788709]
 layout_mode = 1
 anchors_preset = 15
@@ -175,6 +233,10 @@ offset_right = 57.25
 offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("4_8qdw2")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxTexture_8qdw2")
 text = "Install Now"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SetupWindow/Screen2_Install" unique_id=342060266]
@@ -219,10 +281,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -193.0
-offset_top = -94.5
-offset_right = 193.0
-offset_bottom = 84.5
+offset_left = -247.0
+offset_top = -103.5
+offset_right = 247.0
+offset_bottom = 103.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vujbi")
@@ -237,6 +299,7 @@ theme_override_constants/margin_bottom = 8
 [node name="LicenseText" type="RichTextLabel" parent="SetupWindow/Screen_License/LicenseWindowFrame/MarginContainer" unique_id=1653883375]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_8qdw2")
 bbcode_enabled = true
 text = "Last updated June 2021
 
@@ -284,6 +347,8 @@ offset_top = -31.0
 offset_right = 112.5
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_8qdw2")
+theme_override_font_sizes/font_size = 13
 text = "I accept the license terms"
 
 [node name="LicenseNextButton" type="Button" parent="SetupWindow/Screen_License" unique_id=223365866]
@@ -293,10 +358,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -31.0
+offset_left = -86.0
+offset_top = -36.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("4_8qdw2")
+theme_override_styles/normal = SubResource("StyleBoxTexture_a3sp6")
 text = "Next"
 
 [node name="Screen_InstallType" type="Control" parent="SetupWindow" unique_id=1491826468]
@@ -316,6 +384,7 @@ offset_left = -144.0
 offset_right = 144.0
 offset_bottom = 55.0
 grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("4_8qdw2")
 text = "Which type of installation do you want?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -337,10 +406,16 @@ theme_override_constants/separation = 10
 
 [node name="UpgradeButton" type="Button" parent="SetupWindow/Screen_InstallType/VBoxContainer" unique_id=418800109]
 layout_mode = 2
-text = "Upgrade: Install Windows and keep files, settings, and applications"
+theme_override_fonts/font = ExtResource("4_8qdw2")
+theme_override_font_sizes/font_size = 12
+text = "Upgrade: Install Windows and keep files, settings, 
+and applications"
+alignment = 0
 
 [node name="CustomButton" type="Button" parent="SetupWindow/Screen_InstallType/VBoxContainer" unique_id=40149120]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8qdw2")
+theme_override_font_sizes/font_size = 15
 text = "Custom: Install Windows only (advanced)"
 
 [node name="Screen3_Drive" type="Control" parent="SetupWindow" unique_id=1591487058]
@@ -361,28 +436,34 @@ grow_vertical = 2
 
 [node name="Label" type="RichTextLabel" parent="SetupWindow/Screen3_Drive/VBoxContainer" unique_id=633338439]
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_8qdw2")
 
 [node name="DriveList" type="Tree" parent="SetupWindow/Screen3_Drive/VBoxContainer" unique_id=390868239]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_8qdw2")
 
 [node name="ToolBarBox" type="HBoxContainer" parent="SetupWindow/Screen3_Drive/VBoxContainer" unique_id=1076445657]
 layout_mode = 2
 
 [node name="RefreshBtn" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/ToolBarBox" unique_id=456781803]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8qdw2")
 text = "Refresh"
 
 [node name="DeleteBtn" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/ToolBarBox" unique_id=63096725]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8qdw2")
 text = "Delete"
 
 [node name="FormatBtn" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/ToolBarBox" unique_id=429516909]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8qdw2")
 text = "Format"
 
 [node name="NewBtn" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/ToolBarBox" unique_id=755092379]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_8qdw2")
 text = "New"
 
 [node name="FooterBox" type="HBoxContainer" parent="SetupWindow/Screen3_Drive/VBoxContainer" unique_id=148543561]
@@ -390,8 +471,8 @@ layout_mode = 2
 size_flags_vertical = 8
 
 [node name="WarningLabel" type="RichTextLabel" parent="SetupWindow/Screen3_Drive/VBoxContainer/FooterBox" unique_id=1878892867]
-visible = false
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_8qdw2")
 text = "Windows can't be installed on..."
 
 [node name="Control" type="Control" parent="SetupWindow/Screen3_Drive/VBoxContainer/FooterBox" unique_id=297961149]
@@ -400,6 +481,10 @@ size_flags_horizontal = 3
 
 [node name="DriveNextButton" type="Button" parent="SetupWindow/Screen3_Drive/VBoxContainer/FooterBox" unique_id=1858240647]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("4_8qdw2")
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBoxTexture_ev4je")
 text = "Next"
 
 [node name="Label" type="RichTextLabel" parent="SetupWindow/Screen3_Drive" unique_id=498107660]
@@ -434,6 +519,7 @@ offset_right = 93.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Copying Windows files..."
 label_settings = SubResource("LabelSettings_4bf84")
 
@@ -444,12 +530,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -65.0
-offset_top = 33.5
-offset_right = 65.0
-offset_bottom = 60.5
+offset_left = -167.5
+offset_top = 11.5
+offset_right = 167.5
+offset_bottom = 38.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_8qdw2")
 
 [node name="Screen_Restart" type="Control" parent="SetupWindow" unique_id=1340455686]
 z_index = 1

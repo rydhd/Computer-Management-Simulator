@@ -42,6 +42,7 @@ var current_cables_connected: int = 0
 
 
 func _ready() -> void:
+	
 	cable_tray.hide()
 	mobo_zoom_popup.hide()
 	gpu_zoom_popup.hide() 
@@ -49,7 +50,8 @@ func _ready() -> void:
 	
 	# --- NEW: Show starting instructions ---
 	if instruction_overlay and instruction_prompt:
-		instruction_prompt.text = "Drag the Power Supply Unit (PSU) into the case."
+		instruction_prompt.text = "Drag the Power Supply Unit (PSU) 
+		into the case."
 		instruction_overlay.show()
 	
 	# Connect existing MOBO signals
@@ -71,7 +73,8 @@ func _on_psu_installed() -> void:
 	
 	# --- NEW: Update the instruction prompt ---
 	if instruction_overlay and instruction_prompt:
-		instruction_prompt.text = "Click the Motherboard or GPU to connect the wires!"
+		instruction_prompt.text = "Click the Motherboard or GPU to connect 
+		the wires!"
 		instruction_overlay.show()
 	
 	if task_psu:

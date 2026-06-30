@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://d0vevkvgtwcnu" path="res://assets/COC 1/Arrange Cables/wires/OrangeWhite.png" id="12_01rnp"]
 [ext_resource type="Texture2D" uid="uid://y31akgdm0eve" path="res://assets/COC 1/Arrange Cables/wires/BrownWhite.png" id="13_0a6g1"]
 [ext_resource type="Script" uid="uid://dsc5tdb26ilqw" path="res://scripts/COC 1/Arrange Cables/wire_slot.gd" id="15_set7h"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="19_4egg8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5mb4"]
 texture = ExtResource("3_f53sr")
@@ -59,9 +60,12 @@ border_color = Color(0.25490198, 0.5764706, 0, 1)
 border_blend = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_diyc5"]
-font_color = Color(0, 0, 0, 1)
+line_spacing = 6.0
+paragraph_spacing = 3.0
+font = ExtResource("19_4egg8")
 
 [sub_resource type="LabelSettings" id="LabelSettings_set7h"]
+font = ExtResource("19_4egg8")
 
 [node name="ArrangeCables" type="Control" unique_id=216831828]
 layout_mode = 3
@@ -97,10 +101,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -193.25
-offset_top = -151.0
-offset_right = 193.25
-offset_bottom = -71.0
+offset_left = -284.375
+offset_top = -158.0
+offset_right = 284.375
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 13
@@ -108,6 +112,8 @@ theme_override_constants/separation = 13
 [node name="StartButton" type="Button" parent="MainMenu/HBoxContainer" unique_id=1750920735]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("19_4egg8")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxTexture_k5mb4")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_fmfci")
 theme_override_styles/hover = SubResource("StyleBoxTexture_px5ih")
@@ -116,6 +122,8 @@ text = "Start"
 [node name="BackButton" type="Button" parent="MainMenu/HBoxContainer" unique_id=236673530]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("19_4egg8")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxTexture_k5mb4")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_fmfci")
 theme_override_styles/hover = SubResource("StyleBoxTexture_px5ih")
@@ -415,18 +423,16 @@ label_settings = SubResource("LabelSettings_diyc5")
 
 [node name="InstructionLabel" type="Label" parent="GameplayPanel" unique_id=337024658]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -452.0
-offset_top = -64.0
-offset_right = -149.0
-offset_bottom = -41.0
-grow_horizontal = 2
+offset_left = 37.0
+offset_top = -17.5
+offset_right = 389.0
+offset_bottom = 17.5
 grow_vertical = 2
-text = "drag the wires to the highlighted shape"
+text = "drag the wires to the 
+highlighted shape"
 label_settings = SubResource("LabelSettings_set7h")
 horizontal_alignment = 1
 vertical_alignment = 1

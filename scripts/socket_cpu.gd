@@ -15,13 +15,25 @@ var is_spinning: bool = false
 @onready var latch_button: TextureButton = $"../LatchButton"
 
 func _ready() -> void:
+	# Connect the signals to detect when a hardware piece overlaps the socket
+	area_entered.connect(_on_area_entered)
+	area_exited.connect(_on_area_exited)
 	# Initialize the background to the closed texture on startup
 	if closed_socket_texture and main_mobo_bg:
 		main_mobo_bg.texture = closed_socket_texture
 	
 	if spinning_circle:
 		spinning_circle.visible = false
+func _on_area_entered(area: Area2D) -> void:
+	# Check if the Area2D entering this socket is exactly the "CPU" node
+	if area.name == "CPU":
+		# Tint the socket green to indicate a valid drop spot
+		modulate = Color(0.2, 1.0, 0.2, 1.0) 
 
+func _on_area_exited(area: Area2D) -> void:
+	# If the CPU gets dragged away without dropping, reset the socket's color
+	if area.name == "CPU":
+		modulate = Color(1.0, 1.0, 1.0, 1.0)
 func _process(delta: float) -> void:
 	if is_spinning and spinning_circle:
 		spinning_circle.rotation += 10.0 * delta

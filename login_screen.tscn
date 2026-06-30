@@ -2,6 +2,44 @@
 
 [ext_resource type="Script" uid="uid://w4ixskixhy25" path="res://login_screen.gd" id="1_frse4"]
 [ext_resource type="Texture2D" uid="uid://dut13xsqcfhcy" path="res://assets/2D Assets/2D Materials/Landing Page.png" id="2_7xvqn"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="3_pajja"]
+[ext_resource type="Texture2D" uid="uid://cjsttxu8d877m" path="res://assets/2D Assets/2D Materials/line.png" id="4_gwvec"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="5_g3dcn"]
+[ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="6_kvk7v"]
+[ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="7_46gtq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iih7r"]
+texture = ExtResource("4_gwvec")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l61rq"]
+texture = ExtResource("4_gwvec")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s8y6u"]
+texture = ExtResource("5_g3dcn")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2v8dy"]
+texture = ExtResource("6_kvk7v")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bxidf"]
+texture = ExtResource("7_46gtq")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [node name="LoginScreen" type="Control" unique_id=1490664868]
 layout_mode = 3
@@ -42,15 +80,26 @@ alignment = 1
 
 [node name="CodeEdit" type="LineEdit" parent="VBoxContainer" unique_id=2003640313]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pajja")
+theme_override_styles/normal = SubResource("StyleBoxTexture_iih7r")
 placeholder_text = "Student Code"
 
 [node name="PasswordEdit" type="LineEdit" parent="VBoxContainer" unique_id=29618635]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pajja")
+theme_override_styles/normal = SubResource("StyleBoxTexture_l61rq")
 placeholder_text = "Password"
 secret = true
 
 [node name="LoginButton" type="Button" parent="VBoxContainer" unique_id=142895314]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_pajja")
+theme_override_styles/normal = SubResource("StyleBoxTexture_s8y6u")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_2v8dy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bxidf")
 text = "Login"
 
 [node name="LoginRequest" type="HTTPRequest" parent="." unique_id=1755652433]

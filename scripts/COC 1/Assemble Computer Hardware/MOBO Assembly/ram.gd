@@ -21,7 +21,7 @@ func _input_event(_viewport, event, _shape_idx) -> void:
 			is_dragging = true
 			z_index = 10
 
-# 2. Stop drag GLOBALLY (This guarantees the item drops even if you move the mouse fast!)
+# 2. Stop drag GLOBALLY
 func _input(event: InputEvent) -> void:
 	if is_dragging and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if not event.pressed: # The mouse button was released!
@@ -32,12 +32,28 @@ func _input(event: InputEvent) -> void:
 func _process(_delta) -> void:
 	if is_dragging:
 		global_position = get_global_mouse_position()
+		
+		# --- NEW: Highlight green when dragged over the socket ---
+		var is_over_socket = false
+		for area in get_overlapping_areas():
+			# CRITICAL: Case-sensitive check
+			if area.name == "Socket_RAM":
+				is_over_socket = true
+				break
+				
+		if is_over_socket:
+			modulate = Color(0.2, 1.0, 0.2, 1.0) # Light Green
+		else:
+			modulate = Color(1.0, 1.0, 1.0, 1.0) # Normal color
+		# ---------------------------------------------------------
 
 func _check_drop_zone():
+	# --- NEW: Reset the color when the player releases the mouse ---
+	modulate = Color(1.0, 1.0, 1.0, 1.0) 
+	
 	var overlapping_areas = get_overlapping_areas()
 	
 	for area in overlapping_areas:
-		# CRITICAL: This string is case-sensitive! Ensure the node is named exactly "Socket_Ram" in the scene tree.
 		if area.name == "Socket_RAM": 
 			global_position = area.global_position
 			is_installed = true 

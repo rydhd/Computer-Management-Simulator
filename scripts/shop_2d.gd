@@ -1,17 +1,37 @@
 extends Control
 
 const SCORE_POPUP_SCENE = preload("res://scenes/score_popup.tscn")
-# 1. Preload the Manual Popup Scene right next to your other preloads
 const NPC_SCENE = preload("res://scenes/NpcCustomer.tscn")
 const ISSUE_POPUP_SCENE = preload("res://scenes/issue_popup_ui.tscn")
 const MANUAL_POPUP_SCENE = preload("res://scenes/manual_popup.tscn") 
+
+# --- HOVER ASSETS ---
+const MANUAL_NORMAL = preload("res://assets/2D Assets/2D Materials/Background Manual.png")
+const MANUAL_HOVER = preload("res://assets/2D Assets/2D Materials/manual hover.png") 
+
+const BELL_NORMAL = preload("res://assets/2D Assets/2D Materials/Background Bell.png")
+const BELL_HOVER = preload("res://assets/2D Assets/2D Materials/bell hover.png") # CHECK THIS PATH
+
+const TASKBOARD_NORMAL = preload("res://assets/2D Assets/2D Materials/Background Taskboard.png")
+const TASKBOARD_HOVER = preload("res://assets/2D Assets/2D Materials/taskboard hover.png") # CHECK THIS PATH
+# --------------------
+
+# --- TEXTURE RECTS (BACKGROUNDS) ---
+@onready var background_manual: TextureRect = $BackgroundManual
+@onready var background_bell: TextureRect = $BackgroundBell
+@onready var background_taskboard: TextureRect = $BackgroundTaskboard
+# -----------------------------------
 
 @onready var manual_sound = $BackgroundManual/ManualSound
 @onready var bell_sound = $BackgroundBell/BellSound
 @onready var npc_spawn_position: Control = $NpcSpawnPoint
 @onready var dialogue_system = $DialogueSystem
 @onready var taskboard_overlay = $TaskboardOverlay
+
+# --- BUTTONS ---
 @onready var manual_button: Button = $BackgroundManual/ManualButton 
+@onready var bell_button: Button = $BackgroundBell/BellButton
+@onready var taskboard_button: Button = $BackgroundTaskboard/TaskboardButton
 
 # Tracks the current instances
 var current_npc: Area2D = null 
@@ -20,11 +40,26 @@ var manual_popup_instance: Node = null
 var is_processing_bell: bool = false
 
 func _ready() -> void:
+	# Connect the hover signals for the Manual Button
+	if manual_button:
+		manual_button.mouse_entered.connect(_on_manual_hover_entered)
+		manual_button.mouse_exited.connect(_on_manual_hover_exited)
+		
+	# Connect the hover signals for the Bell Button
+	if bell_button:
+		bell_button.mouse_entered.connect(_on_bell_hover_entered)
+		bell_button.mouse_exited.connect(_on_bell_hover_exited)
+		
+	# Connect the hover signals for the Taskboard Button
+	if taskboard_button:
+		taskboard_button.mouse_entered.connect(_on_taskboard_hover_entered)
+		taskboard_button.mouse_exited.connect(_on_taskboard_hover_exited)
+		
 	# --- BULLETPROOF TUTORIAL OVERRIDE ---
 	if GlobalState.completed_tasks.size() > 0:
 		TutorialManager.current_step = TutorialManager.TutorialStep.COMPLETED
 
-	# Connect the manual button
+	# Connect the manual button pressed signal
 	if manual_button and not manual_button.pressed.is_connected(_on_manual_button_pressed):
 		manual_button.pressed.connect(_on_manual_button_pressed)
 
@@ -54,14 +89,9 @@ func _ready() -> void:
 		if GlobalState.active_tasks[0]["name"] == "Set-up Computer Networks":
 			current_npc.my_name = "Miyamura"
 			current_npc.my_outro = "Thanks! The network is up and running smoothly."
-			
-			# Record that Miyamura is completely done
 			GlobalState.set_meta("miyamura_finished", true)
 		else:
-			# If it's not Miyamura's task, it must be Chase's hardware combo
 			current_npc.my_name = "Chase"
-			
-			# Record that Chase is completely done
 			GlobalState.set_meta("chase_finished", true)
 		# ----------------------------------------------------------------
 		
@@ -115,8 +145,44 @@ func _ready() -> void:
 	# 4. Is this the very beginning of the game?
 	elif TutorialManager.current_step == TutorialManager.TutorialStep.START:
 		get_tree().create_timer(1.0).timeout.connect(TutorialManager.start_tutorial)
+		
 
-# --- NEW FUNCTION FOR THE OS DIALOGUE ---
+# ==========================================
+# --- HOVER LOGIC FUNCTIONS ---
+# ==========================================
+
+# --- Manual Hover ---
+func _on_manual_hover_entered() -> void:
+	if background_manual:
+		background_manual.texture = MANUAL_HOVER
+
+func _on_manual_hover_exited() -> void:
+	if background_manual:
+		background_manual.texture = MANUAL_NORMAL
+
+# --- Bell Hover ---
+func _on_bell_hover_entered() -> void:
+	if background_bell:
+		background_bell.texture = BELL_HOVER
+
+func _on_bell_hover_exited() -> void:
+	if background_bell:
+		background_bell.texture = BELL_NORMAL
+
+# --- Taskboard Hover ---
+func _on_taskboard_hover_entered() -> void:
+	if background_taskboard:
+		background_taskboard.texture = TASKBOARD_HOVER
+
+func _on_taskboard_hover_exited() -> void:
+	if background_taskboard:
+		background_taskboard.texture = TASKBOARD_NORMAL
+
+
+# ==========================================
+# --- REST OF GAMEPLAY LOGIC ---
+# ==========================================
+
 func _on_os_install_complete() -> void:
 	EventBus.trigger_robot_dialogue.emit("Great job! You successfully installed the Operating System.")
 	await EventBus.continue_tutorial_dialogue
@@ -124,13 +190,9 @@ func _on_os_install_complete() -> void:
 	EventBus.trigger_robot_dialogue.emit("Open the Taskboard to check off your task and move on to arranging the cables!")
 	await EventBus.continue_tutorial_dialogue
 	
-	# Send the robot away
 	EventBus.fade_out_robot.emit()
-	
-	# Set the meta tag so this congratulation never plays again
 	GlobalState.set_meta("os_install_acknowledged", true)
 
-# --- FUNCTION FOR THE POST-HARDWARE DIALOGUE ---
 func _on_first_job_complete() -> void:
 	EventBus.trigger_robot_dialogue.emit("Great work getting that PC assembled!")
 	await EventBus.continue_tutorial_dialogue
@@ -138,91 +200,67 @@ func _on_first_job_complete() -> void:
 	EventBus.trigger_robot_dialogue.emit("Open the Taskboard to check off your task and grab your next job!")
 	await EventBus.continue_tutorial_dialogue
 	
-	# Send the robot away
 	EventBus.fade_out_robot.emit()
-	
-	# Mark it true so this congratulation never plays again!
 	GlobalState.first_job_acknowledged = true
 
 func _on_bell_button_pressed() -> void:
-	# 1. Anti-Spam Lock: If we are already processing a click, ignore this one!
 	if is_processing_bell:
 		return
 		
-	# 2. State Check: If an NPC is already here, DO NOTHING!
+	# NEW: Prevent spawning if the player is already working on an active job
+	if GlobalState.active_tasks.size() > 0:
+		print("Job already in progress. Finish the current task first.")
+		return
+		
 	if is_instance_valid(current_npc):
 		print("An NPC is already here. Help them first!")
 		return
 		
-	# Lock the bell logic now that we've passed the checks
 	is_processing_bell = true
 	print("Bell pressed! Attempting to spawn NPC.")
 	
-	# 3. Play the AudioStreamPlayer sound
 	$BackgroundBell/BellSound.play()
-	
-	# --- TELL THE TUTORIAL WE RUNG THE BELL ---
 	EventBus.hide_bell_arrow.emit()
 	
-	# 4. Instantiate the NPC
 	current_npc = NPC_SCENE.instantiate()
 	current_npc.scale = Vector2(0.3, 0.3) 
 	
-	# --- UPDATE: Sequential Spawning based on GlobalState ---
 	if not GlobalState.has_meta("chase_finished"):
-		# If Chase HAS NOT finished his job yet, force Chase to spawn.
 		current_npc.my_name = "Chase"
 		current_npc.my_id = "task_001_chase"
 	else:
-		# If Chase HAS finished his job, force Miyamura to spawn next!
 		current_npc.my_name = "Miyamura"
 		current_npc.my_intro = "Hi! My office computers can't talk to each other. Can you set up our network?"
 		current_npc.my_outro = "Thanks! The network is up and running smoothly."
 		current_npc.my_issues = ["Set-up Computer Networks"]
 		current_npc.my_id = "task_002_network"
-		
-		# --- ADD THIS LINE HERE ---
 		current_npc.get_node("Sprite2D").texture = load("res://assets/2D Assets/2D Materials/npc_2_miyamura.png")
-	# ------------------------------------------------------------------
 	
 	$NpcLayer.add_child(current_npc)
 	current_npc.global_position = npc_spawn_position.global_position
 	
-	# 5. Trigger the fade-in animation and WAIT for it to finish
 	current_npc.fade_in_and_signal()
 	await current_npc.fade_in_complete
 	
-	# Tell the rest of the game the NPC arrived
 	EventBus.npc_arrived.emit()
 	
-	# 6. Start the dialogue sequence automatically!
-	start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
+	# FIX: Await the dialogue function to prevent early resetting of the bell state
+	await start_npc_dialogue(current_npc.my_intro, current_npc.my_name, current_npc.my_issues, current_npc.my_id)
 	
-	# Unlock the bell logic so it can be used again in the future
 	is_processing_bell = false
-
 func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array, issue_id: String) -> void:
-	print("NPC fade-in finished, starting dialogue!")
-	
 	if is_instance_valid(dialogue_system):
-		
-		# Build a multi-page array out of the NPC's intro text
 		var dialogue_lines: Array[String] = [
 			intro_text,
 			"Can you fix these for me?"
 		]
 		
 		dialogue_system.start_dialogue(dialogue_lines)
-		
-		# WAIT FOR THE SIGNAL! 
-		# This halts the code until the player clicks through all dialogue pages.
 		await dialogue_system.dialogue_finished
 		
-		# Prevents crashes if the scene was changed while the player was reading
 		if not is_inside_tree():
 			return 
 		
-		# --- SPAWN THE UI POPUP ---
 		if is_instance_valid(current_popup):
 			current_popup.queue_free()
 			
@@ -234,31 +272,19 @@ func start_npc_dialogue(intro_text: String, customer_name: String, issues: Array
 		print("ERROR: Dialogue system node is not valid!")
 
 func _on_taskboard_button_pressed() -> void:
-	manual_sound.play()
-	# Wait for the audio track to finish completely
-	await manual_sound.finished 
+	$BackgroundTaskboard/TaskboardButton/TaskboardSound.play() if $BackgroundTaskboard/TaskboardButton.has_node("TaskboardSound") else null
 	EventBus.fade_out_robot.emit()
-	print("Taskboard Button Pressed!")
-	
-	# HIDE THE ARROW!
 	EventBus.hide_taskboard_arrow.emit()
 	
 	if is_instance_valid(taskboard_overlay):
 		taskboard_overlay.visible = !taskboard_overlay.visible
-	else:
-		print("ERROR: TaskboardOverlay node not found!")
 
 func _on_manual_button_pressed() -> void:
 	manual_sound.play()
-	# Wait for the audio track to finish completely
 	await manual_sound.finished 
-	print("Manual Button Pressed!")
 	
-	# Check if the manual is already instanced to save memory.
-	# If not, we instantiate it and add it to the scene tree.
 	if not is_instance_valid(manual_popup_instance):
 		manual_popup_instance = MANUAL_POPUP_SCENE.instantiate()
 		add_child(manual_popup_instance)
 		
-	# Call the public API function we created in manual_popup.gd!
 	manual_popup_instance.open_manual()

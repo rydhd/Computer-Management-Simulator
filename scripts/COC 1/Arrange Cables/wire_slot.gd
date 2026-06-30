@@ -7,8 +7,9 @@ extends TextureRect
 signal wire_dropped(index: int, color: String)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
-	# NEW: Accept the drop if the data is a Dictionary containing "color", and the slot is empty
-	return typeof(data) == TYPE_DICTIONARY and data.has("color") and texture == null
+	# UPDATED: Accept the drop if the data is a Dictionary containing "color".
+	# The 'and texture == null' condition is removed so players can overwrite mistakes.
+	return typeof(data) == TYPE_DICTIONARY and data.has("color")
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
 	# Extract the color from our dictionary payload
@@ -20,14 +21,15 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 	# Check if the file actually exists to prevent game crashes
 	if ResourceLoader.exists(file_path):
 		var new_texture: Texture2D = load(file_path)
+		# Overwrite the current texture with the newly dropped wire
 		texture = new_texture
 	else:
 		printerr("Texture not found at path: ", file_path)
 		
-	# NEW: Disable the original wire so it cannot be dragged again
+	# Disable the newly dropped original wire so it cannot be dragged again
 	data["original_node"].is_placed = true
 	
-	# NEW: Dim the original wire in the inventory so the player knows it is used
+	# Dim the original wire in the inventory so the player knows it is used
 	data["original_node"].modulate.a = 0.3 
 	
 	# Notify the main game logic
