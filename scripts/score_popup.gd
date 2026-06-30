@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var total_score_label: Label = %TotalScoreLabel
 @onready var close_button: Button = %CloseButton
 @onready var payment_sound: AudioStreamPlayer = $PaymentSound
+
 # Signal to tell the shop scene we are done looking at the scores
 signal closed
 
@@ -47,6 +48,16 @@ func display_scores(active_tasks_array: Array) -> void:
 		total_score_label.text = "Overall Grade: N/A"
 
 func _on_close_pressed() -> void:
-	payment_sound.play
+	# 1. Disable the button so it can't be spammed
+	close_button.disabled = true
+	
+	# 2. Hide the UI instantly so it feels responsive to the player
+	visible = false
+	
+	# 3. Play the sound (with parentheses!) and wait for it to finish
+	payment_sound.play()
+	await payment_sound.finished
+	
+	# 4. Emit the signal and destroy the node safely
 	closed.emit()
 	queue_free()

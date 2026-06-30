@@ -1,23 +1,31 @@
 [gd_scene format=3 uid="uid://bvfrqr2qub1vy"]
 
 [ext_resource type="Script" uid="uid://bdso18oxi6y0k" path="res://scripts/timer_overlay.gd" id="1_tdojk"]
+[ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="2_bmdiv"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="3_1g66k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_53ou5"]
+texture = ExtResource("2_bmdiv")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
 
 [node name="TimerOverlay" type="CanvasLayer" unique_id=960843729]
 layer = 128
 script = ExtResource("1_tdojk")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=429944378]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -154.5
-offset_right = 154.5
-offset_bottom = 40.0
-grow_horizontal = 2
+offset_right = 309.0
+offset_bottom = 58.0
+mouse_filter = 2
+theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=876073623]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_53ou5")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=893603932]
 layout_mode = 2
@@ -28,5 +36,6 @@ theme_override_constants/margin_bottom = 10
 
 [node name="TimeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1035941618]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1g66k")
 text = "00:00.00"
 horizontal_alignment = 1

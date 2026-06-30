@@ -12,6 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://d1gtdqxkk1fi5" path="res://assets/2D Assets/2D Materials/Background Table.png" id="11_ept0o"]
 [ext_resource type="Script" uid="uid://dvjo8psqhtxar" path="res://scripts/usb_socket.gd" id="11_ootlq"]
 [ext_resource type="Texture2D" uid="uid://vfdv0unvgum4" path="res://assets/2D Assets/power-button.png" id="12_ept0o"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="13_ootlq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ootlq"]
+font = ExtResource("13_ootlq")
+
+[sub_resource type="LabelSettings" id="LabelSettings_1uamw"]
+font = ExtResource("13_ootlq")
+font_color = Color(1, 1, 0, 1)
 
 [node name="InstallingOS" type="Control" unique_id=1732626725]
 layout_mode = 3
@@ -204,7 +212,8 @@ offset_right = 214.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Motherboard Logo - Press F6 repeatedly to enter BIOS..."
+text = " Press F6 repeatedly to enter BIOS..."
+label_settings = SubResource("LabelSettings_ootlq")
 
 [node name="ProgressBar" type="ProgressBar" parent="BootScreen" unique_id=761002626]
 layout_mode = 1
@@ -219,3 +228,12 @@ offset_right = 239.0
 offset_bottom = 39.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="InstructionLabel" type="Label" parent="." unique_id=696730269]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 262.0
+offset_right = 910.0
+offset_bottom = 360.0
+label_settings = SubResource("LabelSettings_1uamw")
+autowrap_mode = 3

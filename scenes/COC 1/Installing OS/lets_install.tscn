@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://8f3gdt8ir787" path="res://scripts/COC 1/Install OS/lets_install.gd" id="1_3qfcr"]
 [ext_resource type="Texture2D" uid="uid://dvdouymav0mw4" path="res://assets/COC 1/Install OS/Install Menu.png" id="1_0844e"]
 [ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="3_rdpsn"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="3_sq0s7"]
 [ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="4_sq0s7"]
 [ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="5_3fg2x"]
 
@@ -60,10 +61,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -214.5
-offset_top = -140.0
-offset_right = 214.5
-offset_bottom = -80.0
+offset_left = -284.375
+offset_top = -157.0
+offset_right = 284.375
+offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 12
@@ -72,6 +73,8 @@ alignment = 1
 [node name="StartButton" type="Button" parent="HBoxContainer" unique_id=148904653]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_sq0s7")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxTexture_xv0a8")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_pk5vk")
 theme_override_styles/hover = SubResource("StyleBoxTexture_hhht8")
@@ -80,6 +83,8 @@ text = "Start	"
 [node name="BackButton" type="Button" parent="HBoxContainer" unique_id=13905369]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_sq0s7")
+theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxTexture_duwom")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_pk5vk")
 theme_override_styles/hover = SubResource("StyleBoxTexture_hhht8")

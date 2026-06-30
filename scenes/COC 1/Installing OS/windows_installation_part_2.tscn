@@ -3,7 +3,62 @@
 [ext_resource type="Script" uid="uid://cbilc5kxbllyp" path="res://scripts/COC 1/Install OS/windows_installation_part_2.gd" id="1_0xyow"]
 [ext_resource type="Texture2D" uid="uid://b41q3dubh4kxd" path="res://assets/COC 1/Install OS/USB INSTALL (1).png" id="2_3iba3"]
 [ext_resource type="Texture2D" uid="uid://b7sl5x3wpf7ir" path="res://assets/COC 1/Install OS/image 868.png" id="3_s4f8b"]
+[ext_resource type="Texture2D" uid="uid://bt233lau4gvqj" path="res://assets/COC 1/Install OS/image 902.png" id="4_0qmxs"]
 [ext_resource type="Texture2D" uid="uid://dbmno5ol10ng4" path="res://assets/COC 1/Install OS/Wifi.png" id="4_nucw0"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="5_t8icw"]
+[ext_resource type="Texture2D" uid="uid://cncwviea6knbl" path="res://assets/COC 1/Install OS/1643092087b949558583edf1b96440a3.jpg" id="6_qdefp"]
+[ext_resource type="Texture2D" uid="uid://c2nv2ixf7e4pw" path="res://assets/COC 1/Install OS/n.png" id="7_ronme"]
+[ext_resource type="Texture2D" uid="uid://bv2xiioi7mo38" path="res://assets/COC 1/Install OS/Rectangle 185.png" id="9_0v301"]
+[ext_resource type="Texture2D" uid="uid://dofrwjgyf4ru2" path="res://assets/COC 1/Install OS/Group 149.png" id="10_etlrg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0qmxs"]
+texture = ExtResource("7_ronme")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t8icw"]
+texture = ExtResource("7_ronme")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ov6l"]
+texture = ExtResource("7_ronme")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ijsl"]
+texture = ExtResource("7_ronme")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1ipx"]
+texture = ExtResource("7_ronme")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oprpn"]
+texture = ExtResource("9_0v301")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7uvpo"]
+texture = ExtResource("7_ronme")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 10.0
 
 [node name="WindowsInstallationPart2" type="Control" unique_id=1172563133]
 layout_mode = 3
@@ -48,9 +103,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 15.0
-offset_top = -111.5
-offset_right = 289.0
-offset_bottom = 111.5
+offset_top = -116.0
+offset_right = 348.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
@@ -62,8 +117,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Is this the right country region?"
 fit_content = true
+autowrap_mode = 2
 
 [node name="Selection" type="VBoxContainer" parent="PCWindow/Screen1_Region/VBoxContainer" unique_id=1709443083]
 layout_mode = 2
@@ -73,30 +130,35 @@ theme_override_constants/separation = 15
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Hong Kong SAR"
 fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=462243171]
 layout_mode = 2
 theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Philippines"
 fit_content = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=1016401426]
 layout_mode = 2
 theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Iceland"
 fit_content = true
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=1684604986]
 layout_mode = 2
 theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Indonesia"
 fit_content = true
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="PCWindow/Screen1_Region/VBoxContainer/Selection" unique_id=494514682]
 layout_mode = 2
 theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Thailand"
 fit_content = true
 
@@ -118,11 +180,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -107.0
+offset_left = -121.0
 offset_top = -52.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "YES"
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("5_t8icw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0qmxs")
+text = "Next"
 
 [node name="Screen2_Network" type="Control" parent="PCWindow" unique_id=1680994278]
 layout_mode = 1
@@ -139,20 +204,22 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -465.0
 offset_top = 21.0
-offset_right = -87.0
+offset_right = -1.0
 offset_bottom = 113.0
 grow_horizontal = 0
-theme_override_constants/separation = 10
+theme_override_constants/separation = 21
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen2_Network/Questions" unique_id=1198485515]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Is this the right keyboard layout or input method?"
 fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="PCWindow/Screen2_Network/Questions" unique_id=1399627330]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 theme_override_font_sizes/normal_font_size = 13
 text = "If you also use another keyboard layout you can add that next"
 fit_content = true
@@ -165,43 +232,52 @@ anchor_right = 0.5
 offset_left = -32.0
 offset_top = 123.0
 offset_right = 225.0
-offset_bottom = 388.0
+offset_bottom = 375.0
 grow_horizontal = 2
+theme_override_constants/separation = 31
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=222825761]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "US"
 fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=450976196]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Canadian Multilingual Standard "
 fit_content = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=1233354951]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "English India"
 fit_content = true
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=1805015034]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Irish"
 fit_content = true
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="PCWindow/Screen2_Network/KeyboardLayout" unique_id=1351648368]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "NZ"
 fit_content = true
 
 [node name="TextureRect" type="TextureRect" parent="PCWindow/Screen2_Network" unique_id=706047617]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 315.0
+offset_bottom = 444.0
+texture = ExtResource("4_0qmxs")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="NextButton" type="Button" parent="PCWindow/Screen2_Network" unique_id=2056455412]
 layout_mode = 1
@@ -210,11 +286,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -85.0
-offset_top = -40.0
+offset_left = -106.0
+offset_top = -41.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "YES"
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("5_t8icw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_t8icw")
+text = "Next"
 
 [node name="Screen3_Account" type="Control" parent="PCWindow" unique_id=45538223]
 layout_mode = 1
@@ -229,11 +308,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -184.0
-offset_right = 184.0
-offset_bottom = 40.0
+offset_left = -246.5
+offset_top = 3.0
+offset_right = 246.5
+offset_bottom = 43.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Want to add a second keyboard layout?"
 
 [node name="TextureRect" type="TextureRect" parent="PCWindow/Screen3_Account" unique_id=164514193]
@@ -243,12 +324,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -284.0
+offset_top = -133.5
+offset_right = 284.0
+offset_bottom = 133.5
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("6_qdefp")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PCWindow/Screen3_Account" unique_id=831663561]
 layout_mode = 1
@@ -264,11 +348,17 @@ grow_vertical = 0
 
 [node name="AddLayoutButton" type="Button" parent="PCWindow/Screen3_Account/HBoxContainer" unique_id=640091662]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("5_t8icw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7ov6l")
 text = "Add Layout
 "
 
 [node name="NextButton" type="Button" parent="PCWindow/Screen3_Account/HBoxContainer" unique_id=1498789224]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("5_t8icw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2ijsl")
 text = "Skip"
 
 [node name="Screen4_Internet" type="Control" parent="PCWindow" unique_id=1177263194]
@@ -284,11 +374,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -123.0
-offset_right = 123.0
-offset_bottom = 40.0
+offset_left = -190.5
+offset_top = 2.0
+offset_right = 190.5
+offset_bottom = 42.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Let’s connect you to a network"
 fit_content = true
 
@@ -299,46 +391,72 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -117.75
-offset_top = -42.0
-offset_right = 117.75
-offset_bottom = 42.0
+offset_left = -180.375
+offset_top = -53.5
+offset_right = 180.375
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer" unique_id=945506200]
+[node name="MarginContainer" type="MarginContainer" parent="PCWindow/Screen4_Internet/PanelContainer" unique_id=1342501299]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer" unique_id=945506200]
 layout_mode = 2
 theme_override_constants/separation = 17
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer" unique_id=484061279]
+[node name="HBoxContainer" type="HBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer" unique_id=484061279]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer/HBoxContainer" unique_id=1731129456]
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1731129456]
 layout_mode = 2
 texture = ExtResource("4_nucw0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer/HBoxContainer" unique_id=445505760]
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=445505760]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Tp-link AX 5G Secured"
 fit_content = true
 vertical_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer" unique_id=1136966341]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer" unique_id=1136966341]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1970901287]
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1970901287]
 layout_mode = 2
 texture = ExtResource("4_nucw0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen4_Internet/PanelContainer/VBoxContainer/HBoxContainer2" unique_id=1235269672]
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1235269672]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 text = "Hidden Network"
+fit_content = true
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer" unique_id=532204903]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=1547663958]
+layout_mode = 2
+texture = ExtResource("4_nucw0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen4_Internet/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=212569837]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
+text = "SkyFibr"
 fit_content = true
 vertical_alignment = 1
 
@@ -351,6 +469,9 @@ offset_left = 2.0
 offset_top = -40.0
 offset_right = 217.0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("5_t8icw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_n1ipx")
 text = "I don't have internet"
 
 [node name="Screen5_Final" type="Control" parent="PCWindow" unique_id=1007622099]
@@ -363,56 +484,59 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PCWindow/Screen5_Final" unique_id=1710165025]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -269.25
-offset_right = 269.25
-offset_bottom = 96.0
-grow_horizontal = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -538.5
+offset_bottom = 112.0
+grow_horizontal = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen5_Final/VBoxContainer" unique_id=1750201398]
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 theme_override_font_sizes/normal_font_size = 30
 text = "Let’s name your device"
 fit_content = true
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="PCWindow/Screen5_Final/VBoxContainer" unique_id=181985868]
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 theme_override_font_sizes/normal_font_size = 12
 text = "Make it yours with a unique name that's easy to recognize when connecting to it from other devices. Your device will restart after you name it.
 "
 fit_content = true
 
-[node name="LineEdit" type="LineEdit" parent="PCWindow/Screen5_Final" unique_id=620165835]
-layout_mode = 0
-offset_left = 124.75
-offset_top = 166.0
-offset_right = 309.0
-offset_bottom = 197.0
-theme_override_colors/selection_color = Color(1, 1, 1, 1)
-theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
-max_length = 15
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="PCWindow/Screen5_Final" unique_id=684927185]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -269.0
-offset_top = -221.0
-offset_right = 181.5
-offset_bottom = -167.0
+anchor_bottom = 0.5
+offset_left = -138.125
+offset_top = -34.5
+offset_right = 188.125
+offset_bottom = 34.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="PCWindow/Screen5_Final/VBoxContainer2" unique_id=620165835]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(1, 1, 1, 0.6)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_t8icw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_oprpn")
+max_length = 15
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PCWindow/Screen5_Final/VBoxContainer2" unique_id=1063758164]
 layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 theme_override_font_sizes/normal_font_size = 12
 text = "Can't contain only numbers No more than 15 characters
 No spaces or any of the following special characters"
@@ -425,11 +549,22 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -45.0
-offset_top = -31.0
+offset_left = -104.0
+offset_top = -36.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/font = ExtResource("5_t8icw")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7uvpo")
 text = "Next"
+
+[node name="TextureRect" type="TextureRect" parent="PCWindow/Screen5_Final" unique_id=385480848]
+layout_mode = 0
+offset_right = 241.0
+offset_bottom = 446.0
+texture = ExtResource("10_etlrg")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Screen6_Done" type="Control" parent="PCWindow" unique_id=1015616801]
 layout_mode = 1
@@ -446,13 +581,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -184.5
-offset_top = -88.5
-offset_right = 184.5
-offset_bottom = 88.5
+offset_left = -280.5
+offset_top = -87.25
+offset_right = 280.5
+offset_bottom = 87.25
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0.15294118, 0.21568628, 0.3019608, 1)
+theme_override_fonts/normal_font = ExtResource("5_t8icw")
 
 [connection signal="pressed" from="PCWindow/Screen1_Region/NextButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="PCWindow/Screen2_Network/NextButton" to="." method="_on_screen_2_button_pressed"]

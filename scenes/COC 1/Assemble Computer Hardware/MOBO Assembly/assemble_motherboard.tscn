@@ -24,12 +24,8 @@ texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptgu0"]
-bg_color = Color(0.09019608, 0.1882353, 0.40784314, 0.5882353)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hgi8a"]
+texture = ExtResource("7_hgi8a")
 
 [node name="AssembleMotherboard" type="Control" unique_id=1802961849]
 layout_mode = 3
@@ -226,7 +222,7 @@ offset_top = 4.0
 offset_right = -4.0
 offset_bottom = 69.0
 grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ptgu0")
+theme_override_styles/panel = SubResource("StyleBoxTexture_hgi8a")
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrewCounterOverlay" unique_id=747622699]
 layout_mode = 2

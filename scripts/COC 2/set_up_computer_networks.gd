@@ -1,5 +1,7 @@
 extends Control
 
+# --- Add this below your Main Screens variables ---
+@export var thank_you_scene_path: String = "res://scenes/thank_you_scene.tscn"
 # --- Main Screens ---
 @onready var selection_menu: VBoxContainer = $SetupScreen/VBoxContainer
 @onready var screen_1: Control = $SetupScreen/Screen1
@@ -258,3 +260,12 @@ func _on_bangkok_button_pressed() -> void:
 func _on_kuala_lumpur_button_pressed() -> void:
 	print("Time zone updated to: (UTC+8) Kuala Lumpur")
 	time_zone_panel.hide()
+
+
+# --- Add your new transition function here ---
+func _on_finish_button_pressed() -> void:
+	# Check if the scene path exists to prevent crashes
+	if ResourceLoader.exists(thank_you_scene_path):
+		get_tree().change_scene_to_file(thank_you_scene_path)
+	else:
+		print("Error: Thank You scene not found at path: ", thank_you_scene_path)

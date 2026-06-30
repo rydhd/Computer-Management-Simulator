@@ -14,12 +14,13 @@
 [ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="11_o17no"]
 [ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="13_o17no"]
 [ext_resource type="AudioStream" uid="uid://c0pfw2ska407b" path="res://assets/Audio/button.mp3" id="14_ofhu7"]
+[ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="14_syydj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1bf13"]
 size = Vector2(152, 152)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kj3go"]
-size = Vector2(377.8901, 28.384888)
+size = Vector2(474.9627, 28.384888)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofhu7"]
 texture = ExtResource("10_ulvih")
@@ -52,9 +53,27 @@ texture_margin_top = 5.0
 texture_margin_right = 5.0
 texture_margin_bottom = 5.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_55c3o"]
+texture = ExtResource("11_o17no")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m86aa"]
+texture = ExtResource("14_syydj")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
 [sub_resource type="LabelSettings" id="LabelSettings_264bs"]
+font = ExtResource("13_o17no")
+font_size = 20
 font_color = Color(0.97539407, 0, 0.316302, 1)
-outline_size = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_syydj"]
+font = ExtResource("13_o17no")
 
 [node name="Hardware_Assembly" type="Control" unique_id=2116355055]
 layout_mode = 3
@@ -84,18 +103,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 7.0
-offset_top = -19.0
-offset_right = 7.0
-offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("3_2tjjm")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="LatchButton" type="TextureButton" parent="." unique_id=837144471]
 z_index = 5
+layout_mode = 0
 offset_left = 637.0
 offset_top = 251.0
 offset_right = 1149.0
@@ -135,8 +152,8 @@ rotation = -1.5717435
 scale = Vector2(0.6258184, -1.2850367)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Socket_RAM" unique_id=1709710092]
-position = Vector2(-0.0015487671, -0.7782135)
-scale = Vector2(1.0000005, 1.0000005)
+position = Vector2(89.48433, 0.7369003)
+scale = Vector2(1.0000006, 1.0000006)
 shape = SubResource("RectangleShape2D_kj3go")
 
 [node name="GPU" parent="." unique_id=725532990 instance=ExtResource("7_ffefx")]
@@ -150,14 +167,18 @@ scale = Vector2(0.2805121, 0.22101277)
 
 [node name="Ram" parent="." unique_id=2092034636 instance=ExtResource("9_y4u54")]
 unique_name_in_owner = true
-position = Vector2(891, 512)
+position = Vector2(889, 432)
 
 [node name="Button" type="Button" parent="." unique_id=589954609]
 layout_mode = 1
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 161.0
-offset_bottom = 58.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -59.0
+offset_right = 162.0
+offset_bottom = -4.0
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("13_o17no")
 theme_override_styles/normal = SubResource("StyleBoxTexture_ofhu7")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_syydj")
@@ -184,6 +205,8 @@ scale = Vector2(0.27699474, 0.2995534)
 theme_override_fonts/font = ExtResource("13_o17no")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_4m4ie")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_55c3o")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m86aa")
 text = "Complete Job!"
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
@@ -207,5 +230,18 @@ label_settings = SubResource("LabelSettings_264bs")
 [node name="ButtonAudio" type="AudioStreamPlayer" parent="." unique_id=1245641357]
 stream = ExtResource("14_ofhu7")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="InstructionLabel" type="Label" parent="." unique_id=626160423]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -33.5
+offset_right = 289.0
+offset_bottom = 101.0
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_syydj")
+autowrap_mode = 3
+
 [connection signal="pressed" from="LatchButton" to="Socket_CPU" method="_on_latch_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -8,18 +8,28 @@
 [ext_resource type="Script" uid="uid://bfuehugvafxw2" path="res://scripts/psu_drop_zone.gd" id="5_rnlsk"]
 [ext_resource type="Texture2D" uid="uid://dd6dx011jrcdw" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/PSU.png" id="7_o0adv"]
 [ext_resource type="Script" uid="uid://dmyy56w2nlny" path="res://scripts/psu.gd" id="8_ilue1"]
-[ext_resource type="Texture2D" uid="uid://df1dlabw6qfgk" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/MOBO zoomed.png" id="9_nc1cq"]
 [ext_resource type="Texture2D" uid="uid://pype4m26yxdo" path="res://assets/2D Assets/2D Materials/X.png" id="10_ilk4g"]
 [ext_resource type="Script" uid="uid://dlycral7hm1bh" path="res://scripts/wire_sockets.gd" id="11_eaa8h"]
 [ext_resource type="Texture2D" uid="uid://cst6ret6qu3vn" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/24pin CPU.png" id="12_brs0y"]
+[ext_resource type="Texture2D" uid="uid://cjsd8t3k147cl" path="res://assets/COC 1/Assemble Computer Hardware/Lets Assemble Computer Hardware/Gawa ni alissonb.png" id="12_cqoya"]
 [ext_resource type="Script" uid="uid://cp6iwm1pueo24" path="res://scripts/draggable_item.gd" id="13_6fpu1"]
 [ext_resource type="Texture2D" uid="uid://bl0e0th0ct82f" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/CPU cable.png" id="14_eaa8h"]
+[ext_resource type="FontFile" uid="uid://dw30k2wbflam7" path="res://assets/font/PressStart2P-Regular.ttf" id="15_o0adv"]
 [ext_resource type="Texture2D" uid="uid://w3t8sqjhdif3" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/pcie gpu.png" id="16_0tdvh"]
 [ext_resource type="Texture2D" uid="uid://4ccvmtm3qdqu" path="res://assets/COC 1/Assemble Computer Hardware/Insert Cables/GPU zoomed.png" id="16_eaa8h"]
 [ext_resource type="Texture2D" uid="uid://dngihawdndvat" path="res://assets/2D Assets/2D Materials/Rectangle 5.png" id="17_rnlsk"]
 [ext_resource type="Texture2D" uid="uid://d3v3om02bovuv" path="res://assets/2D Assets/2D Materials/pressed.png" id="18_cqoya"]
 [ext_resource type="Texture2D" uid="uid://d32o2n34sno43" path="res://assets/2D Assets/2D Materials/hover.png" id="19_o0adv"]
 [ext_resource type="AudioStream" uid="uid://figdkcwfhlwp" path="res://assets/Audio/plug.mp3" id="20_cqoya"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ilue1"]
+font = ExtResource("15_o0adv")
+
+[sub_resource type="LabelSettings" id="LabelSettings_o0adv"]
+font = ExtResource("15_o0adv")
+
+[sub_resource type="LabelSettings" id="LabelSettings_nc1cq"]
+font = ExtResource("15_o0adv")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ilue1"]
 texture = ExtResource("17_rnlsk")
@@ -44,8 +54,14 @@ texture_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnlsk"]
 bg_color = Color(0.07058824, 0.15294118, 0.32941177, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_cqoya"]
+line_spacing = 4.0
+paragraph_spacing = 1.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rnlsk"]
 content_margin_left = 5.0
@@ -54,6 +70,7 @@ content_margin_right = 5.0
 content_margin_bottom = 5.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_eaa8h"]
+font = ExtResource("15_o0adv")
 
 [node name="Insert_Cables" type="Control" unique_id=1825963719]
 layout_mode = 3
@@ -216,16 +233,21 @@ anchor_left = 0.234
 anchor_top = 0.151
 anchor_right = 0.529
 anchor_bottom = 0.651
+offset_left = 77.43201
+offset_top = -4.847992
+offset_right = 135.02405
+offset_bottom = 82.303986
 grow_vertical = 2
-texture = ExtResource("9_nc1cq")
+texture = ExtResource("12_cqoya")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="CloseButton" type="TextureButton" parent="MoboZoomPopup/ZoomedMoboVisual" unique_id=138412887]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -23.600021
+offset_left = -23.600037
 offset_bottom = 21.384003
 grow_horizontal = 0
 texture_normal = ExtResource("10_ilk4g")
@@ -234,10 +256,10 @@ stretch_mode = 3
 
 [node name="MoboSocket_24Pin" type="Control" parent="MoboZoomPopup/ZoomedMoboVisual" unique_id=1353874270]
 layout_mode = 1
-anchor_left = 0.9193504
-anchor_top = 0.32762963
-anchor_right = 0.9634888
-anchor_bottom = 0.52207404
+anchor_left = 0.9536222
+anchor_top = 0.22132933
+anchor_right = 0.9888484
+anchor_bottom = 0.3818539
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_eaa8h")
@@ -246,10 +268,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MoboSocket_8Pin" type="Control" parent="MoboZoomPopup/ZoomedMoboVisual" unique_id=305902033]
 layout_mode = 1
-anchor_left = 0.10426086
-anchor_top = 0.07762965
-anchor_right = 0.19548027
-anchor_bottom = 0.1331852
+anchor_left = 0.18871148
+anchor_top = 0.012160948
+anchor_right = 0.26671225
+anchor_bottom = 0.051075995
 script = ExtResource("11_eaa8h")
 required_cable_id = "8-pin"
 metadata/_edit_use_anchors_ = true
@@ -261,10 +283,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -399.0
-offset_top = -136.0
+offset_left = -453.0
+offset_top = -140.0
 grow_horizontal = 0
 grow_vertical = 0
+alignment = 1
 
 [node name="Cable_24Pin" type="TextureRect" parent="CableTray" unique_id=197666673]
 custom_minimum_size = Vector2(134, 0)
@@ -276,6 +299,22 @@ stretch_mode = 5
 script = ExtResource("13_6fpu1")
 specific_id = "24-pin"
 
+[node name="Label" type="Label" parent="CableTray/Cable_24Pin" unique_id=1108834217]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -23.0
+offset_right = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "24 Pin"
+label_settings = SubResource("LabelSettings_ilue1")
+horizontal_alignment = 1
+
 [node name="Cable_8Pin" type="TextureRect" parent="CableTray" unique_id=205378377]
 custom_minimum_size = Vector2(98, 0)
 layout_mode = 2
@@ -286,6 +325,21 @@ stretch_mode = 5
 script = ExtResource("13_6fpu1")
 specific_id = "8-pin"
 
+[node name="Label" type="Label" parent="CableTray/Cable_8Pin" unique_id=513359563]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "8 pIN"
+label_settings = SubResource("LabelSettings_o0adv")
+
 [node name="Cable_6Pin" type="TextureRect" parent="CableTray" unique_id=1166038874]
 custom_minimum_size = Vector2(62, 0)
 layout_mode = 2
@@ -295,6 +349,21 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("13_6fpu1")
 specific_id = "6-pin"
+
+[node name="Label" type="Label" parent="CableTray/Cable_6Pin" unique_id=782795707]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "6 Pin"
+label_settings = SubResource("LabelSettings_nc1cq")
 
 [node name="CompleteButton" type="Button" parent="." unique_id=1063783779]
 layout_mode = 1
@@ -356,19 +425,19 @@ text = "Connect 6-Pin PCIe"
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=136364747]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -204.0
-offset_top = 4.0
-offset_right = 204.0
-offset_bottom = 37.0
+anchors_preset = -1
+anchor_left = 0.28645834
+anchor_top = 0.22839506
+anchor_right = 0.7265625
+anchor_bottom = 0.28703704
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_rnlsk")
+metadata/_edit_use_anchors_ = true
 
 [node name="InstructionPrompt" type="Label" parent="PanelContainer" unique_id=895881405]
 layout_mode = 2
-text = "Click the Motherboard or GPU to connect the wires!"
+text = "Click the Motherboard or GPU to connect 
+the wires!"
 label_settings = SubResource("LabelSettings_eaa8h")
 horizontal_alignment = 1
 

@@ -18,6 +18,16 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63r2m"]
 bg_color = Color(0, 0, 0, 0.5882353)
+expand_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_y1i1u"]
+line_spacing = 5.0
+font = ExtResource("8_63r2m")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_oic8i"]
+font = ExtResource("8_63r2m")
+font_size = 20
 
 [node name="Shop2d" type="Control" unique_id=1330252691]
 layout_mode = 3
@@ -180,16 +190,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -400.0
-offset_top = -75.0
-offset_bottom = 75.0
+offset_left = -407.0
+offset_top = -74.999985
+offset_right = 38.832764
+offset_bottom = 138.33307
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.7200009, 0.60000074)
 theme_override_styles/panel = SubResource("StyleBoxFlat_63r2m")
 
 [node name="Marginb" type="MarginContainer" parent="DialogueSystem/PanelContainer" unique_id=1924384638]
-custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -197,11 +207,18 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="DialogueLabel" type="Label" parent="DialogueSystem/PanelContainer/Marginb" unique_id=2091138774]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("8_63r2m")
-theme_override_font_sizes/font_size = 16
-autowrap_mode = 2
+label_settings = SubResource("LabelSettings_y1i1u")
+autowrap_mode = 3
+
+[node name="ContinuePrompt" type="Label" parent="DialogueSystem/PanelContainer" unique_id=1122237806]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Click to continue ▼"
+label_settings = SubResource("LabelSettings_oic8i")
 
 [node name="TaskboardOverlay" parent="." unique_id=1347746506 instance=ExtResource("9_8ahl1")]
 visible = false
@@ -215,7 +232,6 @@ list_padding_left = 40
 
 [node name="TutorialRobot" parent="NpcLayer" unique_id=1949238434 instance=ExtResource("10_0pqj0")]
 position = Vector2(394, 319)
-scale = Vector2(0.5, 0.5)
 
 [node name="TutorialArrow" type="Sprite2D" parent="NpcLayer" unique_id=534916486]
 visible = false

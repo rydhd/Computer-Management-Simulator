@@ -9,10 +9,21 @@ signal installation_failed(message: String)
 var is_dragging = false
 var start_position = Vector2.ZERO
 var is_installed = false 
-
+var is_hovered = false
+var original_modulate
 func _ready() -> void:
+	# Save the original modulate color
+	original_modulate = modulate
+	# Connect mouse signals
+	
+	mouse_exited.connect(_on_mouse_exited)
 	start_position = global_position
 
+
+func _on_mouse_exited():
+	is_hovered = false
+	# Restore the original modulate color when the mouse leaves
+	modulate = original_modulate
 # 1. Start drag ONLY when the mouse is over the shape
 func _input_event(_viewport, event, _shape_idx) -> void:
 	if is_installed: 

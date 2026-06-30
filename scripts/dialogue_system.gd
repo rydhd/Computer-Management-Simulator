@@ -4,10 +4,14 @@ extends Control
 @onready var panel = $PanelContainer
 @onready var label = $PanelContainer/Marginb/DialogueLabel
 
+# --- CONTINUE PROMPT REFERENCES ---
+@onready var continue_prompt: Label = $PanelContainer/ContinuePrompt
+var prompt_tween: Tween # Used to make the text blink
+
 var _text_tween: Tween
 var _alpha_tween: Tween
 
-# NEW: Tracking variables for our dialogue queue
+# Tracking variables for our dialogue queue
 var dialogue_queue: Array[String] = []
 var is_typing: bool = false
 signal dialogue_finished
@@ -15,8 +19,12 @@ signal dialogue_finished
 func _ready() -> void:
 	visible = false
 	modulate.a = 0.0 # Start fully transparent
+	
+	# Make sure the prompt is hidden when the game starts
+	if continue_prompt:
+		continue_prompt.hide()
 
-# NEW: Pass an array of strings to have a multi-page conversation!
+# Pass an array of strings to have a multi-page conversation!
 func start_dialogue(texts_to_display: Array[String]) -> void:
 	if texts_to_display.is_empty():
 		return
@@ -46,7 +54,7 @@ func show_dialogue(text_to_display: String) -> void:
 	start_dialogue(final_queue)
 
 func hide_dialogue() -> void:
-	# Fallback: allows older scripts like shop_2d.gd to manually hide the dialogue
+	# Fallback: allows older scripts to manually hide the dialogue
 	dialogue_queue.clear()
 	_close_dialogue()
 
@@ -58,6 +66,14 @@ func _show_current_line() -> void:
 		
 	if _text_tween and _text_tween.is_valid(): _text_tween.kill()
 	
+	# --- PROMPT LOGIC: Hide the prompt while typing ---
+	if prompt_tween and prompt_tween.is_valid():
+		prompt_tween.kill()
+	if continue_prompt:
+		continue_prompt.hide()
+		continue_prompt.modulate.a = 1.0 # Reset opacity back to full
+	# --------------------------------------------------
+	
 	var current_text = dialogue_queue[0]
 	label.text = current_text
 	label.visible_ratio = 0.0
@@ -66,7 +82,23 @@ func _show_current_line() -> void:
 	var type_duration: float = current_text.length() * 0.03
 	_text_tween = create_tween()
 	_text_tween.tween_property(label, "visible_ratio", 1.0, type_duration)
-	_text_tween.finished.connect(func(): is_typing = false)
+	
+	# Connect to our new function instead of just setting is_typing to false
+	_text_tween.finished.connect(_on_typing_finished)
+
+# --- NEW: Helper function to trigger the blinking prompt ---
+func _on_typing_finished() -> void:
+	is_typing = false
+	
+	if continue_prompt:
+		continue_prompt.show()
+		
+		# Create a looping tween to make it pulse/blink smoothly
+		if prompt_tween and prompt_tween.is_valid():
+			prompt_tween.kill()
+		prompt_tween = create_tween().set_loops()
+		prompt_tween.tween_property(continue_prompt, "modulate:a", 0.2, 0.5)
+		prompt_tween.tween_property(continue_prompt, "modulate:a", 1.0, 0.5)
 
 func _close_dialogue() -> void:
 	if _alpha_tween and _alpha_tween.is_valid(): _alpha_tween.kill()
@@ -82,8 +114,7 @@ func _input(event: InputEvent) -> void:
 	# If the dialogue is visible and the player left-clicks...
 	if visible and event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		
-		# 1. BULLETPROOF FIX: Stop the click from passing through the UI!
-		# This prevents you from accidentally clicking the Bell or other buttons behind the text.
+		# BULLETPROOF FIX: Stop the click from passing through the UI!
 		get_viewport().set_input_as_handled()
 		
 		if is_typing:
@@ -91,9 +122,12 @@ func _input(event: InputEvent) -> void:
 			if _text_tween and _text_tween.is_valid(): 
 				_text_tween.kill()
 			label.visible_ratio = 1.0
-			is_typing = false
+			
+			# Call our new function to immediately show the blinking prompt!
+			_on_typing_finished() 
+			
 		else:
-			# 2. CRITICAL FIX: Remove the sentence we just read from the front of the line!
+			# CRITICAL FIX: Remove the sentence we just read from the front of the line!
 			dialogue_queue.pop_front()
 			
 			# Now show whatever is next in line
